@@ -211,3 +211,21 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
 
   return data
 }
+
+export async function getHomePage() {
+  const query = await fetchAPI(`
+    query NewQuery {
+      pageBy(uri: "introduction"){
+        content
+        title
+        introduction{
+          firstimage{
+            sourceUrl
+            altText
+          }
+        }
+      }
+    }
+  `)
+  return query
+}

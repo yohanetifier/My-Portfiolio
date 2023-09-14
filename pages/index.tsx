@@ -1,48 +1,27 @@
 import Head from "next/head";
 import { GetStaticProps } from "next";
-import Container from "../components/container";
-import MoreStories from "../components/more-stories";
-import HeroPost from "../components/hero-post";
-import Intro from "../components/intro";
-import Layout from "../components/layout";
-import { getAllPostsForHome } from "../lib/api";
+import { getAllPostsForHome, getHomePage } from "../lib/api";
 import { CMS_NAME } from "../lib/constants";
+import AnimatedWords from "../components/AnimatedWords/AnimatedWords";
+import styles from "../styles/index.module.scss";
 
-export default function Index() {
-  // const heroPost = edges[0]?.node
-  // const morePosts = edges.slice(1)
-
+export default function Index({ introduction }) {
+  console.log("introductionInIndexFunction", introduction);
+  const words = ["H", "E", "L", "L", "O"];
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div className={styles.wrapper}>
+      <AnimatedWords arrayOfLetter={words} />
     </div>
-    // <Layout preview={preview}>
-    //   <Head>
-    //     <title>{`Next.js Blog Example with ${CMS_NAME}`}</title>
-    //   </Head>
-    //   <Container>
-    //     <Intro />
-    //     {heroPost && (
-    //       <HeroPost
-    //         title={heroPost.title}
-    //         coverImage={heroPost.featuredImage}
-    //         date={heroPost.date}
-    //         author={heroPost.author}
-    //         slug={heroPost.slug}
-    //         excerpt={heroPost.excerpt}
-    //       />
-    //     )}
-    //     {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-    //   </Container>
-    // </Layout>
   );
 }
 
-export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const allPosts = await getAllPostsForHome(preview);
+export const getStaticProps: GetStaticProps = async () => {
+  const introduction = await getHomePage();
+
+  console.log("introduction", introduction);
 
   return {
-    props: { allPosts, preview },
+    props: { introduction },
     revalidate: 10,
   };
 };
