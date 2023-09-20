@@ -2,14 +2,12 @@ import React from "react";
 import styles from "./AnimatedWords.module.scss";
 import { motion, Variants } from "framer-motion";
 
-console.log("motion", motion);
-
 type Props = {
   arrayOfLetter: string[];
+  setAnimationComplete: (arg: boolean) => void;
 };
 
-const container: Variants = {
-  //   hidden: { opacity: 0 },
+export const container: Variants = {
   show: {
     opacity: 1,
     transition: {
@@ -23,13 +21,14 @@ const letterVariants: Variants = {
   show: { opacity: 1, x: 0, transition: { duration: 0.3 } },
 };
 
-const AnimatedWords = ({ arrayOfLetter }: Props) => {
+const AnimatedWords = ({ arrayOfLetter, setAnimationComplete }: Props) => {
   return (
     <motion.div
       variants={container}
       className={styles.title}
       initial="hidden"
       animate="show"
+      onAnimationComplete={() => setAnimationComplete(true)}
     >
       {arrayOfLetter.map((letter, i) => (
         <motion.span

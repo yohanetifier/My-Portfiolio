@@ -4,22 +4,53 @@ import { getAllPostsForHome, getHomePage } from "../lib/api";
 import { CMS_NAME } from "../lib/constants";
 import AnimatedWords from "../components/AnimatedWords/AnimatedWords";
 import styles from "../styles/index.module.scss";
+import Introduction from "../components/Introduction/Introduction";
+import { useState } from "react";
 
 export default function Index({ introduction }) {
-  console.log("introductionInIndexFunction", introduction);
+  const [animationSecondComplete, setAnimationSecondComplete] =
+    useState<boolean>(false);
   const words = ["H", "E", "L", "L", "O"];
+  const images = [
+    {
+      src: "",
+      alt: "",
+    },
+    {
+      src: "",
+      alt: "",
+    },
+    {
+      src: "",
+      alt: "",
+    },
+    {
+      src: "",
+      alt: "",
+    },
+    {
+      src: "",
+      alt: "",
+    },
+  ];
+
   return (
     <div className={styles.wrapper}>
-      <AnimatedWords arrayOfLetter={words} />
+      {!animationSecondComplete ? (
+        <Introduction
+          words={words}
+          images={images}
+          setAnimationSecondComplete={setAnimationSecondComplete}
+        />
+      ) : (
+        <div>Animation COmplete</div>
+      )}
     </div>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   const introduction = await getHomePage();
-
-  console.log("introduction", introduction);
-
   return {
     props: { introduction },
     revalidate: 10,

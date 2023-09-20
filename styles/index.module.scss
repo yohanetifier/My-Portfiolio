@@ -4,4 +4,45 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    // background-color: black;
 }
+
+// .imgWrapper {
+//     border: 2px solid purple;
+//     position: absolute;
+//     width: 200px;
+//     height: 300px;
+//     transform: rotate(50deg);
+// }
+
+// .imgWrapper1 {
+//     border: 2px solid blue;
+//     position: absolute;
+//     width: 200px;
+//     height: 300px;
+//     transform: rotate(-20deg);
+// }
+
+// .imgWrapper2 {
+//     border: 2px solid orange;
+//     position: absolute;
+//     width: 400px;
+//     height: 500px;
+//     transform: rotate(30deg);
+// }
+
+// .imgWrapper3 {
+//     border: 2px solid green;
+//     position: absolute;
+//     width: 350px;
+//     height: 350px;
+//     transform: rotate(10deg);
+// }
+
+// .imgWrapper4 {
+//     border: 2px solid white;
+//     position: absolute;
+//     width: 300px;
+//     height: 600px;
+// }
