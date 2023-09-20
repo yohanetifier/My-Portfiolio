@@ -6,6 +6,8 @@ import AnimatedWords from "../components/AnimatedWords/AnimatedWords";
 import styles from "../styles/index.module.scss";
 import Introduction from "../components/Introduction/Introduction";
 import { useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import Scene from "../components/Scene/Scene";
 
 export default function Index({ introduction }) {
   const [animationSecondComplete, setAnimationSecondComplete] =
@@ -43,7 +45,9 @@ export default function Index({ introduction }) {
           setAnimationSecondComplete={setAnimationSecondComplete}
         />
       ) : (
-        <div>Animation COmplete</div>
+        <Canvas camera={-10}>
+          <Scene />
+        </Canvas>
       )}
     </div>
   );
