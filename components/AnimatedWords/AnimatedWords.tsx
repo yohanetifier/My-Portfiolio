@@ -13,14 +13,14 @@ const container: Variants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.5,
+      staggerChildren: 0.3,
     },
   },
 };
 
 const letterVariants: Variants = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
+  hidden: { opacity: 0, x: -100, transition: { duration: 0.3 } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.3 } },
 };
 
 const AnimatedWords = ({ arrayOfLetter }: Props) => {
@@ -40,11 +40,6 @@ const AnimatedWords = ({ arrayOfLetter }: Props) => {
           {letter}
         </motion.span>
       ))}
-      {/* <motion.span variants={letterVariants}>H</motion.span>
-      <motion.span variants={letterVariants}>E</motion.span>
-      <motion.span variants={letterVariants}>L</motion.span>
-      <motion.span variants={letterVariants}>L</motion.span>
-      <motion.span variants={letterVariants}>O</motion.span> */}
     </motion.div>
   );
 };
