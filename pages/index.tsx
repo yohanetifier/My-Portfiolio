@@ -6,7 +6,7 @@ import AnimatedWords from "../components/AnimatedWords/AnimatedWords";
 import styles from "../styles/index.module.scss";
 import Introduction from "../components/Introduction/Introduction";
 import { useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import Scene from "../components/Scene/Scene";
 
 export default function Index({ introduction }) {
@@ -36,6 +36,10 @@ export default function Index({ introduction }) {
     },
   ];
 
+  const camerasSettings = {
+    position: [34, 1, 2],
+  };
+
   return (
     <div className={styles.wrapper}>
       {!animationSecondComplete ? (
@@ -45,9 +49,11 @@ export default function Index({ introduction }) {
           setAnimationSecondComplete={setAnimationSecondComplete}
         />
       ) : (
-        <Canvas camera={-10}>
-          <Scene />
-        </Canvas>
+        <>
+          <Canvas camera={camerasSettings}>
+            <Scene />
+          </Canvas>
+        </>
       )}
     </div>
   );
