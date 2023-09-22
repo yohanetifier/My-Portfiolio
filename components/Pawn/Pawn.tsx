@@ -1,11 +1,15 @@
-import React, { useRef } from "react";
-import { useGLTF, TransformControls } from "@react-three/drei";
-import { motion } from "framer-motion-3d";
+import React, { useRef } from 'react';
+import { useGLTF, TransformControls } from '@react-three/drei';
+import { motion } from 'framer-motion-3d';
 
-type Props = {};
+type Props = {
+  positionX: number;
+  positionY: number;
+  positionZ: number;
+};
 
-const Pawn = (props: Props) => {
-  const { nodes, materials } = useGLTF("./checkboard.glb");
+const Pawn = ({ positionX, positionY, positionZ }: Props) => {
+  const { nodes, materials } = useGLTF('./checkboard.glb');
   const pawnRef = useRef();
   return (
     <>
@@ -15,8 +19,8 @@ const Pawn = (props: Props) => {
         castShadow
         receiveShadow
         geometry={nodes.Pawn.geometry}
-        material={materials["pawn white"]}
-        position={[-3.28, 0.42, 4.93]}
+        material={materials['pawn white']}
+        position={[positionX, positionY, positionZ]}
         rotation={[Math.PI / 2, 0, 0]}
       />
     </>

@@ -1,38 +1,39 @@
-import Head from "next/head";
-import { GetStaticProps } from "next";
-import { getAllPostsForHome, getHomePage } from "../lib/api";
-import { CMS_NAME } from "../lib/constants";
-import AnimatedWords from "../components/AnimatedWords/AnimatedWords";
-import styles from "../styles/index.module.scss";
-import Introduction from "../components/Introduction/Introduction";
-import { useState, StrictMode } from "react";
-import { Canvas } from "@react-three/fiber";
-import Scene from "../components/Scene/Scene";
+import Head from 'next/head';
+import { GetStaticProps } from 'next';
+import { getAllPostsForHome, getHomePage } from '../lib/api';
+import { CMS_NAME } from '../lib/constants';
+import AnimatedWords from '../components/AnimatedWords/AnimatedWords';
+import styles from '../styles/index.module.scss';
+import Introduction from '../components/Introduction/Introduction';
+import { useState, StrictMode } from 'react';
+import { Canvas } from '@react-three/fiber';
+import Scene from '../components/Scene/Scene';
+import { Leva } from 'leva';
 
 export default function Index({ introduction }) {
   const [animationSecondComplete, setAnimationSecondComplete] =
     useState<boolean>(false);
-  const words = ["H", "E", "L", "L", "O"];
+  const words = ['H', 'E', 'L', 'L', 'O'];
   const images = [
     {
-      src: "",
-      alt: "",
+      src: '',
+      alt: '',
     },
     {
-      src: "",
-      alt: "",
+      src: '',
+      alt: '',
     },
     {
-      src: "",
-      alt: "",
+      src: '',
+      alt: '',
     },
     {
-      src: "",
-      alt: "",
+      src: '',
+      alt: '',
     },
     {
-      src: "",
-      alt: "",
+      src: '',
+      alt: '',
     },
   ];
 
@@ -51,6 +52,7 @@ export default function Index({ introduction }) {
           />
         ) : (
           <>
+            {process.env.NODE_ENV === 'development' && <Leva collapsed />}
             <Canvas camera={camerasSettings}>
               <Scene />
             </Canvas>

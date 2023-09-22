@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import { useGLTF, TransformControls } from "@react-three/drei";
+import React, { useRef } from 'react';
+import { useGLTF, TransformControls } from '@react-three/drei';
 
 type Props = {};
 
 const Rook = (props: Props) => {
-  const { nodes, materials } = useGLTF("./checkboard.glb");
+  const { nodes, materials } = useGLTF('./checkboard.glb');
   const rookRef = useRef();
   return (
     <>

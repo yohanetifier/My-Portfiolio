@@ -1,17 +1,23 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 import {
   useGLTF,
   TransformControls,
   PivotControls,
   Html,
-} from "@react-three/drei";
-import { motion } from "framer-motion-3d";
+} from '@react-three/drei';
+import { motion } from 'framer-motion-3d';
+import * as THREE from 'three';
 
-type Props = {};
+type Props = {
+  positionX: number;
+  positionY: number;
+  positionZ: number;
+};
 
-const Queen = (props: Props) => {
-  const { nodes, materials } = useGLTF("./checkboard.glb");
-  const queenRef = useRef();
+const Queen = ({ positionX, positionY, positionZ }: Props) => {
+  const { nodes, materials } = useGLTF('./checkboard.glb');
+  const queenRef = useRef<THREE.Mesh>();
+
   return (
     <>
       {/* <TransformControls object={queenRef} /> */}
@@ -21,7 +27,7 @@ const Queen = (props: Props) => {
           receiveShadow
           geometry={nodes.Queen_1.geometry}
           material={nodes.Queen_1.material}
-          position={[-0.44, 0.18, 5.18]}
+          position={[positionX, positionY, positionZ]}
           ref={queenRef}
         />
       </PivotControls>

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import styles from "./Introduction.module.scss";
-import AnimatedWords from "../AnimatedWords/AnimatedWords";
-import AnimatedImg from "../AnimatedImg/AnimatedImg";
-import { ArrayOfImg } from "../AnimatedImg/AnimatedImg";
+import React, { useState } from 'react';
+import styles from './Introduction.module.scss';
+import AnimatedWords from '../AnimatedWords/AnimatedWords';
+import AnimatedImg from '../AnimatedImg/AnimatedImg';
+import { ArrayOfImg } from '../AnimatedImg/AnimatedImg';
 
-type SourceImage = Pick<ArrayOfImg, "src" | "alt">;
+type SourceImage = Pick<ArrayOfImg, 'src' | 'alt'>;
 
 type Props = {
   words: string[];
@@ -18,28 +18,28 @@ const Introduction = ({ words, images, setAnimationSecondComplete }: Props) => {
   //   useState<boolean>(false);
   const imagesArray = [
     {
-      src: "",
-      alt: "",
+      src: '',
+      alt: '',
       className: styles.imgWrapper,
     },
     {
-      src: "",
-      alt: "",
+      src: '',
+      alt: '',
       className: styles.imgWrapper1,
     },
     {
-      src: "",
-      alt: "",
+      src: '',
+      alt: '',
       className: styles.imgWrapper2,
     },
     {
-      src: "",
-      alt: "",
+      src: '',
+      alt: '',
       className: styles.imgWrapper3,
     },
     {
-      src: "",
-      alt: "",
+      src: '',
+      alt: '',
       className: styles.imgWrapper4,
     },
   ];
