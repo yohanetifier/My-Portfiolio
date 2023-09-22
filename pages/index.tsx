@@ -5,7 +5,7 @@ import { CMS_NAME } from "../lib/constants";
 import AnimatedWords from "../components/AnimatedWords/AnimatedWords";
 import styles from "../styles/index.module.scss";
 import Introduction from "../components/Introduction/Introduction";
-import { useState } from "react";
+import { useState, StrictMode } from "react";
 import { Canvas } from "@react-three/fiber";
 import Scene from "../components/Scene/Scene";
 
@@ -41,21 +41,23 @@ export default function Index({ introduction }) {
   };
 
   return (
-    <div className={styles.wrapper}>
-      {!animationSecondComplete ? (
-        <Introduction
-          words={words}
-          images={images}
-          setAnimationSecondComplete={setAnimationSecondComplete}
-        />
-      ) : (
-        <>
-          <Canvas camera={camerasSettings}>
-            <Scene />
-          </Canvas>
-        </>
-      )}
-    </div>
+    <StrictMode>
+      <div className={styles.wrapper}>
+        {!animationSecondComplete ? (
+          <Introduction
+            words={words}
+            images={images}
+            setAnimationSecondComplete={setAnimationSecondComplete}
+          />
+        ) : (
+          <>
+            <Canvas camera={camerasSettings}>
+              <Scene />
+            </Canvas>
+          </>
+        )}
+      </div>
+    </StrictMode>
   );
 }
 
