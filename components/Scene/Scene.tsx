@@ -1,20 +1,31 @@
-import React, { useRef } from 'react';
-import { OrbitControls } from '@react-three/drei';
+import { isDevEnv } from '../../lib/constants';
+import React, { useEffect, useRef } from 'react';
+import { OrbitControls, useHelper } from '@react-three/drei';
 import Chess from '../Chess/Chess';
 import { Perf } from 'r3f-perf';
+import * as THREE from 'three';
+import { useControls } from 'leva';
 
 type Props = {};
 
 const Scene = (props: Props) => {
-  return (
-    <>
-      {/* {process.env.NODE_ENV === 'development' && <Perf />} */}
-      <OrbitControls makeDefault />
-      <ambientLight position={[0, 0, 0]} />
-      {/* <primitive object={model.scene} /> */}
-      <Chess />
-    </>
-  );
+	const { intensity } = useControls('Light', {
+		intensity: {
+			value: 1,
+			step: 1,
+		},
+	});
+
+	return (
+		<>
+			{/* isDevEnv && <Perf /> */}
+			<OrbitControls makeDefault />
+			<ambientLight intensity={intensity} />
+
+			{/* <primitive object={model.scene} /> */}
+			<Chess />
+		</>
+	);
 };
 
 export default Scene;

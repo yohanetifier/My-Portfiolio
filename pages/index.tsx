@@ -1,3 +1,4 @@
+import { isDevEnv } from '../lib/constants';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { getAllPostsForHome, getHomePage } from '../lib/api';
@@ -11,62 +12,61 @@ import Scene from '../components/Scene/Scene';
 import { Leva } from 'leva';
 
 export default function Index({ introduction }) {
-  const [animationSecondComplete, setAnimationSecondComplete] =
-    useState<boolean>(false);
-  const words = ['H', 'E', 'L', 'L', 'O'];
-  const images = [
-    {
-      src: '',
-      alt: '',
-    },
-    {
-      src: '',
-      alt: '',
-    },
-    {
-      src: '',
-      alt: '',
-    },
-    {
-      src: '',
-      alt: '',
-    },
-    {
-      src: '',
-      alt: '',
-    },
-  ];
+	const [animationSecondComplete, setAnimationSecondComplete] = useState<boolean>(false);
+	const words = ['H', 'E', 'L', 'L', 'O'];
+	const images = [
+		{
+			src: '',
+			alt: '',
+		},
+		{
+			src: '',
+			alt: '',
+		},
+		{
+			src: '',
+			alt: '',
+		},
+		{
+			src: '',
+			alt: '',
+		},
+		{
+			src: '',
+			alt: '',
+		},
+	];
 
-  const camerasSettings = {
-    position: [34, 1, 2],
-  };
+	const camerasSettings = {
+		position: [34, 1, 2],
+	};
 
-  return (
-    <StrictMode>
-      <div className={styles.wrapper}>
-        {!animationSecondComplete ? (
-          <Introduction
-            words={words}
-            images={images}
-            setAnimationSecondComplete={setAnimationSecondComplete}
-          />
-        ) : (
-          <>
-            {process.env.NODE_ENV === 'development' && <Leva collapsed />}
-            <Canvas camera={camerasSettings}>
-              <Scene />
-            </Canvas>
-          </>
-        )}
-      </div>
-    </StrictMode>
-  );
+	return (
+		<StrictMode>
+			<div className={styles.wrapper}>
+				{!animationSecondComplete ? (
+					<Introduction
+						words={words}
+						images={images}
+						setAnimationSecondComplete={setAnimationSecondComplete}
+					/>
+				) : (
+					<>
+						{isDevEnv && <Leva collapsed />}
+						<Canvas camera={camerasSettings}>
+							<Scene />
+						</Canvas>
+					</>
+				)}
+			</div>
+		</StrictMode>
+	);
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const introduction = await getHomePage();
-  return {
-    props: { introduction },
-    revalidate: 10,
-  };
+	const introduction = await getHomePage();
+	return {
+		props: { introduction },
+		revalidate: 10,
+	};
 };

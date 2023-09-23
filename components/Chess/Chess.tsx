@@ -11,38 +11,39 @@ import Rook from '../Rook/Rook';
 import { useControls } from 'leva';
 
 export default function Chess(props) {
-  const { whiteQueenPosition } = useControls('whiteQueen', {
-    whiteQueenPosition: {
-      value: { x: -0.44, y: 0.18, z: 5.18 },
-      step: 0.01,
-    },
-  });
+	const { whiteQueenPosition } = useControls('whiteQueen', {
+		whiteQueenPosition: {
+			value: { x: -0.44, y: 0.18, z: 5.18 },
+			step: 0.01,
+		},
+	});
 
-  const { whitePawnPosition } = useControls('whitePawn', {
-    whitePawnPosition: {
-      value: { x: -3.28, y: 0.42, z: 4.93 },
-      step: 0.01,
-    },
-  });
+	const { whitePawnPosition } = useControls('whitePawn', {
+		whitePawnPosition: {
+			value: { x: -3.28, y: 0.42, z: 4.93 },
+			step: 0.01,
+		},
+	});
 
-  const { nodes, materials } = useGLTF('./checkboard.glb');
-  return (
-    <>
-      <group {...props} dispose={null}>
-        <Queen
-          positionX={whiteQueenPosition.x}
-          positionY={whiteQueenPosition.y}
-          positionZ={whiteQueenPosition.z}
-        />
-        {/* <mesh
+	const { nodes, materials } = useGLTF('./checkboard.glb');
+	console.log('nodes', nodes);
+	return (
+		<>
+			<group {...props} dispose={null}>
+				<Queen
+					positionX={whiteQueenPosition.x}
+					positionY={whiteQueenPosition.y}
+					positionZ={whiteQueenPosition.z}
+				/>
+				{/* <mesh
         castShadow
         receiveShadow
         geometry={nodes.Queen_1.geometry}
         material={nodes.Queen_1.material}
         position={[-0.44, 0.18, 5.18]}
       /> */}
-        <Checkboard />
-        {/* <group position={[-9.14, 0, 3.88]} rotation={[0, 1.56, 0]}>
+				<Checkboard />
+				{/* <group position={[-9.14, 0, 3.88]} rotation={[0, 1.56, 0]}>
         <mesh
           castShadow
           receiveShadow
@@ -56,7 +57,7 @@ export default function Chess(props) {
           material={materials.Material}
         />
       </group> */}
-        {/* <mesh
+				{/* <mesh
         castShadow
         receiveShadow
         geometry={nodes.Pawn.geometry}
@@ -64,13 +65,13 @@ export default function Chess(props) {
         position={[-3.28, 0.42, 4.93]}
         rotation={[Math.PI / 2, 0, 0]}
       /> */}
-        <Pawn
-          positionX={whitePawnPosition.x}
-          positionY={whitePawnPosition.y}
-          positionZ={whitePawnPosition.z}
-        />
-        <Rook />
-        {/* <mesh
+				<Pawn
+					positionX={whitePawnPosition.x}
+					positionY={whitePawnPosition.y}
+					positionZ={whitePawnPosition.z}
+				/>
+				<Rook />
+				{/* <mesh
         castShadow
         receiveShadow
         geometry={nodes.rook.geometry}
@@ -78,38 +79,38 @@ export default function Chess(props) {
         position={[0.02, 0.25, -4.82]}
         scale={0.64}
       /> */}
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.knight_top.geometry}
-          material={nodes.knight_top.material}
-          position={[0.01, 1.27, -2.27]}
-          rotation={[0, -0.03, 0]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Bishop001.geometry}
-          material={nodes.Bishop001.material}
-          position={[0, 0.03, 0.12]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.KIng001.geometry}
-          material={nodes.KIng001.material}
-          position={[-0.42, 0.03, 2.8]}
-          rotation={[0, -1.23, 0]}
-        />
-      </group>
-      {/* <Text
+				<mesh
+					castShadow
+					receiveShadow
+					geometry={nodes.knight_top.geometry}
+					material={nodes.knight_top.material}
+					position={[0.01, 1.27, -2.27]}
+					rotation={[0, -0.03, 0]}
+				/>
+				<mesh
+					castShadow
+					receiveShadow
+					geometry={nodes.Bishop001.geometry}
+					material={nodes.Bishop001.material}
+					position={[0, 0.03, 0.12]}
+				/>
+				<mesh
+					castShadow
+					receiveShadow
+					geometry={nodes.KIng001.geometry}
+					material={nodes.KIng001.material}
+					position={[-0.42, 0.03, 2.8]}
+					rotation={[0, -1.23, 0]}
+				/>
+			</group>
+			{/* <Text
         characters="abcdefghijklmnopqrstuvwxyz0123456789!"
         position={[0, 10, 0]}
       >
         hello world!
       </Text> */}
-    </>
-  );
+		</>
+	);
 }
 
 useGLTF.preload('./checkboard.glb');
