@@ -6,10 +6,12 @@ import { CMS_NAME } from '../lib/constants';
 import AnimatedWords from '../components/AnimatedWords/AnimatedWords';
 import styles from '../styles/index.module.scss';
 import Introduction from '../components/Introduction/Introduction';
-import { useState, StrictMode } from 'react';
+import { useState, StrictMode, useEffect, useRef } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import Scene from '../components/Scene/Scene';
 import { Leva, useControls } from 'leva';
+import Header from '../components/Header/Header';
+import { useScroll } from 'framer-motion';
 
 export default function Index({ introduction }) {
 	const [animationSecondComplete, setAnimationSecondComplete] = useState<boolean>(false);
@@ -44,11 +46,11 @@ export default function Index({ introduction }) {
 		},
 	});
 
-	console.log('cameraSettings', cameraSettings);
-
 	return (
 		<StrictMode>
-			<div className={styles.wrapper}>
+			<div
+				className={styles.wrapper}
+			>
 				{!animationSecondComplete ? (
 					<Introduction
 						words={words}
@@ -58,6 +60,12 @@ export default function Index({ introduction }) {
 				) : (
 					<>
 						{isDevEnv && <Leva collapsed />}
+						<Header />
+						<div className={styles.title}>
+							<h2>LET'S BUILD</h2>
+							<h2>THE SITE OF THE FUTURE </h2>
+						</div>
+
 						<Canvas camera={{ position: [34, 1, 2] }}>
 							<Scene
 								cameraPositionX={cameraSettings.x}

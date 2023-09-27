@@ -30,7 +30,7 @@ const Scene = ({ cameraPositionX, cameraPositionY, cameraPositionZ }: Props) => 
 	return (
 		<>
 			{/* isDevEnv && <Perf /> */}
-			<OrbitControls makeDefault />
+			{/* <OrbitControls makeDefault /> */}
 			<ambientLight intensity={intensity} />
 
 			{/* <primitive object={model.scene} /> */}
