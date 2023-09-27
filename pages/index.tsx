@@ -7,9 +7,9 @@ import AnimatedWords from '../components/AnimatedWords/AnimatedWords';
 import styles from '../styles/index.module.scss';
 import Introduction from '../components/Introduction/Introduction';
 import { useState, StrictMode } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import Scene from '../components/Scene/Scene';
-import { Leva } from 'leva';
+import { Leva, useControls } from 'leva';
 
 export default function Index({ introduction }) {
 	const [animationSecondComplete, setAnimationSecondComplete] = useState<boolean>(false);
@@ -37,9 +37,14 @@ export default function Index({ introduction }) {
 		},
 	];
 
-	const camerasSettings = {
-		position: [34, 1, 2],
-	};
+	const { cameraSettings } = useControls('camera', {
+		cameraSettings: {
+			value: { x: 34, y: 1, z: 2 },
+			step: 1,
+		},
+	});
+
+	console.log('cameraSettings', cameraSettings);
 
 	return (
 		<StrictMode>
@@ -53,8 +58,12 @@ export default function Index({ introduction }) {
 				) : (
 					<>
 						{isDevEnv && <Leva collapsed />}
-						<Canvas camera={camerasSettings}>
-							<Scene />
+						<Canvas camera={{ position: [34, 1, 2] }}>
+							<Scene
+								cameraPositionX={cameraSettings.x}
+								cameraPositionY={cameraSettings.y}
+								cameraPositionZ={cameraSettings.z}
+							/>
 						</Canvas>
 					</>
 				)}
@@ -70,3 +79,6 @@ export const getStaticProps: GetStaticProps = async () => {
 		revalidate: 10,
 	};
 };
+function usecControls(arg0: string, arg1: {}): { camera: any } {
+	throw new Error('Function not implemented.');
+}
