@@ -1,6 +1,6 @@
 import { isDevEnv } from '../../lib/constants';
 import React, { useEffect, useRef } from 'react';
-import { OrbitControls, useHelper } from '@react-three/drei';
+import { OrbitControls, useHelper, ScrollControls } from '@react-three/drei';
 import Chess from '../Chess/Chess';
 import { Perf } from 'r3f-perf';
 import * as THREE from 'three';
@@ -21,20 +21,19 @@ const Scene = ({ cameraPositionX, cameraPositionY, cameraPositionZ }: Props) => 
 		},
 	});
 
-	const { camera } = useThree();
-	useEffect(() => {
-		camera.position.set(cameraPositionX, cameraPositionY, cameraPositionZ);
-		camera.lookAt(cameraPositionX, cameraPositionY, cameraPositionZ);
-	}, [cameraPositionX, cameraPositionY, cameraPositionZ]);
-
 	return (
 		<>
 			{/* isDevEnv && <Perf /> */}
-			{/* <OrbitControls makeDefault /> */}
 			<ambientLight intensity={intensity} />
+			{/* <OrbitControls
+				makeDefault
+				enableZoom={false}
+			/> */}
 
 			{/* <primitive object={model.scene} /> */}
-			<Chess />
+			<ScrollControls>
+				<Chess />
+			</ScrollControls>
 		</>
 	);
 };

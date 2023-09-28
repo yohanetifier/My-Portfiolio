@@ -41,16 +41,14 @@ export default function Index({ introduction }) {
 
 	const { cameraSettings } = useControls('camera', {
 		cameraSettings: {
-			value: { x: 34, y: 1, z: 2 },
+			value: { x: 34, y: 100, z: 2 },
 			step: 1,
 		},
 	});
 
 	return (
 		<StrictMode>
-			<div
-				className={styles.wrapper}
-			>
+			<div className={styles.wrapper}>
 				{!animationSecondComplete ? (
 					<Introduction
 						words={words}
@@ -66,7 +64,7 @@ export default function Index({ introduction }) {
 							<h2>THE SITE OF THE FUTURE </h2>
 						</div>
 
-						<Canvas camera={{ position: [34, 1, 2] }}>
+						<Canvas camera={{ position: [34, 100, 2] }}>
 							<Scene
 								cameraPositionX={cameraSettings.x}
 								cameraPositionY={cameraSettings.y}
