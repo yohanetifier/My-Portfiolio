@@ -14,36 +14,35 @@ import { animate, useMotionValue } from 'framer-motion';
 
 export default function Chess(props) {
 	const scroll = useScroll();
-	const scrollY = useMotionValue(100);
-	const scrollZ = useMotionValue(2);
-	const range = scroll.range(0, 1 / 3);
+	const scrollX = useMotionValue(40);
+	const scrollY = useMotionValue(15);
+	const scrollZ = useMotionValue(30);
+	const animateFov = useMotionValue(75);
 
-	let lastPosition = 0;
-	console.log('lastPosition', lastPosition);
+	let lastPosition = scroll.offset;
 
-	useEffect(() => {
-		console.log('lastPosition', lastPosition);
-	}, [lastPosition]);
-	useFrame(state => {
-		// if (scroll.offset > 0) {
-		// 	animate(scrollY, 2, { duration: 0.4 });
-		// 	state.camera.position.y = scrollY.get();
-		// 	state.camera.lookAt(0, 0, 0);
-		// }
-		// console.log('lastPosition', lastPosition);
+	useFrame(async state => {
 		if (lastPosition > scroll.offset) {
-			// alert('Scrolling up...');
-			console.log('scrollY.get(), Scrolling Up', scrollY.get());
-			animate(scrollY, 100, { duration: 0.6 });
+			animate(scrollY, 15, { duration: 0.5 });
+			animate(scrollZ, 30, { duration: 0.5 });
+			animate(animateFov, 75, { duration: 0.5 });
 			state.camera.position.y = scrollY.get();
+			state.camera.position.z = scrollZ.get();
+			state.camera.fov = animateFov.get();
 			state.camera.lookAt(0, 0, 0);
-			lastPosition = scroll.offset;
+			state.camera.updateProjectionMatrix();
+			// lastPosition = scroll.offset;
 		}
 		if (lastPosition < scroll.offset) {
-			console.log('scrollY.get() Scrolling down', scrollY.get());
-			animate(scrollY, 2, { duration: 0.6 });
+			animate(scrollY, 44, { duration: 0.5 });
+			animate(scrollZ, 9, { duration: 0.5 });
+			animate(animateFov, 35, { duration: 0.5 });
+			// state.camera.position.x = scrollX.get();
+			state.camera.position.z = scrollZ.get();
 			state.camera.position.y = scrollY.get();
-			state.camera.lookAt(0, 0, 0);
+			state.camera.fov = animateFov.get();
+			state.camera.lookAt(6, -5, 9);
+			state.camera.updateProjectionMatrix();
 			lastPosition = scroll.offset;
 		}
 	});

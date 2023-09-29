@@ -6,12 +6,11 @@ import { CMS_NAME } from '../lib/constants';
 import AnimatedWords from '../components/AnimatedWords/AnimatedWords';
 import styles from '../styles/index.module.scss';
 import Introduction from '../components/Introduction/Introduction';
-import { useState, StrictMode, useEffect, useRef } from 'react';
+import { useState, StrictMode, useRef, useEffect } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import Scene from '../components/Scene/Scene';
-import { Leva, useControls } from 'leva';
+import { Leva } from 'leva';
 import Header from '../components/Header/Header';
-import { useScroll } from 'framer-motion';
 
 export default function Index({ introduction }) {
 	const [animationSecondComplete, setAnimationSecondComplete] = useState<boolean>(false);
@@ -39,13 +38,6 @@ export default function Index({ introduction }) {
 		},
 	];
 
-	const { cameraSettings } = useControls('camera', {
-		cameraSettings: {
-			value: { x: 34, y: 100, z: 2 },
-			step: 1,
-		},
-	});
-
 	return (
 		<StrictMode>
 			<div className={styles.wrapper}>
@@ -64,12 +56,8 @@ export default function Index({ introduction }) {
 							<h2>THE SITE OF THE FUTURE </h2>
 						</div>
 
-						<Canvas camera={{ position: [34, 100, 2] }}>
-							<Scene
-								cameraPositionX={cameraSettings.x}
-								cameraPositionY={cameraSettings.y}
-								cameraPositionZ={cameraSettings.z}
-							/>
+						<Canvas camera={{ position: [40, 15, 30], fov: 50 }}>
+							<Scene />
 						</Canvas>
 					</>
 				)}

@@ -1,13 +1,33 @@
 import React, { useEffect, useRef } from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { useControls } from 'leva';
 
 type Props = {};
 
 const Checkboard = (props: Props) => {
-	const { nodes, materials } = useGLTF('./queen-and-checkboard-test4.glb');
+	const { position, rotation } = useControls('chessboard', {
+		position: {
+			value: {
+				x: -7,
+				y: -4,
+				z: -18,
+			},
+			step: 1,
+		},
+		rotation: {
+			value: { x: 0, y: -0.63, z: 0 },
+			step: 0.01,
+		},
+	});
 
+	const chessboardRef = useRef();
+	useEffect(() => {
+		console.log('chessboardRef.current', chessboardRef.current);
+	}, []);
+
+	const { nodes, materials } = useGLTF('./queen-and-checkboard-test4.glb');
 	const boardSize = 8;
 	const tileSize = 3;
 	const chessboardArray = [];
@@ -30,7 +50,18 @@ const Checkboard = (props: Props) => {
 		}
 	}
 
-	return <group>{chessboardArray}</group>;
+	useFrame(() => {
+		chessboardRef.current.position.set(position.x, position.y, position.z);
+		chessboardRef.current.rotation.set(rotation.x, rotation.y, rotation.z);
+	});
+	return (
+		<group
+			ref={chessboardRef}
+			// position={[position.x, position.y, position.z]}
+		>
+			{chessboardArray}
+		</group>
+	);
 
 	// const checkboardRef = useRef(null);
 	// const { nodes, materials } = useGLTF('./queen-and-checkboard-test4.glb');
