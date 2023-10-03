@@ -102,3 +102,34 @@
 .wp-block-media-text {
   @apply grid grid-cols-2 gap-4;
 }
+
+@font-face {
+  font-family: "Bungee";
+  src: url("/fonts/bungee-v13-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Candal";
+  src: url("/fonts/candal-v15-latin-regular.woff2") format("woff2");
+}
+
+/* almarai-regular - arabic */
+@font-face {
+  font-display: swap;
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/almarai-v12-arabic-regular.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* almarai-700 - arabic */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/almarai-v12-arabic-700.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}

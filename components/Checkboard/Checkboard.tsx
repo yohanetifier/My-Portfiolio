@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -10,9 +10,9 @@ const Checkboard = (props: Props) => {
 	const { position, rotation } = useControls('chessboard', {
 		position: {
 			value: {
-				x: -7,
-				y: -4,
-				z: -18,
+				x: 0,
+				y: 3,
+				z: -12,
 			},
 			step: 1,
 		},
@@ -21,11 +21,6 @@ const Checkboard = (props: Props) => {
 			step: 0.01,
 		},
 	});
-
-	const chessboardRef = useRef();
-	useEffect(() => {
-		console.log('chessboardRef.current', chessboardRef.current);
-	}, []);
 
 	const { nodes, materials } = useGLTF('./queen-and-checkboard-test4.glb');
 	const boardSize = 8;
@@ -50,14 +45,10 @@ const Checkboard = (props: Props) => {
 		}
 	}
 
-	useFrame(() => {
-		chessboardRef.current.position.set(position.x, position.y, position.z);
-		chessboardRef.current.rotation.set(rotation.x, rotation.y, rotation.z);
-	});
 	return (
 		<group
-			ref={chessboardRef}
-			// position={[position.x, position.y, position.z]}
+			position={[position.x, position.y, position.z]}
+			rotation={[rotation.x, rotation.y, rotation.z]}
 		>
 			{chessboardArray}
 		</group>

@@ -1,18 +1,22 @@
 import { isDevEnv } from '../../lib/constants';
 import React, { useEffect, useRef } from 'react';
-import { OrbitControls, useHelper, ScrollControls } from '@react-three/drei';
+import { OrbitControls, useHelper, ScrollControls, Scroll } from '@react-three/drei';
 import Chess from '../Chess/Chess';
 import { Perf } from 'r3f-perf';
 import * as THREE from 'three';
 import { useControls } from 'leva';
 import { useFrame, useThree } from '@react-three/fiber';
+import BannerPhrase from '../BannerPhrase/BannerPhrase';
 
-type Props = {};
+type Props = {
+	bannerPhrase: String[];
+};
 
-const Scene = (props: Props) => {
+const Scene = ({ bannerPhrase }: Props) => {
+	// const bannerPhrase = ["LET'S BUILD", 'THE SITE', 'OF THE FUTURE'];
 	const { intensity } = useControls('light', {
 		intensity: {
-			value: 1,
+			value: 0,
 			step: 1,
 		},
 	});
@@ -39,14 +43,14 @@ const Scene = (props: Props) => {
 	const moveCameraPosition = cameraPosition.x !== 40 || cameraPosition.y !== 15 || cameraPosition.z !== 30;
 
 	useFrame(state => {
-		const { camera } = state;
-		camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
-		camera.lookAt(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z);
-		camera.fov = cameraFov;
+		// const { camera } = state;
+		// camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
+		// camera.lookAt(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z);
+		// camera.fov = cameraFov;
 		// camera.rotation.x = cameraRotation.x;
 		// camera.rotation.y = cameraRotation.y;
 		// camera.rotation.z = cameraRotation.z;
-		camera.updateProjectionMatrix();
+		// camera.updateProjectionMatrix();
 	});
 
 	const { camera } = useThree();
@@ -57,16 +61,17 @@ const Scene = (props: Props) => {
 	return (
 		<>
 			{/* isDevEnv && <Perf /> */}
-			<ambientLight intensity={intensity} />
+			{/* <ambientLight intensity={intensity} /> */}
 			{/* <OrbitControls
 				makeDefault
 				enableZoom={false}
 			/> */}
 
 			{/* <primitive object={model.scene} /> */}
-			<ScrollControls>
-				<Chess ref={cameraRef} />
-			</ScrollControls>
+			{/* <BannerPhrase bannerPhrase={bannerPhrase} /> */}
+			{/* <ScrollControls> */}
+			<Chess ref={cameraRef} />
+			{/* </ScrollControls> */}
 		</>
 	);
 };

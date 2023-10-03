@@ -11,10 +11,13 @@ import { Canvas, useThree } from '@react-three/fiber';
 import Scene from '../components/Scene/Scene';
 import { Leva } from 'leva';
 import Header from '../components/Header/Header';
+import BannerPhrase from '../components/BannerPhrase/BannerPhrase';
+import { ScrollControls, Scroll } from '@react-three/drei';
 
 export default function Index({ introduction }) {
 	const [animationSecondComplete, setAnimationSecondComplete] = useState<boolean>(false);
 	const words = ['H', 'E', 'L', 'L', 'O'];
+	const bannerPhrase = ["LET'S BUILD", 'THE SITE', 'OF THE FUTURE'];
 	const images = [
 		{
 			src: '',
@@ -39,30 +42,27 @@ export default function Index({ introduction }) {
 	];
 
 	return (
-		<StrictMode>
-			<div className={styles.wrapper}>
-				{!animationSecondComplete ? (
-					<Introduction
-						words={words}
-						images={images}
-						setAnimationSecondComplete={setAnimationSecondComplete}
-					/>
-				) : (
-					<>
-						{isDevEnv && <Leva collapsed />}
-						<Header />
-						<div className={styles.title}>
-							<h2>LET'S BUILD</h2>
-							<h2>THE SITE OF THE FUTURE </h2>
-						</div>
-
-						<Canvas camera={{ position: [40, 15, 30], fov: 50 }}>
-							<Scene />
-						</Canvas>
-					</>
-				)}
-			</div>
-		</StrictMode>
+		// <StrictMode>
+		<div className={styles.wrapper}>
+			{!animationSecondComplete ? (
+				<Introduction
+					words={words}
+					images={images}
+					setAnimationSecondComplete={setAnimationSecondComplete}
+				/>
+			) : (
+				<>
+					{isDevEnv && <Leva collapsed />}
+					<Header />
+					<Canvas camera={{ position: [40, 15, 30], fov: 50 }}>
+						<ScrollControls>
+							<Scene bannerPhrase={bannerPhrase} />
+						</ScrollControls>
+					</Canvas>
+				</>
+			)}
+		</div>
+		// </StrictMode>
 	);
 }
 

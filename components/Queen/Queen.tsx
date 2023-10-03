@@ -13,6 +13,8 @@ const Queen = ({ positionX, positionY, positionZ }: Props) => {
 	const { nodes, materials } = useGLTF('./checkboard.glb');
 	const queenRef = useRef<THREE.Mesh>();
 
+	console.log('queenRef', queenRef.current);
+
 	return (
 		<>
 			{/* <TransformControls object={queenRef} /> */}
