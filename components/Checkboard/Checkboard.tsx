@@ -1,12 +1,20 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
-import { useGLTF, useTexture } from '@react-three/drei';
-import * as THREE from 'three';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { useRef, useState, useEffect } from 'react';
+import { useGLTF, useCursor, CycleRaycast, Html } from '@react-three/drei';
 import { useControls } from 'leva';
+import { useFrame } from '@react-three/fiber';
+import styles from './Checkboard.module.scss';
+import { motion } from 'framer-motion-3d';
+import * as THREE from 'three';
+import { animate, useMotionValue } from 'framer-motion';
 
-type Props = {};
+type Props = {
+	scrollingDown: boolean;
+};
 
-const Checkboard = (props: Props) => {
+const Checkboard = ({ scrollingDown }: Props) => {
+	const meshRef = useRef();
+	const groupArray = useRef();
+	const [hovered, setHovered] = useState(false);
 	const { position, rotation } = useControls('chessboard', {
 		position: {
 			value: {
@@ -26,6 +34,7 @@ const Checkboard = (props: Props) => {
 	const boardSize = 8;
 	const tileSize = 3;
 	const chessboardArray = [];
+	const [changeColor, setChangeColor] = useState('pink');
 
 	for (let x = 0; x < boardSize; x++) {
 		for (let y = 0; y < boardSize; y++) {
@@ -35,6 +44,7 @@ const Checkboard = (props: Props) => {
 				chessboardArray.push(
 					<mesh
 						// key={`${x}-${y}`}
+						ref={meshRef}
 						position={[x * tileSize, 0, y * tileSize]}
 					>
 						<boxGeometry args={[tileSize, 0.5, tileSize]} />
@@ -45,13 +55,49 @@ const Checkboard = (props: Props) => {
 		}
 	}
 
+	useEffect(() => {
+		let allCase = [];
+		// const animateColor = useMotionValue(0);
+
+		groupArray.current.traverse(child => allCase.push(child));
+
+		let rowFourth = allCase.filter(e => /* e.position.z === 12 && */ e.position.x === 12);
+		let rowThird = allCase.filter(e => /* e.position.z === 12 && */ e.position.x === 15);
+		let columnC = allCase.filter(e => e.position.z === 15);
+		let columnF = allCase.filter(e => e.position.z === 6);
+		let columnE = allCase.filter(e => e.position.z === 9);
+
+		let xCase = allCase.filter(e => e.position.x === 15);
+		let pawnCase = allCase.filter(e => e.position.z === 9 && e.position.x === 12);
+		let knightCase = allCase.filter(e => e.position.z === 6 && e.position.x === 15);
+		let bishopCase = allCase.filter(e => e.position.z === 15 && e.position.x === 12);
+		let color = 'purple';
+
+		for (let i = 0; i < pawnCase.length; i++) {
+			// animate(pawnCase[i].material.color, new THREE.Color(2, 0, 2, 0.5), { duration: 1 });
+			pawnCase[i].material.color = scrollingDown ? new THREE.Color(color) : new THREE.Color('white');
+			knightCase[i].material.color = scrollingDown ? new THREE.Color(color) : new THREE.Color('white');
+			bishopCase[i].material.color = scrollingDown ? new THREE.Color(color) : new THREE.Color('white');
+		}
+	}, [changeColor, scrollingDown]);
+
 	return (
-		<group
-			position={[position.x, position.y, position.z]}
-			rotation={[rotation.x, rotation.y, rotation.z]}
-		>
-			{chessboardArray}
-		</group>
+		<>
+			<group
+				position={[position.x, position.y, position.z]}
+				rotation={[rotation.x, rotation.y, rotation.z]}
+				ref={groupArray}
+			>
+				{chessboardArray}
+			</group>
+			{/* <CycleRaycast
+				preventDefault={true} // Call event.preventDefault() (default: true)
+				scroll={true} // Wheel events (default: true)
+				keyCode={9} // Keyboard events (default: 9 [Tab])
+				onChanged={(objects, cycle) => console.log(objects, cycle)} // Optional onChanged event
+				// onClick={() => setChangeColor('pink')}
+			/> */}
+		</>
 	);
 
 	// const checkboardRef = useRef(null);
