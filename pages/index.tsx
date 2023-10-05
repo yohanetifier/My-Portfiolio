@@ -1,18 +1,14 @@
 import { isDevEnv } from '../lib/constants';
-import Head from 'next/head';
 import { GetStaticProps } from 'next';
-import { getAllPostsForHome, getHomePage } from '../lib/api';
-import { CMS_NAME } from '../lib/constants';
-import AnimatedWords from '../components/AnimatedWords/AnimatedWords';
+import { getHomePage } from '../lib/api';
 import styles from '../styles/index.module.scss';
 import Introduction from '../components/Introduction/Introduction';
-import { useState, StrictMode, useRef, useEffect } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
+import { useState } from 'react';
+import { Canvas } from '@react-three/fiber';
 import Scene from '../components/Scene/Scene';
 import { Leva } from 'leva';
 import Header from '../components/Header/Header';
-import BannerPhrase from '../components/BannerPhrase/BannerPhrase';
-import { ScrollControls, Scroll } from '@react-three/drei';
+import { ScrollControls } from '@react-three/drei';
 
 export default function Index({ introduction }) {
 	const [animationSecondComplete, setAnimationSecondComplete] = useState<boolean>(false);
@@ -73,6 +69,3 @@ export const getStaticProps: GetStaticProps = async () => {
 		revalidate: 10,
 	};
 };
-function usecControls(arg0: string, arg1: {}): { camera: any } {
-	throw new Error('Function not implemented.');
-}
