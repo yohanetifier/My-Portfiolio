@@ -12,9 +12,6 @@ type Props = {
 };
 
 const Checkboard = ({ scrollingDown }: Props) => {
-	const meshRef = useRef();
-	const groupArray = useRef();
-	const [hovered, setHovered] = useState(false);
 	const { position, rotation } = useControls('chessboard', {
 		position: {
 			value: {
@@ -30,56 +27,128 @@ const Checkboard = ({ scrollingDown }: Props) => {
 		},
 	});
 
+	const meshRef = useRef();
+	const groupArray = useRef();
+	const newRef = useRef();
+	const actionCase = useRef();
 	const { nodes, materials } = useGLTF('./queen-and-checkboard-test4.glb');
 	const boardSize = 8;
 	const tileSize = 3;
 	const chessboardArray = [];
-	const [changeColor, setChangeColor] = useState('pink');
+	const [color, setColor] = useState<string>('white');
+	const [hovered, set] = useState<boolean>(false);
 
+	useCursor(hovered);
 	for (let x = 0; x < boardSize; x++) {
 		for (let y = 0; y < boardSize; y++) {
 			for (let z = 0; z < boardSize; z++) {
 				const isEven = (x + y) % 2 === 0;
 				const color = isEven ? 'black' : 'white';
+
 				chessboardArray.push(
-					<mesh
-						// key={`${x}-${y}`}
-						ref={meshRef}
-						position={[x * tileSize, 0, y * tileSize]}
-					>
-						<boxGeometry args={[tileSize, 0.5, tileSize]} />
-						<meshStandardMaterial color={color} />
-					</mesh>,
+					(x === 5 && y === 2) || (x === 4 && y === 3) || (x === 4 && y === 5) ? (
+						<mesh
+							// key={`${x}-${y}`}
+							ref={actionCase}
+							position={[x * tileSize, 0, y * tileSize]}
+							onClick={e => {
+								e.stopPropagation();
+							}}
+							onPointerOver={() => set(true)}
+							onPointerOut={() => {
+								set(false);
+							}}
+						>
+							<boxGeometry args={[tileSize, 0.5, tileSize]} />
+							<meshStandardMaterial
+								transparent
+								color={scrollingDown ? 'purple' : 'white'}
+							/>
+						</mesh>
+					) : (
+						<mesh
+							// key={`${x}-${y}`}
+							ref={meshRef}
+							position={[x * tileSize, 0, y * tileSize]}
+						>
+							<boxGeometry args={[tileSize, 0.5, tileSize]} />
+							<meshStandardMaterial
+								transparent
+								color={color}
+							/>
+						</mesh>
+					),
 				);
 			}
 		}
 	}
 
-	useEffect(() => {
-		let allCase = [];
-		// const animateColor = useMotionValue(0);
+	const generateFlashingColor = () => {
+		const currentTime = Date.now();
+		const frequency = 0.01; // Vitesse du clignotement
+		const amplitude = 0.5; // Amplitude du clignotement
+		const flicker = Math.sin(currentTime);
 
-		groupArray.current.traverse(child => allCase.push(child));
+		const baseColor = new THREE.Color('purple');
+		baseColor.addScalar(flicker); // Ajoutez le clignotement à la couleur de base
 
-		let rowFourth = allCase.filter(e => /* e.position.z === 12 && */ e.position.x === 12);
-		let rowThird = allCase.filter(e => /* e.position.z === 12 && */ e.position.x === 15);
-		let columnC = allCase.filter(e => e.position.z === 15);
-		let columnF = allCase.filter(e => e.position.z === 6);
-		let columnE = allCase.filter(e => e.position.z === 9);
+		return baseColor;
+	};
 
-		let xCase = allCase.filter(e => e.position.x === 15);
-		let pawnCase = allCase.filter(e => e.position.z === 9 && e.position.x === 12);
-		let knightCase = allCase.filter(e => e.position.z === 6 && e.position.x === 15);
-		let bishopCase = allCase.filter(e => e.position.z === 15 && e.position.x === 12);
-		let color = 'purple';
+	useFrame(({ clock }) => {
+		// const currentTime = Date.now();
+		// const frequency = 0.01; // Vitesse du clignotement
+		// const amplitude = 0.5; // Amplitude du clignotement
+		// const flicker = Math.sin(currentTime * frequency) * amplitude;
 
-		for (let i = 0; i < pawnCase.length; i++) {
-			// animate(pawnCase[i].material.color, new THREE.Color(2, 0, 2, 0.5), { duration: 1 });
-			pawnCase[i].material.color = scrollingDown ? new THREE.Color(color) : new THREE.Color('white');
-			knightCase[i].material.color = scrollingDown ? new THREE.Color(color) : new THREE.Color('white');
-			bishopCase[i].material.color = scrollingDown ? new THREE.Color(color) : new THREE.Color('white');
-		}
-	}, [changeColor, scrollingDown]);
+		// console.log('flicker', flicker);
+
+		const generateFlashingLights = () => {
+			const time = clock.elapsedTime;
+			const flashLights = Math.sin(time * 2);
+			const baseColor = new THREE.Color(0.5, 0.5, 0.5);
+			// baseColor.addScalar(flashLights);
+
+			return baseColor;
+		};
+
+		actionCase.current.material.color = generateFlashingLights();
+	});
+
+	// useEffect(() => {
+	// 	console.log('scrollingDown', scrollingDown);
+	// }, [scrollingDown]);
+	// useFrame(({ clock }) => {
+	// 	colorPurpleRgba = new THREE.Color(0.5, 0, 0.5, Math.abs(Math.sin(clock.elapsedTime)));
+
+	// 	setColor(new THREE.Color(0.5, 0, 1, Math.abs(Math.sin(clock.elapsedTime))));
+	// });
+
+	// useEffect(() => {
+	// 	let allCase = [];
+	// 	groupArray.current.traverse(child => allCase.push(child));
+
+	// 	let rowFourth = allCase.filter(e => e.position.x === 12);
+	// 	let rowThird = allCase.filter(e => e.position.x === 15);
+	// 	let columnC = allCase.filter(e => e.position.z === 15);
+	// 	let columnF = allCase.filter(e => e.position.z === 6);
+	// 	let columnE = allCase.filter(e => e.position.z === 9);
+
+	// 	let xCase = allCase.filter(e => e.position.x === 15);
+	// 	let pawnCase = allCase.filter(e => e.position.z === 9 && e.position.x === 12);
+	// 	let knightCase = allCase.filter(e => e.position.z === 6 && e.position.x === 15);
+	// 	let bishopCase = allCase.filter(e => e.position.z === 15 && e.position.x === 12);
+
+	// 	for (let i = 0; i < pawnCase.length; i++) {
+	// 		pawnCase[i].material.color = scrollingDown ? color : new THREE.Color('white');
+	// 		// pawnCase[i].material.transparent = true;
+	// 		setPawnCase(pawnCase[i]);
+	// 		// pawnCase.current = pawnCase[i];
+	// 		// pawnCase[i].material.opacity = 1;
+	// 		knightCase[i].material.color = scrollingDown ? color : new THREE.Color('white');
+	// 		bishopCase[i].material.color = scrollingDown ? color : new THREE.Color('white');
+	// 	}
+	// }, [changeColor, scrollingDown]);
 
 	return (
 		<>
