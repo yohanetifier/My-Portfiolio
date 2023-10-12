@@ -11,5 +11,5 @@
 	"proseWrap": "preserve",
 	"quoteProps": "consistent",
 	"semi": true,
-  	"singleAttributePerLine": true,
+  	"singleAttributePerLine": true
 }

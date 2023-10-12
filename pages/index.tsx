@@ -9,12 +9,18 @@ import Scene from '../components/Scene/Scene';
 import { Leva } from 'leva';
 import Header from '../components/Header/Header';
 import { ScrollControls } from '@react-three/drei';
+import { ThemeContextProvider } from '../components/Context/ThemeContext/ThemeContext';
 
-export default function Index({ introduction }) {
-	const [animationSecondComplete, setAnimationSecondComplete] = useState<boolean>(false);
-	const words = ['H', 'E', 'L', 'L', 'O'];
-	const bannerPhrase = ["LET'S BUILD", 'THE SITE', 'OF THE FUTURE'];
-	const images = [
+interface Images {
+	src: string;
+	alt: string;
+}
+
+export default function Index ( { introduction } ) {
+	const [ animationSecondComplete, setAnimationSecondComplete ] = useState<boolean>( false );
+	const words: String[] = [ 'H', 'E', 'L', 'L', 'O' ];
+	const bannerPhrase: String[] = [ "LET'S BUILD", 'THE SITE', 'OF THE FUTURE' ];
+	const images: Images[] = [
 		{
 			src: '',
 			alt: '',
@@ -39,24 +45,26 @@ export default function Index({ introduction }) {
 
 	return (
 		// <StrictMode>
-		<div className={styles.wrapper}>
-			{!animationSecondComplete ? (
+		<div className={ styles.wrapper }>
+			{ !animationSecondComplete ? (
 				<Introduction
-					words={words}
-					images={images}
-					setAnimationSecondComplete={setAnimationSecondComplete}
+					words={ words }
+					images={ images }
+					setAnimationSecondComplete={ setAnimationSecondComplete }
 				/>
 			) : (
 				<>
-					{isDevEnv && <Leva collapsed />}
-					<Header />
-					<Canvas camera={{ position: [40, 15, 30], fov: 50 }}>
-						<ScrollControls>
-							<Scene bannerPhrase={bannerPhrase} />
-						</ScrollControls>
-					</Canvas>
+					{ isDevEnv && <Leva collapsed /> }
+					<ThemeContextProvider>
+						<Header />
+						<Canvas camera={ { position: [ 40, 15, 30 ], fov: 50 } }>
+							<ScrollControls>
+								<Scene bannerPhrase={ bannerPhrase } />
+							</ScrollControls>
+						</Canvas>
+					</ThemeContextProvider>
 				</>
-			)}
+			) }
 		</div>
 		// </StrictMode>
 	);
