@@ -10,7 +10,7 @@ interface ThemeProviderProps {
 }
 
 export const ThemeContext = createContext( {
-    title: 'WORK',
+    title: '',
     setTitle: ( arg: string ) => { }
 } );
 

@@ -15,17 +15,21 @@ interface Props {
 const ActionCase = ( { tileSize, x, y, scrollingDown, color }: Props ) => {
 	const { setTitle } = useContext( ThemeContext );
 	const [ hovered, setHovered ] = useState<boolean>( false );
-	const ACTION_COLOR: String = '#303030';
+	const ACTION_COLOR = '#303030';
 	useCursor( hovered );
 
-	const cases = {
-		'5-2': 'work',
-		'4-3': 'about',
-		'4-5': 'contact'
+	const setUpTitleOnHover = ( x, y ) => {
+		const cases = {
+			'5-2': 'work',
+			'4-3': 'about',
+			'4-5': 'contact'
+		};
+		const position = `${ x }-${ y }`;
+		const title = cases[ position ];
+		return title;
 	};
 
-	const position = `${ x }-${ y }`;
-	const title = cases[ position ];
+	const title = setUpTitleOnHover( x, y );
 
 	return (
 		<mesh
