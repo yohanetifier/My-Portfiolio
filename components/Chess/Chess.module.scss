@@ -6,6 +6,26 @@
     left: 43vw;
 }
 
+.workTitle,
+.aboutTitle,
+.contactTitle {
+    font-size: 40px;
+    text-transform: uppercase;
+    position: absolute;
+    color: white;
+}
+
 .workTitle {
-    color: purple;
+    left: 57vw;
+    top: 49vh;
+}
+
+.aboutTitle {
+    left: 49vw;
+    top: 40vh;
+}
+
+.contactTitle {
+    left: 32vw;
+    top: 40vh;
 }

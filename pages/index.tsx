@@ -9,7 +9,8 @@ import Scene from '../components/Scene/Scene';
 import { Leva } from 'leva';
 import Header from '../components/Header/Header';
 import { ScrollControls } from '@react-three/drei';
-import { ThemeContextProvider } from '../components/Context/ThemeContext/ThemeContext';
+import { ThemeContextProvider } from '../components/Context/ThemeContext';
+import PageTransition from '../components/PageTransition/PageTransition';
 
 interface Images {
 	src: string;
@@ -57,7 +58,10 @@ export default function Index ( { introduction } ) {
 					{ isDevEnv && <Leva collapsed /> }
 					<ThemeContextProvider>
 						<Header />
-						<Canvas camera={ { position: [ 40, 15, 30 ], fov: 50 } }>
+						<PageTransition />
+						<Canvas
+							camera={ { position: [ 40, 15, 30 ], fov: 50 } }
+							className={ styles.canvas } >
 							<ScrollControls>
 								<Scene bannerPhrase={ bannerPhrase } />
 							</ScrollControls>

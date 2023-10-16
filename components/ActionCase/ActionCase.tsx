@@ -1,7 +1,7 @@
 import { Text3D, useCursor } from '@react-three/drei';
 import React, { Provider, useContext, useState } from 'react';
 import NormalCase from '../NormalCase/NormalCase';
-import { ThemeContext, ThemeContextProvider } from '../Context/ThemeContext/ThemeContext';
+import { ThemeContext, ThemeContextProvider } from '../Context/ThemeContext';
 
 interface Props {
 	tileSize: number;

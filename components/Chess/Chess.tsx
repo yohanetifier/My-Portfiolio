@@ -15,7 +15,7 @@ import * as THREE from 'three';
 import BannerPhrase from '../BannerPhrase/BannerPhrase';
 import { motion } from 'framer-motion-3d';
 import styles from './Chess.module.scss';
-import { ThemeContext } from '../Context/ThemeContext/ThemeContext';
+import { ThemeContext } from '../Context/ThemeContext';
 
 export default function Chess ( props ) {
 	const scroll = useScroll();
@@ -23,13 +23,12 @@ export default function Chess ( props ) {
 	let animateFov = useMotionValue( 50 );
 	const intensityLight = useMotionValue( 0 );
 	const [ lastPosition, setLastPosition ] = useState( 0 );
-	const [ scrollingDown, setScrollingDown ] = useState( false );
+	// const [ scrollingDown, setScrollingDown ] = useState( false );
 	const lightRef = useRef();
-	const { title } = useContext( ThemeContext );
+	const { title, scrollingDown, setScrollingDown } = useContext( ThemeContext );
 
 	useFrame( state => {
 		if ( lastPosition > scroll.offset ) {
-			setScrollingDown( false );
 			animate( scrollY, 15, { duration: 0.5 } );
 			animate( animateFov, 50, { duration: 0.5 } );
 			animate( intensityLight, 0, { duration: 0.5 } );
@@ -38,9 +37,9 @@ export default function Chess ( props ) {
 			state.camera.fov = animateFov.get();
 			state.camera.lookAt( 0, 0, 0 );
 			state.camera.updateProjectionMatrix();
+			setScrollingDown( false );
 		}
 		if ( lastPosition < scroll.offset ) {
-			setScrollingDown( true );
 			animate( scrollY, 37, { duration: 0.5 } );
 			animate( animateFov, 15, { duration: 0.5 } );
 			animate( intensityLight, 5, { duration: 0.5 } );
@@ -49,6 +48,7 @@ export default function Chess ( props ) {
 			state.camera.fov = animateFov.get();
 			state.camera.lookAt( 0, 0, 0 );
 			state.camera.updateProjectionMatrix();
+			setScrollingDown( true );
 		}
 		// lastPosition = scroll.offset;
 		setLastPosition( scroll.offset );
@@ -84,8 +84,8 @@ export default function Chess ( props ) {
 
 	let displayTitleByCase = {
 		work: <h2 className={ styles.workTitle }> { title } </h2>,
-		about: <h2> { title } </h2>,
-		contact: <h2> { title } </h2>,
+		about: <h2 className={ styles.aboutTitle }  > { title } </h2>,
+		contact: <h2 className={ styles.contactTitle }> { title } </h2>,
 	};
 
 	return (
@@ -99,7 +99,7 @@ export default function Chess ( props ) {
 					bannerPhrase={ [ "LET'S", 'BUILD THE SITE', 'OF THE FUTURE' ] }
 					scrollingDown={ scrollingDown }
 				/>
-				{ displayTitleByCase[ title ] }
+				{ scrollingDown && displayTitleByCase[ title ] }
 			</Scroll>
 			<group
 				{ ...props }
