@@ -133,3 +133,8 @@
   src: url('/fonts/almarai-v12-arabic-700.woff2') format('woff2');
   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
+#__next {
+  width: 100vw;
+  height: 100vh;
+}

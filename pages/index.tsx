@@ -58,7 +58,7 @@ export default function Index ( { introduction } ) {
 					{ isDevEnv && <Leva collapsed /> }
 					<ThemeContextProvider>
 						<Header />
-						<PageTransition />
+						{/* <PageTransition /> */}
 						<Canvas
 							camera={ { position: [ 40, 15, 30 ], fov: 50 } }
 							className={ styles.canvas } >

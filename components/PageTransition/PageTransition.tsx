@@ -1,29 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect, useLayoutEffect, useRef } from 'react';
 import styles from './PageTransition.module.scss';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, Variants } from 'framer-motion';
+import { ThemeContext } from '../Context/ThemeContext';
 
-interface Props { }
+interface Props {
+    numberOfRows?: number;
+    // loading: boolean;
+}
 
-const PageTransition = ( props: Props ) => {
-    const [ loading, setLoading ] = useState( false );
+const PageTransition = ( { numberOfRows = 3, /* loading */ }: Props ) => {
+    const { loading, setLoading } = useContext( ThemeContext );
+    const [ changeDirection, setChangeDirection ] = useState( '' );
+    const ref = useRef();
+    const x = useMotionValue( 100 );
 
     setTimeout( () => {
         setLoading( true );
+        setChangeDirection( 'right' );
     }, 3000 );
 
-    new Array( 3 ).map( ( items ) => {
-        console.log( 'items', items );
-    } );
+
+
+    const container: Variants = {
+        initial: { x: 0 },
+        animate:
+        {
+            x: 0,
+            transition: { staggerChildren: 0.2 }
+        },
+        reverseAnimate:
+        {
+            x: 0,
+            transition: { staggerChildren: 0.2 }
+        },
+
+    };
+
+    const slideFromTheRight = {
+        initial: { x: ( loading && changeDirection === 'right' ) ? '100vw' : ( loading && changeDirection === 'left' ) ? '0px' : '100vw' },
+        animate:
+        {
+            x: ( loading && changeDirection === 'right' ) ? '0px' : ( loading && changeDirection === 'left' ) ? '100vw' : '0px',
+            transition: { duration: 1 }
+        },
+    };
+
+    // const slideFromTheLeft = {
+    //     initial: { x: '0px' },
+    //     animate:
+    //     {
+    //         x: '100vw',
+    //         transition: { duration: 1 }
+    //     }
+    // };
+
     return (
-        <div className={ styles.wrapper }>
-            <motion.div
-                initial={ { x: '100vw' } }
-                animate={ { x: loading ? '0px' : '100vw' } }
-                transition={ { duration: 3 } }
-                className={ styles.firstChildren }>First Container</motion.div>
-            <div className={ styles.secondChildren }>Second Container</div>
-            <div className={ styles.thirdChildren }>Third Container</div>
-        </div>
+        <motion.div
+            initial={ 'initial' }
+            animate={ loading && changeDirection === 'right' ? 'animate' : !loading && changeDirection === 'left' ? 'animate' : '' }
+            variants={ container }
+            className={ styles.wrapper }>
+            { Array.from( { length: numberOfRows } ).map( ( index ) => (
+                <motion.div
+                    ref={ ref }
+                    variants={ slideFromTheRight }
+                    key={ index }
+                    className={ styles.rows }></motion.div>
+            ) ) }
+        </motion.div>
     );
 };
 

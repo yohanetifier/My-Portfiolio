@@ -2,6 +2,7 @@ import { Text3D, useCursor } from '@react-three/drei';
 import React, { Provider, useContext, useState } from 'react';
 import NormalCase from '../NormalCase/NormalCase';
 import { ThemeContext, ThemeContextProvider } from '../Context/ThemeContext';
+import { useRouter } from 'next/router';
 
 interface Props {
 	tileSize: number;
@@ -16,6 +17,7 @@ const ActionCase = ( { tileSize, x, y, scrollingDown, color }: Props ) => {
 	const { setTitle } = useContext( ThemeContext );
 	const [ hovered, setHovered ] = useState<boolean>( false );
 	const ACTION_COLOR = '#303030';
+	const router = useRouter();
 	useCursor( hovered );
 
 	const setUpTitleOnHover = ( x, y ) => {
@@ -37,6 +39,8 @@ const ActionCase = ( { tileSize, x, y, scrollingDown, color }: Props ) => {
 			position={ [ x * tileSize, 0, y * tileSize ] }
 			onClick={ e => {
 				e.stopPropagation();
+				scrollingDown && router.push( `/${ title }` );
+
 			} }
 			onPointerOver={ () => setTitle( title ) }
 			onPointerOut={ () => {
