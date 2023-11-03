@@ -26,8 +26,8 @@ const Work = ( props: Props ) => {
 
     const uniforms =
     {
-        uTexture: theBuyerImage,
-        uTolefiTexture: tolefiTexture,
+        currentImage: theBuyerImage,
+        nextImage: tolefiTexture,
         uTime: uTime,
         uFadeIn: uFadeIn,
     };
@@ -36,15 +36,19 @@ const Work = ( props: Props ) => {
         `
         varying vec2 vUv;
         varying vec3 vPosition;
-        uniform sampler2D uTexture;
+        uniform sampler2D currentImage;
+        uniform sampler2D nextImage;
         uniform float uTime;
-        uniform sampler2D uTolefiTexture;
-        uniform float uFadeIn;
+        vec4 _currentImage;
+        vec4 _nextImage;
 
         void main () {
-            vec4 tolefiTexture = texture(uTolefiTexture, vUv);
-            vec4 theBuyerTexture = texture(uTexture, vUv);
-            gl_FragColor = vec4(mix(theBuyerTexture.xyz * 3. ,tolefiTexture.xyz , abs(sin(uTime))), 1.0);
+            vec4 originTexture  = texture(currentImage, vUv);
+            vec4 originNextTexture = texture(nextImage, vUv);
+            _currentImage = texture(currentImage, vec2(vUv.x, vUv.y + abs(sin(uTime)) * (originNextTexture) ));
+            
+            //gl_FragColor = vec4(mix(_currentImage.xyz  ,originNextTexture.xyz ,0.0 ), 1.0);
+            gl_FragColor = vec4(originTexture.xyz, 1.0);
         }
         
         `;
@@ -68,14 +72,6 @@ const Work = ( props: Props ) => {
         fragmentShader
     );
     extend( { DistortionShaderMaterial } );
-
-    // const cameraRadians = THREE.MathUtils.degToRad( camera.fov );
-    // console.log( cameraDegToRadians, cameraRadians );
-
-    // const distanceToPlane = Math.abs( camera.position.z );
-    // const cameraDegToRadians = camera.fov * ( Math.PI / 360 );
-    // const halfWidth = distanceToPlane * Math.tan( camera.aspect * cameraDegToRadians );
-    // const halfHeight = distanceToPlane * Math.tan( cameraDegToRadians );
 
     const distanceToPlane = camera.position.z;
     const degToRad = camera.fov * Math.PI / 180;
