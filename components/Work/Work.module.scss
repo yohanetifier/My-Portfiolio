@@ -3,22 +3,27 @@
 }
 
 .pagination {
-    border: 2px solid red;
     position: absolute;
     width: 100vw;
+    display: flex;
+    top: 50%;
+    justify-content: space-between;
 }
 
 .wrapper {
-    border: 2px solid green;
-    position: relative;
     width: 100vw;
     height: 100vh;
 }
 
-.firstBar {
-    display: block;
-    width: 100px;
-    height: 10px;
-    border: 2px solid purple;
-    background-color: black;
+.prev,
+.next {
+    text-transform: uppercase;
+}
+
+.prev {
+    margin-left: 50px;
+}
+
+.next {
+    margin-right: 50px;
 }

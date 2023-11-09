@@ -1,25 +1,48 @@
 import { Canvas, useThree } from '@react-three/fiber';
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../components/Work/Work.module.scss';
 import Work from '../components/Work/Work';
+import { useMotionValue } from 'framer-motion';
 
-interface Props { }
+interface Props {}
 
-const work = ( props: Props ) => {
-    return (
-        <main className={ styles.wrapper } >
-            <Canvas
-                className={ styles.canvas }
-            >
-                <Work />
-            </Canvas>
-            <div className={ styles.pagination } >
-                <span className={ styles.firstBar } ></span>
-                <span className={ styles.secondBar } ></span>
-                <span className={ styles.thirdBar } ></span>
-            </div>
-        </main>
-    );
+const work = (props: Props) => {
+	const [activeTexture, setActiveTexture] = useState<number>(0);
+	const disabledPrevButton = activeTexture === 0;
+	const disabledNextButton = activeTexture === 3;
+	const moveTexture = useMotionValue(0);
+	const [clickTest, setClickTest] = useState(false);
+
+	const handleClickNextButton = () => {
+		setActiveTexture(activeTexture + 1);
+		setClickTest(true);
+	};
+	return (
+		<main className={styles.wrapper}>
+			<Canvas className={styles.canvas}>
+				<Work
+					activeTexture={activeTexture}
+					clickTest={clickTest}
+				/>
+			</Canvas>
+			<div className={styles.pagination}>
+				<button
+					className={styles.prev}
+					onClick={() => setActiveTexture(activeTexture - 1)}
+					disabled={disabledPrevButton}
+				>
+					Prev
+				</button>
+				<button
+					className={styles.next}
+					onClick={() => handleClickNextButton()}
+					disabled={disabledNextButton}
+				>
+					Next
+				</button>
+			</div>
+		</main>
+	);
 };
 
 export default work;
