@@ -2,21 +2,32 @@ import React, { useEffect, useRef } from 'react';
 import { useThree, extend, useFrame } from '@react-three/fiber';
 import { shaderMaterial, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
-import { useSpring, useMotionValue, animate } from 'framer-motion';
+import {
+	useSpring,
+	useMotionValue,
+	animate,
+	useAnimation,
+} from 'framer-motion';
 import { motion } from 'framer-motion-3d';
 interface Props {
 	activeTexture: number;
 	clickTest: boolean;
+	setArrayLengthOfTexture: (arg: number) => void;
+	setClickTest: (arg: boolean) => void;
 }
 
-const Work = ({ activeTexture, clickTest }: Props) => {
+const Work = ({
+	activeTexture,
+	clickTest,
+	setArrayLengthOfTexture,
+	setClickTest,
+}: Props) => {
 	const ref = useRef<THREE.ShaderMaterial>(null);
 	const { gl, size, camera } = useThree();
 	const urlTexture = './the-buyer.png';
 	const theBuyerImage = useTexture(urlTexture);
 	const tolefiTexture = useTexture('/tolefi.png');
 	let uTime = 0.0;
-	let testUdpateValue = useMotionValue(0.0);
 	let arrayOfTexture = [
 		theBuyerImage,
 		tolefiTexture,
@@ -24,23 +35,27 @@ const Work = ({ activeTexture, clickTest }: Props) => {
 		tolefiTexture,
 	];
 
-	// Set the base Texture
-	// let currentImage = arrayOfTexture[activeTexture];
-	// let nextImage = arrayOfTexture[activeTexture - 1];
+	// Initialize length of the Array
+	setArrayLengthOfTexture(arrayOfTexture.length - 1);
+
+	// Initialize the texture for the current and the next image
 	let currentImage;
 	let nextImage;
+
 	useFrame(({ clock }) => {
 		if (clickTest) {
-			animate(testUdpateValue, 1.0, { duration: 0.1 });
-			ref.current.uniforms.uTime.value = testUdpateValue.get();
+			ref.current.uniforms.currentImage.value =
+				arrayOfTexture[activeTexture - 1];
+			ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture];
+			ref.current.uniforms.uTime.value += 0.2;
+		} else {
+			ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
 		}
-		ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
-		ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
-		ref.current.uniforms.currentImage.needsUpdate = true;
+		// ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
+		// ref.current.uniforms.currentImage.needsUpdate = true;
 	});
 
 	const uniforms = {
-		testUdpateValue,
 		currentImage,
 		nextImage,
 		uTime,
@@ -67,8 +82,9 @@ const Work = ({ activeTexture, clickTest }: Props) => {
             _currentImage = texture(currentImage, vec2(vUv.x, vUv.y + abs(sin(uTime)) * (originTexture * 0.5) ));
             _nextImage = texture(nextImage, vec2(vUv.x, vUv.y * (originNextTexture * 0.5)));
             //gl_FragColor = vec4(mix(_currentImage.xyz  , _nextImage.xyz , testUdpateValue ), 1.0);
-            gl_FragColor = vec4(mix(testOriginTexture.xyz , testOriginTexture2.xyz, uTime), 1.0);
-            //gl_FragColor = vec4(originTexture.xyz, 1.0);
+            //gl_FragColor = vec4(mix(testOriginTexture.xyz , testOriginTexture2.xyz, uTime), 1.0);
+            //gl_FragColor = vec4(mix(originTexture.xyz, originNextTexture.xyz, uTime), 1.0);
+             l_FragColor = vec4(mix(originTexture.xyz, originNextTexture.xyz, 
         }
         
         `;
