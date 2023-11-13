@@ -2,7 +2,7 @@ import { Canvas, useThree } from '@react-three/fiber';
 import React, { useState } from 'react';
 import styles from '../components/Work/Work.module.scss';
 import Work from '../components/Work/Work';
-import { useMotionValue, useAnimation } from 'framer-motion';
+import { useMotionValue, MotionValue } from 'framer-motion';
 
 interface Props {}
 
@@ -12,10 +12,12 @@ const work = (props: Props) => {
 	const [arrayLengthOfTexture, setArrayLengthOfTexture] = useState<number>(0);
 	const disabledPrevButton = activeTexture === 0;
 	const disabledNextButton = activeTexture === arrayLengthOfTexture;
+	const testUpdatedValue: MotionValue<number> = useMotionValue(0.0);
 
 	const handleClickNextButton = () => {
 		setActiveTexture(activeTexture + 1);
 		setClickTest(true);
+		console.log(activeTexture);
 	};
 	return (
 		<main className={styles.wrapper}>
@@ -25,6 +27,7 @@ const work = (props: Props) => {
 					clickTest={clickTest}
 					setClickTest={setClickTest}
 					setArrayLengthOfTexture={setArrayLengthOfTexture}
+					testUpdatedValue={testUpdatedValue}
 				/>
 			</Canvas>
 			<div className={styles.pagination}>
