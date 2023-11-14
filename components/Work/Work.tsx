@@ -43,34 +43,36 @@ const Work = ({
 	// Initialize the texture for the current and the next image
 	let currentImage;
 	let nextImage;
-	useFrame(({ clock }) => {
+
+	// Reset State
+	const resetState = () => {
+		ref.current.uniforms.uTime.value = 0.0;
+		ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
+		ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
+		countClick === 0 && setCountClick(countClick + 1);
+		setClickTest(!clickTest);
+		animate(testUpdatedValue, 0.0);
+	};
+
+	useFrame(() => {
 		if (clickTest) {
 			if (ref.current.uniforms.uTime.value < 1) {
-				console.log(activeTexture);
 				animate(testUpdatedValue, 1.0, {
-					duration: 0.3,
+					duration: 0.5,
 					onComplete: () => {
-						console.log('animation on complete');
-						setClickTest(false);
-						setCountClick(countClick + 1);
-						//ref.current.uniforms.currentImage.value =
-						//	arrayOfTexture[activeTexture];
-						//ref.current.uniforms.nextImage.value =
-						//	arrayOfTexture[activeTexture + 1];
+						resetState();
 					},
 				});
 				ref.current.uniforms.uTime.value += testUpdatedValue.get();
 			}
 		} else {
+			// Initialize the texture at the beginning
 			if (countClick === 0) {
-				console.log(countClick);
 				ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
 				ref.current.uniforms.nextImage.value =
 					arrayOfTexture[activeTexture + 1];
 			}
 		}
-		// ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
-		// ref.current.uniforms.currentImage.needsUpdate = true;
 	});
 
 	const uniforms = {
@@ -91,15 +93,15 @@ const Work = ({
         vec4 _nextImage;
 
         void main () {
-            vec4 originTexture  = texture(currentImage, vUv);
-            vec4 originNextTexture = texture(nextImage, vUv);
+            vec4 originTexture  = texture2D(currentImage, vUv);
+            vec4 originNextTexture = texture2D(nextImage, vUv);
             vec4 testOriginTexture = texture(theBuyerImage, vUv);
             vec4 testOriginTexture2 = texture(tolefiTexture, vUv);
-            _currentImage = texture(currentImage, vec2(vUv.x, vUv.y + uTime * (originTexture * 0.5) ));
-            _nextImage = texture(nextImage, vec2(vUv.x, vUv.y * (originNextTexture * 0.5)));
-            //gl_FragColor = vec4(mix(_currentImage.xyz  , _nextImage.xyz , uTime ), 1.0);
+            _currentImage = texture2D(currentImage, vec2(vUv.x, vUv.y + uTime * originTexture ));
+            _nextImage = texture2D(nextImage, vec2(vUv.x, vUv.y + (1.0 - uTime) * (originNextTexture * 0.2)));
+            gl_FragColor = vec4(mix(_currentImage  , _nextImage , uTime ));
             //gl_FragColor = vec4(mix(testOriginTexture.xyz , testOriginTexture2.xyz, uTime), 1.0);
-            gl_FragColor = vec4(mix(originTexture.xyz, originNextTexture.xyz, uTime ), 1.0);
+            //gl_FragColor = vec4(mix(originTexture.xyz, originNextTexture.xyz, uTime ), 1.0);
         }
         
         `;
