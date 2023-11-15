@@ -8,39 +8,46 @@ interface Props {}
 
 const work = (props: Props) => {
 	const [activeTexture, setActiveTexture] = useState<number>(0);
-	const [clickTest, setClickTest] = useState<boolean>(false);
+	const [hasClickedOn, setHasClickedOn] = useState<string>('');
 	const [arrayLengthOfTexture, setArrayLengthOfTexture] = useState<number>(0);
 	const disabledPrevButton = activeTexture === 0;
 	const disabledNextButton = activeTexture === arrayLengthOfTexture;
 	const testUpdatedValue: MotionValue<number> = useMotionValue(0.0);
+	const testUpdatedValueSecond: MotionValue<number> = useMotionValue(1.0);
 
 	const handleClickNextButton = () => {
 		setActiveTexture(activeTexture + 1);
-		setClickTest(true);
-		console.log(activeTexture);
+		setHasClickedOn('next');
 	};
+
+	const handleClickPrevButton = () => {
+		setActiveTexture(activeTexture - 1);
+		setHasClickedOn('prev');
+	};
+
 	return (
 		<main className={styles.wrapper}>
 			<Canvas className={styles.canvas}>
 				<Work
 					activeTexture={activeTexture}
-					clickTest={clickTest}
-					setClickTest={setClickTest}
+					hasClickedOn={hasClickedOn}
+					setHasClickedOn={setHasClickedOn}
 					setArrayLengthOfTexture={setArrayLengthOfTexture}
 					testUpdatedValue={testUpdatedValue}
+					testUpdatedValueSecond={testUpdatedValueSecond}
 				/>
 			</Canvas>
 			<div className={styles.pagination}>
 				<button
 					className={styles.prev}
-					onClick={() => setActiveTexture(activeTexture - 1)}
+					onClick={handleClickPrevButton}
 					disabled={disabledPrevButton}
 				>
-					Prev
+					PREV
 				</button>
 				<button
 					className={styles.next}
-					onClick={() => handleClickNextButton()}
+					onClick={handleClickNextButton}
 					disabled={disabledNextButton}
 				>
 					Next
