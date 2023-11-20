@@ -1,4 +1,4 @@
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import React, { useState } from 'react';
 import styles from '../components/Work/Work.module.scss';
 import Work from '../components/Work/Work';

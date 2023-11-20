@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useThree, extend, useFrame } from '@react-three/fiber';
 import { shaderMaterial, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { animate, MotionValue } from 'framer-motion';
+import { gsap } from 'gsap';
+
 interface Props {
 	activeTexture: number;
 	setArrayLengthOfTexture: (arg: number) => void;
@@ -42,38 +44,63 @@ const Work = ({
 
 	// Reset State
 	const resetState = () => {
-		ref.current.uniforms.uTime.value = 0.0;
-		ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
-		ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
 		countClick === 0 && setCountClick(countClick + 1);
+		ref.current.uniforms.uTime.value = 0.0;
 		setHasClickedOn('');
-		animate(testUpdatedValue, 0.0);
+		// ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
+		// ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
+		// ref.current.uniforms.uTime.value = 0.0;
+		// animate(testUpdatedValue, 0.0);
 	};
 
 	useFrame(() => {
 		if (hasClickedOn === 'next') {
 			if (ref.current.uniforms.uTime.value < 1) {
-				animate(testUpdatedValue, 1.0, {
-					duration: 0.3,
+				// animate(testUpdatedValue, 1.0, {
+				// 	duration: 0.3,
+				// 	onComplete: () => {
+				// 		resetState();
+				// 	},
+				// });
+				gsap.to(ref.current.uniforms.uTime, {
+					value: 1,
+					duration: 1,
 					onComplete: () => {
 						resetState();
 					},
 				});
-				ref.current.uniforms.uTime.value += testUpdatedValue.get();
+				// ref.current.uniforms.uTime.value += testUpdatedValue.get();
 			}
 		} else if (hasClickedOn === 'prev') {
-			ref.current.uniforms.uTime.value = 1.0;
-			if (ref.current.uniforms.uTime.value > 0.0) {
-				animate(testUpdatedValueSecond, 0.0, {
-					duration: 0.3,
-					onComplete: () => {
-						console.log('animation completed');
-					},
-				});
-				ref.current.uniforms.uTime.value -= testUpdatedValueSecond.get();
-				console.log(ref.current.uniforms.uTime.value);
-			}
+			ref.current.uniforms.uTime.value = 1;
+			// if (ref.current.uniforms.uTime.value > 0) {
+			ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
+			ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
+			gsap.to(ref.current.uniforms.uTime, {
+				value: 0,
+				onComplete: () => {
+					console.log('animation completed');
+				},
+			});
+			console.log('in the else if');
+			// ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
+			// ref.current.uniforms.nextImage.value =
+			// arrayOfTexture[activeTexture + 1];
+			// animate(testUpdatedValueSecond, 0, {
+			// 	// duration: 0.3,
+			// 	onComplete: () => {
+			// 		ref.current.uniforms.uTime.value = 0.0;
+			// 		console.log(activeTexture);
+			// 		setHasClickedOn('');
+			// 	},
+			// });
+			// ref.current.uniforms.uTime.value = 0.0;
+			// console.log(testUpdatedValueSecond.get());
+			// }
 		} else {
+			ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
+			ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
+			ref.current.uniforms.uTime.value = 0.0;
 			// Initialize the texture at the beginning
 			if (countClick === 0) {
 				ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
@@ -105,7 +132,7 @@ const Work = ({
             vec4 originNextTexture = texture2D(nextImage, vUv);
             vec4 testOriginTexture = texture(theBuyerImage, vUv);
             vec4 testOriginTexture2 = texture(tolefiTexture, vUv);
-            _currentImage = texture2D(currentImage, vec2(vUv.x, vUv.y + uTime * (originNextTexture * 0.3) ));
+            _currentImage = texture2D(currentImage, vec2(vUv.x, vUv.y + uTime * (originNextTexture * 0.3)));
             _nextImage = texture2D(nextImage, vec2(vUv.x, vUv.y + (1.0 - uTime) * (originTexture * 0.3)));
             gl_FragColor = vec4(mix(_currentImage  , _nextImage , uTime ));
             //gl_FragColor = vec4(mix(testOriginTexture.xyz , testOriginTexture2.xyz, uTime), 1.0);
