@@ -1,0 +1,36 @@
+.mainWrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+.leftWrapper {
+    width: 50%;
+    height: 100%;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.contactWrapper {
+    height: 60%;
+}
+
+.title {
+    font-size: 100px;
+}
+
+.subtitle {
+    font-size: 40px;
+    margin-right: 100px;
+}
+
+.showEmail {
+    width: 40%;
+    font-size: 40px;
+}
+
+.emailWrapper {
+    display: flex;
+    align-items: center;
+}

@@ -1,25 +1,21 @@
 import React from 'react';
 import styles from './Header.module.scss';
-import Image from 'next/image';
-// import { logo } from '/logo.png';
+import Description from '../Description/Description';
+import Logo from '../Logo/Logo';
 
 type Props = {};
 
 const Header = (props: Props) => {
 	return (
 		<header className={styles.header}>
-			<div>
-				<Image
-					src='/logo.png'
-					alt='logo'
-					width={75}
-					height={75}
-				/>
-			</div>
-			<div className={styles.personInfo}>
-				<h2 className={styles.font}> YOHAN ETIFIER</h2>
-				<h2 className={styles.font}> CREATIVE WEB DEVELOPER</h2>
-			</div>
+			<Logo
+				src='/logo.png'
+				alt='logo'
+			/>
+			<Description
+				name='Yohan Etifier'
+				subtitle='Creative web developer'
+			/>
 			<div>
 				<span></span>
 				<span></span>

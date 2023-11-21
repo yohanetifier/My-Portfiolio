@@ -2,14 +2,11 @@ import React, { useRef, useState } from 'react';
 import { useThree, extend, useFrame } from '@react-three/fiber';
 import { shaderMaterial, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
-import { animate, MotionValue } from 'framer-motion';
 import { gsap } from 'gsap';
 
 interface Props {
 	activeTexture: number;
 	setArrayLengthOfTexture: (arg: number) => void;
-	testUpdatedValue: MotionValue<number>;
-	testUpdatedValueSecond: MotionValue<number>;
 	hasClickedOn: string;
 	setHasClickedOn: (arg: string) => void;
 }
@@ -17,8 +14,6 @@ interface Props {
 const Work = ({
 	activeTexture,
 	setArrayLengthOfTexture,
-	testUpdatedValue,
-	testUpdatedValueSecond,
 	hasClickedOn,
 	setHasClickedOn,
 }: Props) => {
@@ -47,60 +42,30 @@ const Work = ({
 		countClick === 0 && setCountClick(countClick + 1);
 		ref.current.uniforms.uTime.value = 0.0;
 		setHasClickedOn('');
-		// ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
-		// ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
-		// ref.current.uniforms.uTime.value = 0.0;
-		// animate(testUpdatedValue, 0.0);
+	};
+
+	// Animate Texture
+	const animateTexture = () => {
+		gsap.to(ref.current.uniforms.uTime, {
+			value: 1,
+			duration: 1,
+			onComplete: () => {
+				resetState();
+			},
+		});
 	};
 
 	useFrame(() => {
 		if (hasClickedOn === 'next') {
-			if (ref.current.uniforms.uTime.value < 1) {
-				// animate(testUpdatedValue, 1.0, {
-				// 	duration: 0.3,
-				// 	onComplete: () => {
-				// 		resetState();
-				// 	},
-				// });
-				gsap.to(ref.current.uniforms.uTime, {
-					value: 1,
-					duration: 1,
-					onComplete: () => {
-						resetState();
-					},
-				});
-				// ref.current.uniforms.uTime.value += testUpdatedValue.get();
-			}
+			ref.current.uniforms.currentImage.value =
+				arrayOfTexture[activeTexture - 1];
+			ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture];
+			animateTexture();
 		} else if (hasClickedOn === 'prev') {
-			ref.current.uniforms.uTime.value = 1;
-			// if (ref.current.uniforms.uTime.value > 0) {
-			ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
-			ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
-			gsap.to(ref.current.uniforms.uTime, {
-				value: 0,
-				onComplete: () => {
-					console.log('animation completed');
-				},
-			});
-			console.log('in the else if');
-			// ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
-			// ref.current.uniforms.nextImage.value =
-			// arrayOfTexture[activeTexture + 1];
-			// animate(testUpdatedValueSecond, 0, {
-			// 	// duration: 0.3,
-			// 	onComplete: () => {
-			// 		ref.current.uniforms.uTime.value = 0.0;
-			// 		console.log(activeTexture);
-			// 		setHasClickedOn('');
-			// 	},
-			// });
-			// ref.current.uniforms.uTime.value = 0.0;
-			// console.log(testUpdatedValueSecond.get());
-			// }
+			ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture];
+			animateTexture();
 		} else {
 			ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
-			ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture + 1];
-			ref.current.uniforms.uTime.value = 0.0;
 			// Initialize the texture at the beginning
 			if (countClick === 0) {
 				ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
@@ -117,21 +82,15 @@ const Work = ({
 	};
 	const fragmentShader = `
         varying vec2 vUv;
-        varying vec3 vPosition;
         uniform sampler2D currentImage;
         uniform sampler2D nextImage;
         uniform float uTime;
-        uniform float testUdpateValue;
-        uniform sampler2D tolefiTexture;
-        uniform sampler2D theBuyerImage;
         vec4 _currentImage;
         vec4 _nextImage;
 
         void main () {
             vec4 originTexture  = texture2D(currentImage, vUv);
             vec4 originNextTexture = texture2D(nextImage, vUv);
-            vec4 testOriginTexture = texture(theBuyerImage, vUv);
-            vec4 testOriginTexture2 = texture(tolefiTexture, vUv);
             _currentImage = texture2D(currentImage, vec2(vUv.x, vUv.y + uTime * (originNextTexture * 0.3)));
             _nextImage = texture2D(nextImage, vec2(vUv.x, vUv.y + (1.0 - uTime) * (originTexture * 0.3)));
             gl_FragColor = vec4(mix(_currentImage  , _nextImage , uTime ));
@@ -144,11 +103,9 @@ const Work = ({
 	const vertexShader = `
         varying vec2 vUv;
         uniform float uTime; 
-        varying vec3 vPosition;
 
         void main () {
             vUv = uv;
-            vPosition = position;
             gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.);
         }
         `;
