@@ -17,10 +17,11 @@ interface Images {
 	alt: string;
 }
 
-export default function Index ( { introduction } ) {
-	const [ animationSecondComplete, setAnimationSecondComplete ] = useState<boolean>( false );
-	const words: String[] = [ 'H', 'E', 'L', 'L', 'O' ];
-	const bannerPhrase: String[] = [ "LET'S BUILD", 'THE SITE', 'OF THE FUTURE' ];
+export default function Index({ introduction }) {
+	const [animationSecondComplete, setAnimationSecondComplete] =
+		useState<boolean>(false);
+	const words: String[] = ['H', 'E', 'L', 'L', 'O'];
+	const bannerPhrase: String[] = ["LET'S BUILD", 'THE SITE', 'OF THE FUTURE'];
 	const images: Images[] = [
 		{
 			src: '',
@@ -46,29 +47,30 @@ export default function Index ( { introduction } ) {
 
 	return (
 		// <StrictMode>
-		<div className={ styles.wrapper }>
-			{ !animationSecondComplete ? (
+		<div className={styles.wrapper}>
+			{!animationSecondComplete ? (
 				<Introduction
-					words={ words }
-					images={ images }
-					setAnimationSecondComplete={ setAnimationSecondComplete }
+					words={words}
+					images={images}
+					setAnimationSecondComplete={setAnimationSecondComplete}
 				/>
 			) : (
 				<>
-					{ isDevEnv && <Leva collapsed /> }
+					{isDevEnv && <Leva collapsed />}
 					<ThemeContextProvider>
 						<Header />
 						{/* <PageTransition /> */}
 						<Canvas
-							camera={ { position: [ 40, 15, 30 ], fov: 50 } }
-							className={ styles.canvas } >
+							camera={{ position: [40, 15, 30], fov: 50 }}
+							className={styles.canvas}
+						>
 							<ScrollControls>
-								<Scene bannerPhrase={ bannerPhrase } />
+								<Scene bannerPhrase={bannerPhrase} />
 							</ScrollControls>
 						</Canvas>
 					</ThemeContextProvider>
 				</>
-			) }
+			)}
 		</div>
 		// </StrictMode>
 	);
