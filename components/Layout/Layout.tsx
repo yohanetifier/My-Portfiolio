@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Header from '../Header/Header';
-
+import styles from './Layout.module.scss';
+import Menu from '../Menu/Menu';
+import { ThemeContext } from '../Context/ThemeContext';
+import { isConstructorDeclaration } from 'typescript';
 interface Props {}
 
 const Layout = ({ children }) => {
+	const { menu, setMenu } = useContext(ThemeContext);
+
 	return (
 		<>
-			<Header />
-			<main>{children}</main>
+			<main className={styles.mainWrapper}>{children}</main>
 		</>
 	);
 };

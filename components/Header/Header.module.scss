@@ -4,8 +4,7 @@
     width: 97vw;
     display: flex;
     justify-content: space-between;
-    z-index: 4;
-    border: 2px solid black;
+    z-index: 10;
 }
 
 .button {
@@ -51,10 +50,10 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
-    border: 2px solid orange;
 }
 
 .slidingWrapper {
     border: 2px solid blue;
     height: 20%;
+    background-color: white;
 }

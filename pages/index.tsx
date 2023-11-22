@@ -11,6 +11,7 @@ import Header from '../components/Header/Header';
 import { ScrollControls } from '@react-three/drei';
 import { ThemeContextProvider } from '../components/Context/ThemeContext';
 import PageTransition from '../components/PageTransition/PageTransition';
+import Menu from '../components/Menu/Menu';
 
 interface Images {
 	src: string;
@@ -59,6 +60,7 @@ export default function Index({ introduction }) {
 					{isDevEnv && <Leva collapsed />}
 					<ThemeContextProvider>
 						<Header />
+						<Menu />
 						{/* <PageTransition /> */}
 						<Canvas
 							camera={{ position: [40, 15, 30], fov: 50 }}
@@ -76,10 +78,10 @@ export default function Index({ introduction }) {
 	);
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-	const introduction = await getHomePage();
-	return {
-		props: { introduction },
-		revalidate: 10,
-	};
-};
+// export const getStaticProps: GetStaticProps = async () => {
+// 	const introduction = await getHomePage();
+// 	return {
+// 		props: { introduction },
+// 		revalidate: 10,
+// 	};
+// };
