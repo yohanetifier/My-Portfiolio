@@ -3,13 +3,16 @@ import { GetStaticProps } from 'next';
 import { getHomePage } from '../lib/api';
 import styles from '../styles/index.module.scss';
 import Introduction from '../components/Introduction/Introduction';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Scene from '../components/Scene/Scene';
 import { Leva } from 'leva';
 import Header from '../components/Header/Header';
 import { ScrollControls } from '@react-three/drei';
-import { ThemeContextProvider } from '../components/Context/ThemeContext';
+import {
+	ThemeContext,
+	ThemeContextProvider,
+} from '../components/Context/ThemeContext';
 import PageTransition from '../components/PageTransition/PageTransition';
 import Menu from '../components/Menu/Menu';
 
@@ -19,6 +22,7 @@ interface Images {
 }
 
 export default function Index({ introduction }) {
+	const { isClosed } = useContext(ThemeContext);
 	const [animationSecondComplete, setAnimationSecondComplete] =
 		useState<boolean>(false);
 	const words: String[] = ['H', 'E', 'L', 'L', 'O'];
@@ -46,6 +50,13 @@ export default function Index({ introduction }) {
 		},
 	];
 
+	let showMenu = styles.showMenu;
+	let showCanvas = styles.hideMenu;
+	let finalClass;
+	// useEffect(() => {
+	// 	!isClosed ? (finalClass = showMenu) : (finalClass = showCanvas);
+	// }, [isClosed]);
+
 	return (
 		// <StrictMode>
 		<div className={styles.wrapper}>
@@ -64,7 +75,8 @@ export default function Index({ introduction }) {
 						{/* <PageTransition /> */}
 						<Canvas
 							camera={{ position: [40, 15, 30], fov: 50 }}
-							className={styles.canvas}
+							className={finalClass}
+							// style={menu ? { zIndex: zIndex } : { zIndex: zIndex }}
 						>
 							<ScrollControls>
 								<Scene bannerPhrase={bannerPhrase} />

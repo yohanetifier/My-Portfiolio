@@ -13,6 +13,10 @@ export const ThemeContext = createContext({
 	setLoading: (arg: boolean) => {},
 	menu: false,
 	setMenu: (arg: boolean) => {},
+	isClosed: false,
+	setIsClosed: (arg: boolean) => {},
+	showFloatingWrapper: false,
+	setShowFloatingWrapper: (arg: boolean) => {},
 });
 
 export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
@@ -22,6 +26,8 @@ export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
 	const [scrollingDown, setScrollingDown] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [menu, setMenu] = useState(false);
+	const [isClosed, setIsClosed] = useState(false);
+	const [showFloatingWrapper, setShowFloatingWrapper] = useState(false);
 
 	return (
 		<ThemeContext.Provider
@@ -34,6 +40,10 @@ export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
 				setLoading,
 				menu,
 				setMenu,
+				isClosed,
+				setIsClosed,
+				showFloatingWrapper,
+				setShowFloatingWrapper,
 			}}
 		>
 			{' '}

@@ -1,0 +1,25 @@
+.slidingWrapper {
+    height: 20%;
+    transform: translateX(100%);
+    background-color: white;
+    color: grey;
+    font-size: 150px;
+    display: flex;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.imgWrapper {
+    border: 2px solid red;
+    position: absolute;
+    right: 400px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.linkWrapper {
+    border: 2px solid red;
+}
