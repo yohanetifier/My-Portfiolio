@@ -97,7 +97,7 @@ export default function Chess(props) {
 	};
 
 	let displayTitleByCase = {
-		work: <h2 className={styles.workTitle}> {title} </h2>,
+		work: <Text font='/fonts/helvetiker_regular.typeface.json'>{title}</Text>,
 		about: <h2 className={styles.aboutTitle}> {title} </h2>,
 		contact: <h2 className={styles.contactTitle}> {title} </h2>,
 	};

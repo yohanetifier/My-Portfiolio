@@ -1,7 +1,6 @@
-import { Text3D, useCursor } from '@react-three/drei';
-import React, { Provider, useContext, useState } from 'react';
-import NormalCase from '../NormalCase/NormalCase';
-import { ThemeContext, ThemeContextProvider } from '../Context/ThemeContext';
+import { useCursor } from '@react-three/drei';
+import React, { useContext, useState } from 'react';
+import { ThemeContext } from '../Context/ThemeContext';
 import { useRouter } from 'next/router';
 
 interface Props {

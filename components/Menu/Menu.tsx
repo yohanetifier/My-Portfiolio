@@ -81,14 +81,14 @@ const Menu = (props: Props) => {
 		<div
 			ref={containerRef}
 			className={`${styles.menu}`}
-			onMouseMove={e => handleMove(e)}
+			// onMouseMove={e => handleMove(e)}
 		>
-			<div
+			{/* <div
 				ref={floatingWrapper}
 				className={styles.floatingWrapper}
 			>
 				flottant wrapper
-			</div>
+			</div> */}
 			<div className={styles.slidingWrapper}></div>
 			{route.map(({ href, label }, i) => (
 				<SlidingWrapper

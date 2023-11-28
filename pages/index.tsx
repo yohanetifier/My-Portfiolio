@@ -15,6 +15,7 @@ import {
 } from '../components/Context/ThemeContext';
 import PageTransition from '../components/PageTransition/PageTransition';
 import Menu from '../components/Menu/Menu';
+import Cursor from '../components/Cursor/Cursor';
 
 interface Images {
 	src: string;
@@ -72,6 +73,7 @@ export default function Index({ introduction }) {
 					<ThemeContextProvider>
 						<Header />
 						<Menu />
+						{/* <Cursor /> */}
 						{/* <PageTransition /> */}
 						<Canvas
 							camera={{ position: [40, 15, 30], fov: 50 }}
