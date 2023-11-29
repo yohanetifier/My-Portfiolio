@@ -6,26 +6,75 @@
     left: 43vw;
 }
 
-.workTitle,
-.aboutTitle,
-.contactTitle {
-    font-size: 40px;
-    text-transform: uppercase;
+// .workTitle,
+// .aboutTitle,
+// .contactTitle {
+//     font-size: 40px;
+//     text-transform: uppercase;
+//     position: absolute;
+//     color: white;
+// }
+
+// .workTitle {
+//     left: 57vw;
+//     top: 49vh;
+// }
+
+// .aboutTitle {
+//     left: 49vw;
+//     top: 40vh;
+// }
+
+// .contactTitle {
+//     left: 32vw;
+//     top: 40vh;
+// }
+
+.title {
+    border: 5px solid white;
     position: absolute;
-    color: white;
+    width: 180px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+    transform: scale(0);
 }
 
-.workTitle {
-    left: 57vw;
-    top: 49vh;
+// .cursor {
+//     border: 1px solid white;
+//     position: absolute;
+//     border-radius: 50%;
+//     background-color: transparent;
+//     width: 50px;
+//     height: 50px;
+//     scale: 1;
+// }
+
+.cursor {
+    border: 1px solid white;
+    position: absolute;
+    border-radius: 50%;
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+    align-items: center;
+    // transition: all ease-in;
 }
 
-.aboutTitle {
-    left: 49vw;
-    top: 40vh;
-}
-
-.contactTitle {
-    left: 32vw;
-    top: 40vh;
+.animatedCursor {
+    position: absolute;
+    width: 180px;
+    border: 5px solid white;
+    border-radius: 20px;
+    transition: all 200ms;
 }

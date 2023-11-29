@@ -30,7 +30,8 @@ import BannerPhrase from '../BannerPhrase/BannerPhrase';
 import { motion } from 'framer-motion-3d';
 import styles from './Chess.module.scss';
 import { ThemeContext } from '../Context/ThemeContext';
-
+import gsap from 'gsap';
+import Cursor from '../Cursor/Cursor';
 export default function Chess(props) {
 	const scroll = useScroll();
 	let scrollY = useMotionValue(15);
@@ -40,7 +41,7 @@ export default function Chess(props) {
 	// const [ scrollingDown, setScrollingDown ] = useState( false );
 	const lightRef = useRef();
 	const { title, scrollingDown, setScrollingDown } = useContext(ThemeContext);
-
+	const workTitleRef = useRef(null);
 	useFrame(state => {
 		if (lastPosition > scroll.offset) {
 			animate(scrollY, 15, { duration: 0.5 });
@@ -96,8 +97,24 @@ export default function Chess(props) {
 		},
 	};
 
+	const titleElement = document.querySelector(
+		`.${styles.cursor}`,
+	) as HTMLElement;
+
+	useEffect(() => {
+		// if (workTitleRef && workTitleRef.current) {
+		window.addEventListener('mousemove', e => {
+			workTitleRef.current.style.top = e.clientY + 'px';
+			workTitleRef.current.style.left = e.clientX + 'px';
+			// gsap.to(titleElement, {
+			// 	x: 100,
+			// 	duration: 2,
+			// });
+		});
+		// }
+	}, [title]);
 	let displayTitleByCase = {
-		work: <Text font='/fonts/helvetiker_regular.typeface.json'>{title}</Text>,
+		work: <h2 className={styles.workTitle}> {title} </h2>,
 		about: <h2 className={styles.aboutTitle}> {title} </h2>,
 		contact: <h2 className={styles.contactTitle}> {title} </h2>,
 	};
@@ -113,7 +130,22 @@ export default function Chess(props) {
 					bannerPhrase={["LET'S", 'BUILD THE SITE', 'OF THE FUTURE']}
 					scrollingDown={scrollingDown}
 				/>
-				{scrollingDown && displayTitleByCase[title]}
+				{/* {scrollingDown && ( */}
+				{/* <h2
+					ref={workTitleRef}
+					className={
+						// title ? `${styles.title} ${styles.animateTitle}` : styles.cursor
+						title ? `${styles.cursor} ${styles.animatedCursor}` : styles.cursor
+						// styles.cursor
+					}
+				>
+					{title}
+				</h2> */}
+				<Cursor
+					ref={workTitleRef}
+					title={title}
+				/>
+				{/* )} */}
 			</Scroll>
 			<group
 				{...props}
