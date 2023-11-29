@@ -11,7 +11,9 @@
     font-size: 30px;
     font-weight: bold;
     align-items: center;
-    // transition: all ease-in;
+    transition:
+        width 500ms,
+        height 500ms;
 }
 
 .animatedCursor {
@@ -19,5 +21,16 @@
     width: 180px;
     border: 5px solid white;
     border-radius: 20px;
-    transition: all 200ms;
+    transition: all 500ms;
+    // transform-origin: left left;
+}
+
+.test {
+    opacity: 0;
+    // transition: opacity 200ms;
+}
+
+.animatedTest {
+    opacity: 1;
+    transition: opacity 200ms 200ms;
 }

@@ -18,7 +18,13 @@ const Cursor = forwardRef(
 					// styles.cursor
 				}
 			>
-				{title}
+				<span
+					className={
+						title ? `${styles.test} ${styles.animatedTest}` : styles.test
+					}
+				>
+					{title}
+				</span>
 			</h2>
 		);
 	},
