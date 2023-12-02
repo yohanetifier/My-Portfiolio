@@ -1,6 +1,12 @@
 import { isDevEnv } from '../../lib/constants';
 import React, { useEffect, useRef } from 'react';
-import { OrbitControls, useHelper, ScrollControls, Scroll } from '@react-three/drei';
+import {
+	OrbitControls,
+	useHelper,
+	ScrollControls,
+	Scroll,
+	Text3D,
+} from '@react-three/drei';
 import Chess from '../Chess/Chess';
 import { Perf } from 'r3f-perf';
 import * as THREE from 'three';
@@ -21,26 +27,30 @@ const Scene = ({ bannerPhrase }: Props) => {
 		},
 	});
 
-	const { cameraPosition, cameraLookAt, cameraFov, cameraRotation } = useControls('camera', {
-		cameraPosition: {
-			value: { x: 40, y: 15, z: 30 },
-			step: 1,
-		},
-		cameraLookAt: {
-			value: { x: 0, y: 0, z: 0 },
-			step: 1,
-		},
-		cameraFov: {
-			value: 50,
-			step: 1,
-		},
-		cameraRotation: {
-			value: { x: -0.46, y: 0.87, z: 0.36 },
-			step: 0.1,
-		},
-	});
+	const { cameraPosition, cameraLookAt, cameraFov, cameraRotation } =
+		useControls('camera', {
+			cameraPosition: {
+				value: { x: 40, y: 15, z: 30 },
+				step: 1,
+			},
+			cameraLookAt: {
+				value: { x: 0, y: 0, z: 0 },
+				step: 1,
+			},
+			cameraFov: {
+				value: 50,
+				step: 1,
+			},
+			cameraRotation: {
+				value: { x: -0.46, y: 0.87, z: 0.36 },
+				step: 0.1,
+			},
+		});
 
-	const moveCameraPosition = cameraPosition.x !== 40 || cameraPosition.y !== 15 || cameraPosition.z !== 30;
+	const moveCameraPosition =
+		cameraPosition.x !== 40 ||
+		cameraPosition.y !== 15 ||
+		cameraPosition.z !== 30;
 
 	useFrame(state => {
 		// const { camera } = state;
@@ -60,18 +70,7 @@ const Scene = ({ bannerPhrase }: Props) => {
 
 	return (
 		<>
-			{/* isDevEnv && <Perf /> */}
-			{/* <ambientLight intensity={intensity} /> */}
-			{/* <OrbitControls
-				makeDefault
-				enableZoom={false}
-			/> */}
-
-			{/* <primitive object={model.scene} /> */}
-			{/* <BannerPhrase bannerPhrase={bannerPhrase} /> */}
-			{/* <ScrollControls> */}
 			<Chess ref={cameraRef} />
-			{/* </ScrollControls> */}
 		</>
 	);
 };

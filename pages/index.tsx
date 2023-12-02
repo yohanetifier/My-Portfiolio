@@ -70,21 +70,17 @@ export default function Index({ introduction }) {
 			) : (
 				<>
 					{isDevEnv && <Leva collapsed />}
-					<ThemeContextProvider>
-						<Header />
-						<Menu />
-						{/* <Cursor /> */}
-						{/* <PageTransition /> */}
-						<Canvas
-							camera={{ position: [40, 15, 30], fov: 50 }}
-							className={finalClass}
-							// style={menu ? { zIndex: zIndex } : { zIndex: zIndex }}
-						>
-							<ScrollControls>
-								<Scene bannerPhrase={bannerPhrase} />
-							</ScrollControls>
-						</Canvas>
-					</ThemeContextProvider>
+					{/* <ThemeContextProvider> */}
+					{/* <PageTransition /> */}
+					<Header />
+					<Menu />
+					<Canvas camera={{ position: [40, 15, 30], fov: 50 }}>
+						<ScrollControls>
+							<Scene bannerPhrase={bannerPhrase} />
+						</ScrollControls>
+					</Canvas>
+					{/* </PageTransition> */}
+					{/* </ThemeContextProvider> */}
 				</>
 			)}
 		</div>

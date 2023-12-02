@@ -1,16 +1,17 @@
 import { AppProps } from 'next/app';
 import '../styles/index.css';
+import styles from '../styles/index.module.scss';
+import { ThemeContextProvider } from '../components/Context/ThemeContext';
 import PageTransition from '../components/PageTransition/PageTransition';
-import { AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/router';
-import Layout from '../components/Layout/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
-	// const ROUTER = useRouter();
 	return (
-		<Layout>
+		<ThemeContextProvider>
+			{/* <div className={styles.wrapper}> */}
+			<PageTransition />
 			<Component {...pageProps} />
-		</Layout>
+			{/* </div> */}
+		</ThemeContextProvider>
 	);
 }
 

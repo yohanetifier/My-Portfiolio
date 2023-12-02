@@ -1,74 +1,68 @@
-import React, { useState, useContext, useEffect, useLayoutEffect, useRef } from 'react';
+import React, {
+	useEffect,
+	useRef,
+	ReactNode,
+	useContext,
+	useState,
+} from 'react';
 import styles from './PageTransition.module.scss';
-import { motion, useMotionValue, Variants } from 'framer-motion';
+import gsap from 'gsap';
 import { ThemeContext } from '../Context/ThemeContext';
+import { useRouter } from 'next/router';
 
 interface Props {
-    numberOfRows?: number;
-    // loading: boolean;
+	children: ReactNode;
 }
 
-const PageTransition = ( { numberOfRows = 3, /* loading */ }: Props ) => {
-    const { loading, setLoading } = useContext( ThemeContext );
-    const [ changeDirection, setChangeDirection ] = useState( '' );
-    const ref = useRef();
-    const x = useMotionValue( 100 );
+const PageTransition = () => {
+	const { loading } = useContext(ThemeContext);
+	const [transition, setTransition] = useState('');
+	const { title } = useContext(ThemeContext);
+	const router = useRouter();
+	const containerRef = useRef(null);
+	const startAnimation = () => {
+		if (containerRef.current) {
+			const childrenArray = Array.from(containerRef.current.children);
+			const tl = gsap.to(childrenArray, {
+				x: 0,
+				stagger: 0.2,
+				duration: 1,
+				onUpdate: () => {
+					if (containerRef.current) {
+						containerRef.current.style!.zIndex = 20;
+						console.log(title);
+					}
+				},
+				onComplete: () => {
+					tl.reverse();
+				},
+			});
+		}
+	};
 
-    setTimeout( () => {
-        setLoading( true );
-        setChangeDirection( 'right' );
-    }, 3000 );
+	useEffect(() => {
+		router.events.on('routeChangeStart', ({ url }) => {
+			startAnimation();
+			console.log(url);
+			console.log(loading);
+		});
+	}, [transition]);
 
-
-
-    const container: Variants = {
-        initial: { x: 0 },
-        animate:
-        {
-            x: 0,
-            transition: { staggerChildren: 0.2 }
-        },
-        reverseAnimate:
-        {
-            x: 0,
-            transition: { staggerChildren: 0.2 }
-        },
-
-    };
-
-    const slideFromTheRight = {
-        initial: { x: ( loading && changeDirection === 'right' ) ? '100vw' : ( loading && changeDirection === 'left' ) ? '0px' : '100vw' },
-        animate:
-        {
-            x: ( loading && changeDirection === 'right' ) ? '0px' : ( loading && changeDirection === 'left' ) ? '100vw' : '0px',
-            transition: { duration: 1 }
-        },
-    };
-
-    // const slideFromTheLeft = {
-    //     initial: { x: '0px' },
-    //     animate:
-    //     {
-    //         x: '100vw',
-    //         transition: { duration: 1 }
-    //     }
-    // };
-
-    return (
-        <motion.div
-            initial={ 'initial' }
-            animate={ loading && changeDirection === 'right' ? 'animate' : !loading && changeDirection === 'left' ? 'animate' : '' }
-            variants={ container }
-            className={ styles.wrapper }>
-            { Array.from( { length: numberOfRows } ).map( ( index ) => (
-                <motion.div
-                    ref={ ref }
-                    variants={ slideFromTheRight }
-                    key={ index }
-                    className={ styles.rows }></motion.div>
-            ) ) }
-        </motion.div>
-    );
+	return (
+		<div
+			ref={containerRef}
+			className={styles.subWrapper}
+		>
+			<div className={styles.slidingWrapper}></div>
+			<div className={styles.slidingWrapper}></div>
+			<div className={styles.slidingWrapper}></div>
+			<div className={styles.slidingWrapper}></div>
+			<div className={styles.slidingWrapper}></div>
+		</div>
+	);
+	// (
+	// 	<div>{children}</div>
+	// );
 };
 
 export default PageTransition;

@@ -17,6 +17,8 @@ export const ThemeContext = createContext({
 	setIsClosed: (arg: boolean) => {},
 	showFloatingWrapper: false,
 	setShowFloatingWrapper: (arg: boolean) => {},
+	transition: '',
+	setTransition: (arg: string) => {},
 });
 
 export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
@@ -28,6 +30,7 @@ export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
 	const [menu, setMenu] = useState(false);
 	const [isClosed, setIsClosed] = useState(false);
 	const [showFloatingWrapper, setShowFloatingWrapper] = useState(false);
+	const [transition, setTransition] = useState('');
 
 	return (
 		<ThemeContext.Provider
@@ -44,6 +47,8 @@ export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
 				setIsClosed,
 				showFloatingWrapper,
 				setShowFloatingWrapper,
+				transition,
+				setTransition,
 			}}
 		>
 			{' '}
