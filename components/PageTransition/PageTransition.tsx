@@ -15,18 +15,20 @@ interface Props {
 }
 
 const PageTransition = () => {
-	const { loading } = useContext(ThemeContext);
+	const { loading, setLoading } = useContext(ThemeContext);
 	const [transition, setTransition] = useState('');
 	const { title } = useContext(ThemeContext);
 	const router = useRouter();
 	const containerRef = useRef(null);
+	let tl;
+
 	const startAnimation = () => {
 		if (containerRef.current) {
 			const childrenArray = Array.from(containerRef.current.children);
-			const tl = gsap.to(childrenArray, {
+			tl = gsap.to(childrenArray, {
 				x: 0,
 				stagger: 0.2,
-				duration: 1,
+				duration: 0.3,
 				onUpdate: () => {
 					if (containerRef.current) {
 						containerRef.current.style!.zIndex = 20;
@@ -34,19 +36,45 @@ const PageTransition = () => {
 					}
 				},
 				onComplete: () => {
-					tl.reverse();
+					// tl.reverse();
+					setLoading(true);
 				},
 			});
 		}
 	};
 
+	const reverseAnimation = () => {
+		if (containerRef.current) {
+			const childrenArray = Array.from(containerRef.current.children);
+			tl = gsap.to(childrenArray, {
+				x: '-100%',
+				stagger: 0.2,
+				duration: 0.5,
+				// onUpdate: () => {
+				// 	if (containerRef.current) {
+				// 		containerRef.current.style!.zIndex = 20;
+				// 		console.log(title);
+				// 	}
+				// },
+				// onComplete: () => {
+				// 	 tl.reverse();
+				// 	setLoading(true);
+				// },
+			});
+		}
+	};
+
 	useEffect(() => {
-		router.events.on('routeChangeStart', ({ url }) => {
-			startAnimation();
-			console.log(url);
-			console.log(loading);
+		router.events.on('routeChangeStart', startAnimation);
+		router.events.on('routeChangeComplete', () => {
+			setTimeout(() => {
+				reverseAnimation();
+			}, 2000);
 		});
-	}, [transition]);
+		// return () => {
+		// 	router.events.off('routeChangeStart', startAnimation);
+		// };
+	}, [loading]);
 
 	return (
 		<div

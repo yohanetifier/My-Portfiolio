@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './AnimatedWords.module.scss';
 import { motion, Variants } from 'framer-motion';
-
+import gsap from 'gsap';
 type Props = {
 	arrayOfLetter: string[];
 	setAnimationComplete: (arg: boolean) => void;
@@ -22,24 +22,43 @@ const letterVariants: Variants = {
 };
 
 const AnimatedWords = ({ arrayOfLetter, setAnimationComplete }: Props) => {
+	const wrapperRef = useRef(null);
+	useEffect(() => {
+		const children = Array.from(wrapperRef.current.children);
+		console.log(children);
+		gsap.fromTo(
+			children,
+			{ x: -100, opacity: 0 },
+			{
+				x: 0,
+				stagger: 0.2,
+				opacity: 1,
+				onComplete: () => {
+					setAnimationComplete(true);
+				},
+			},
+		);
+	}, []);
+
 	return (
-		<motion.div
-			variants={container}
+		<div
+			// variants={container}
+			ref={wrapperRef}
 			className={styles.title}
-			initial='hidden'
-			animate='show'
-			onAnimationComplete={() => setAnimationComplete(true)}
+			// initial='hidden'
+			// animate='show'
+			// onAnimationComplete={() => setAnimationComplete(true)}
 		>
 			{arrayOfLetter.map((letter, i) => (
-				<motion.span
-					variants={letterVariants}
+				<span
+					// variants={letterVariants}
 					key={i}
 					className={styles.letter}
 				>
 					{letter}
-				</motion.span>
+				</span>
 			))}
-		</motion.div>
+		</div>
 	);
 };
 
