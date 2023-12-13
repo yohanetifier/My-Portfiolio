@@ -11,6 +11,7 @@ interface Props {
 }
 
 const SlidingWrapper = ({ href, label, setShowFloatingWrapper }: Props) => {
+	const { setMenu } = useContext(ThemeContext);
 	// const { setShowFloatingWrapper } = useContext(ThemeContext);
 	return (
 		<div
@@ -21,6 +22,11 @@ const SlidingWrapper = ({ href, label, setShowFloatingWrapper }: Props) => {
 				href={href}
 				className={styles.linkWrapper}
 				onMouseMove={() => setShowFloatingWrapper(true)}
+				onClick={() => {
+					setTimeout(() => {
+						setMenu(false);
+					}, 1000);
+				}}
 				// onMouseLeave={() => setShowFloatingWrapper(false)}
 			>
 				{label}

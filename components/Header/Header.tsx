@@ -9,7 +9,6 @@ import Button from '../Button/Button';
 interface Props {}
 
 const Header = (props: Props) => {
-	const { menu, setMenu } = useContext(ThemeContext);
 	return (
 		<header className={styles.header}>
 			<Logo

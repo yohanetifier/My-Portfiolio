@@ -72,8 +72,8 @@ export default function Index({ introduction }) {
 					{isDevEnv && <Leva collapsed />}
 					{/* <ThemeContextProvider> */}
 					{/* <PageTransition /> */}
-					<Header />
-					<Menu />
+					{/* <Header /> */}
+					{/* <Menu /> */}
 					<Canvas camera={{ position: [40, 15, 30], fov: 50 }}>
 						<ScrollControls>
 							<Scene bannerPhrase={bannerPhrase} />

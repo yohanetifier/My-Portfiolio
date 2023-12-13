@@ -32,7 +32,9 @@ const Menu = (props: Props) => {
 					stagger: 0.2,
 					duration: 1,
 					onUpdate: () => {
-						containerRef.current.style.zIndex = 1;
+						if (containerRef.current && containerRef.current.style) {
+							containerRef.current.style.zIndex = 100;
+						}
 					},
 			  })
 			: gsap.to(childrenArray, {
@@ -40,10 +42,10 @@ const Menu = (props: Props) => {
 					stagger: 0.2,
 					duration: 1,
 					onComplete: () => {
-						containerRef.current.style.zIndex = 0;
+						// containerRef.current.style.zIndex = 0;
 					},
 			  });
-	}, [menu, showFloatingWrapper]);
+	}, [menu, , containerRef, showFloatingWrapper]);
 
 	const route = [
 		{

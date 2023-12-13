@@ -11,8 +11,7 @@ import { ThemeContext } from '../Context/ThemeContext';
 import { useRouter } from 'next/router';
 
 interface Props {
-	children: ReactNode;
-	rows: number;
+	rows?: number;
 }
 
 const PageTransition = ({ rows = 5 }: Props) => {
@@ -28,9 +27,9 @@ const PageTransition = ({ rows = 5 }: Props) => {
 				x,
 				stagger: 0.2,
 				duration: 0.3,
-				onComplete: () => {
-					setLoading(true);
-				},
+				// onComplete: () => {
+				// 	setLoading(true);
+				// },
 			});
 		}
 	};

@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    z-index: 2;
 }
 
 .imgWrapper {
@@ -18,7 +19,3 @@
     height: 200px;
     border-radius: 50%;
 }
-
-// .linkWrapper {
-//     border: 2px solid red;
-// }
