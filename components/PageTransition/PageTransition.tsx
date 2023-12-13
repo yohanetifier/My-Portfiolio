@@ -12,63 +12,36 @@ import { useRouter } from 'next/router';
 
 interface Props {
 	children: ReactNode;
+	rows: number;
 }
 
-const PageTransition = () => {
+const PageTransition = ({ rows = 5 }: Props) => {
 	const { loading, setLoading } = useContext(ThemeContext);
-	const [transition, setTransition] = useState('');
-	const { title } = useContext(ThemeContext);
 	const router = useRouter();
 	const containerRef = useRef(null);
 	let tl;
 
-	const startAnimation = () => {
+	const startAnimation = (x: number | string) => {
 		if (containerRef.current) {
 			const childrenArray = Array.from(containerRef.current.children);
 			tl = gsap.to(childrenArray, {
-				x: 0,
+				x,
 				stagger: 0.2,
 				duration: 0.3,
-				onUpdate: () => {
-					if (containerRef.current) {
-						containerRef.current.style!.zIndex = 20;
-						console.log(title);
-					}
-				},
 				onComplete: () => {
-					// tl.reverse();
 					setLoading(true);
 				},
 			});
 		}
 	};
 
-	const reverseAnimation = () => {
-		if (containerRef.current) {
-			const childrenArray = Array.from(containerRef.current.children);
-			tl = gsap.to(childrenArray, {
-				x: '-100%',
-				stagger: 0.2,
-				duration: 0.5,
-				// onUpdate: () => {
-				// 	if (containerRef.current) {
-				// 		containerRef.current.style!.zIndex = 20;
-				// 		console.log(title);
-				// 	}
-				// },
-				// onComplete: () => {
-				// 	 tl.reverse();
-				// 	setLoading(true);
-				// },
-			});
-		}
-	};
-
 	useEffect(() => {
-		router.events.on('routeChangeStart', startAnimation);
+		router.events.on('routeChangeStart', () => {
+			startAnimation(0);
+		});
 		router.events.on('routeChangeComplete', () => {
 			setTimeout(() => {
-				reverseAnimation();
+				startAnimation('-100%');
 			}, 2000);
 		});
 		// return () => {
@@ -81,16 +54,15 @@ const PageTransition = () => {
 			ref={containerRef}
 			className={styles.subWrapper}
 		>
-			<div className={styles.slidingWrapper}></div>
-			<div className={styles.slidingWrapper}></div>
-			<div className={styles.slidingWrapper}></div>
-			<div className={styles.slidingWrapper}></div>
-			<div className={styles.slidingWrapper}></div>
+			{[...Array(rows)].map((_, index) => (
+				<div
+					key={index}
+					className={styles.slidingWrapper}
+					style={{ height: `calc(100% / ${rows})` }}
+				></div>
+			))}
 		</div>
 	);
-	// (
-	// 	<div>{children}</div>
-	// );
 };
 
 export default PageTransition;

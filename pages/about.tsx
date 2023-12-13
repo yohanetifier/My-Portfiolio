@@ -79,13 +79,6 @@ const about = (props: Props) => {
 				>
 					CI/CD
 				</Text3D>
-				{/* <Text3D
-					font='/fonts/helvetiker_regular.typeface.json'
-					position={[2, -2, 1]}
-					size={0.5}
-				>
-					3D Modeling
-				</Text3D> */}
 			</Canvas>
 		</section>
 	);
