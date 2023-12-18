@@ -2,8 +2,24 @@
     display: flex;
     font-size: 100px;
     position: relative;
+    width: 1000px;
 }
 
 .tranformFont {
     text-transform: uppercase;
+}
+
+.overlapWrapper {
+    position: absolute;
+}
+
+.together {
+    position: relative;
+    // left: 50px;
+    left: 350px;
+}
+
+.overlapMessage {
+    position: absolute;
+    left: 300px;
 }
