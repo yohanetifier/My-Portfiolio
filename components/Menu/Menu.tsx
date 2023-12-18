@@ -42,7 +42,7 @@ const Menu = (props: Props) => {
 					stagger: 0.2,
 					duration: 1,
 					onComplete: () => {
-						// containerRef.current.style.zIndex = 0;
+						containerRef.current.style.zIndex = 0;
 					},
 			  });
 	}, [menu, , containerRef, showFloatingWrapper]);

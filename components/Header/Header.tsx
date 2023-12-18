@@ -10,16 +10,18 @@ interface Props {}
 
 const Header = (props: Props) => {
 	return (
-		<header className={styles.header}>
-			<Logo
-				src='/logo.png'
-				alt='logo'
-			/>
-			<Description
-				name='Yohan Etifier'
-				subtitle='Creative web developer'
-			/>
-			<Button />
+		<header className={styles.wrapper}>
+			<div className={styles.header}>
+				<Logo
+					src='/logo.png'
+					alt='logo'
+				/>
+				<Description
+					name='Yohan Etifier'
+					subtitle='Creative web developer'
+				/>
+				<Button />
+			</div>
 		</header>
 	);
 };
