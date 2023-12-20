@@ -27,9 +27,6 @@ const PageTransition = ({ rows = 5 }: Props) => {
 				x,
 				stagger: 0.2,
 				duration: 0.3,
-				// onComplete: () => {
-				// 	setLoading(true);
-				// },
 			});
 		}
 	};

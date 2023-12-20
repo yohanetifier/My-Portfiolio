@@ -16,7 +16,7 @@ const Contact = ({ title, subtitle }: Props) => {
 		<section className={styles.mainWrapper}>
 			<div className={styles.leftWrapper}>
 				<div className={styles.contactWrapper}>
-					<Connect letters="let's work together" />
+					<Connect />
 					<div className={styles.emailWrapper}>
 						<a
 							className={styles.subtitle}

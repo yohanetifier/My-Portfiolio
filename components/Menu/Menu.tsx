@@ -14,13 +14,8 @@ import SlidingWrapper from '../SlidingWrapper/SlidingWrapper';
 
 interface Props {}
 const Menu = (props: Props) => {
-	const {
-		menu,
-		setMenu,
-		setIsClosed,
-		// showFloatingWrapper,
-		// setShowFloatingWrapper,
-	} = useContext(ThemeContext);
+	const { menu, setMenu, setIsClosed, setEndLoading } =
+		useContext(ThemeContext);
 	const containerRef = useRef(null);
 	const floatingWrapper = useRef(null);
 	const [showFloatingWrapper, setShowFloatingWrapper] = useState(false);
@@ -36,11 +31,17 @@ const Menu = (props: Props) => {
 							containerRef.current.style.zIndex = 100;
 						}
 					},
+					onComplete: () => {
+						setEndLoading(true);
+					},
 			  })
 			: gsap.to(childrenArray, {
 					x: '100%',
 					stagger: 0.2,
 					duration: 1,
+					onUpdate: () => {
+						setEndLoading(false);
+					},
 					onComplete: () => {
 						containerRef.current.style.zIndex = 0;
 					},
@@ -78,7 +79,6 @@ const Menu = (props: Props) => {
 	// }else {
 	// 	classTest = `${styles.floatingWrapper}`
 	// }
-
 	return (
 		<div
 			ref={containerRef}
