@@ -12,52 +12,42 @@ const Skills = (props: Props) => {
 	useEffect(() => {
 		const children = Array.from(jobRef.current.children);
 		const tl = gsap.timeline({ repeat: -1 });
-		tl.set(children, { opacity: 0 });
-		tl.fromTo(
-			children[0] as HTMLElement,
-			{ y: '100%', opacity: 0 },
-			{ y: '0%', opacity: 1 },
-		)
-			.fromTo(
-				children[0] as HTMLElement,
-				{ y: '0%', opacity: 1 },
-				{ y: '-100%', opacity: 0 },
-			)
-			.to(angleBracketLeftRef.current, { x: '70%' })
-			.to(angleBracketRightRef.current, { x: '-70%', duration: 0.5 }, '<')
-			.fromTo(
-				children[1] as HTMLElement,
-				{ y: '100%', opacity: 0 },
-				{ y: '0%', opacity: 1 },
-				'<',
-			)
-			.fromTo(
-				children[1] as HTMLElement,
-				{ y: '0%', opacity: 1 },
-				{ y: '-100%', opacity: 0 },
-			)
-			.to(
-				angleBracketLeftRef.current,
-				// { x: '0%', duration: 0.5 },
-				{ x: '700%' },
-			)
-			.to(angleBracketRightRef.current, { x: '-500%', duration: 0.5 }, '<')
-			.fromTo(
-				children[2] as HTMLElement,
-				{ y: '100%', opacity: 0 },
-				{ y: '0%', opacity: 1 },
-				'<',
-			)
-			.fromTo(
-				children[2] as HTMLElement,
-				{ y: '0%', opacity: 1 },
-				{ y: '-100%', opacity: 0 },
+		const animate = (
+			item,
+			opacityStartValue,
+			opacityEndValue,
+			yStartValue,
+			yEndValue,
+			duration?,
+		) => {
+			tl.fromTo(
+				item,
+				{ y: yStartValue, opacity: opacityStartValue },
+				{ y: yEndValue, opacity: opacityEndValue },
+				duration,
 			);
+		};
+		tl.set(children, { opacity: 0 });
+		animate(children[0] as HTMLElement, 0, 1, '100%', '0%');
+		animate(children[0] as HTMLElement, 1, 0, '0%', '-100%');
+		animate(children[1] as HTMLElement, 0, 1, '100%', '0%');
+		animate(children[1] as HTMLElement, 1, 0, '0%', '-100%');
+		tl.to(angleBracketLeftRef.current, {
+			x: '180',
+		}).to(angleBracketRightRef.current, { x: '-420%', duration: 0.5 }, '<');
+		animate(children[2] as HTMLElement, 0, 1, '100%', '0%', '<');
+		animate(children[2] as HTMLElement, 1, 0, '0%', '-100%');
+		tl.to(angleBracketLeftRef.current, { x: '0' }).to(
+			angleBracketRightRef.current,
+			{ x: '0' },
+			'<',
+		);
 	}, [jobRef]);
 	return (
 		<div className={styles.jobProfile}>
 			<span
 				ref={angleBracketLeftRef}
+				className={styles.angleBracketLeft}
 				// className={styles.dissaperLetter}
 			>
 				&lt;
@@ -66,11 +56,16 @@ const Skills = (props: Props) => {
 				ref={jobRef}
 				className={styles.job}
 			>
-				<p className={styles.profile}>CREATIVE WEB DEVELOPER</p>
+				<p className={styles.profile}>CREATIVE DEVELOPER</p>
 				<p className={styles.profile}>FULLSTACK DEVELOPER</p>
 				<p className={styles.profile}>DEVOPS</p>
 			</div>
-			<span ref={angleBracketRightRef}>/&gt;</span>
+			<span
+				className={styles.angleBracketRight}
+				ref={angleBracketRightRef}
+			>
+				/&gt;
+			</span>
 		</div>
 	);
 };

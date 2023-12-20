@@ -10,21 +10,9 @@ interface Props {
 const Connect = (props: Props) => {
 	const titleRef = useRef(null);
 	const overlapWrapperRef = useRef(null);
-	// const arrayOfLetters = letters.split('');
 	const togetherRef = useRef(null);
 	useEffect(() => {
-		// !old method
 		const timeline = gsap.timeline({ repeat: -1 });
-		// const letter = Array.from(titleRef.current.children);
-		// const shuffledTitle = shuffledLetters(letter as Array<string>);
-		// gsap.set(shuffledTitle, { opacity: 0 });
-		// timeline.to(shuffledTitle, {
-		// 	opacity: 1,
-		// 	stagger: 0.5,
-		// 	duration: 1,
-		// });
-
-		//* New Inspiration
 		const allMessages = Array.from(overlapWrapperRef.current.children);
 		gsap.set(overlapWrapperRef.current.children[1], { opacity: 0 });
 		gsap.set(overlapWrapperRef.current.children[2], { opacity: 0 });
@@ -43,14 +31,6 @@ const Connect = (props: Props) => {
 			className={styles.alignTitle}
 		>
 			<h2>LET&#39;S</h2>
-			{/* {arrayOfLetters.map((letter, index) => (
-				<h2
-					className={styles.tranformFont}
-					key={index}
-				>
-					{letter}
-				</h2>
-			))} */}
 			<div
 				className={styles.overlapWrapper}
 				ref={overlapWrapperRef}
