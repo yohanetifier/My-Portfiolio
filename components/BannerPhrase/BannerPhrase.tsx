@@ -1,6 +1,5 @@
-import React from 'react';
 import styles from './BannerPhrase.module.scss';
-import { motion } from 'framer-motion';
+import gsap from 'gsap';
 
 type Props = {
 	bannerPhrase: String[];
@@ -8,54 +7,22 @@ type Props = {
 };
 
 const BannerPhrase = ({ bannerPhrase, scrollingDown }: Props) => {
-	const container = {
-		animate: {
-			y: 0,
-			transition: {
-				duration: 0.5,
-				staggerChildren: 0.2,
-			},
-		},
-	};
-
-	const slidingFromTheTop = {
-		initial: {
-			y: 0,
-			transition: { duration: 0.3, staggerChildren: 0.2 },
-		},
-		animate: {
-			y: 120,
-			transition: { duration: 0.3 },
-		},
-	};
-
-	const slidingFromTheBottom = {
-		initial: { y: 120, transition: { duration: 0.3 } },
-		animate: { y: 0, transition: { duration: 0.3 } },
-	};
+	const title = document.querySelectorAll('.animateTitle');
+	scrollingDown
+		? gsap.to(title, { y: 120, stagger: 0.5 })
+		: gsap.to(title, { y: 0, stagger: 0.5 });
 
 	return (
-		<motion.div
-			className={styles.title}
-			variants={container}
-			initial={scrollingDown ? 'reverseInitial' : 'initial'}
-			animate={scrollingDown ? 'reverseAnimate' : 'animate'}
-		>
+		<div className={styles.title}>
 			{bannerPhrase.map((phrase, index) => (
 				<div
 					className={styles.overflowHidden}
 					key={index}
 				>
-					<motion.h2
-						variants={scrollingDown ? slidingFromTheTop : slidingFromTheBottom}
-						animate={'animate'}
-					>
-						{phrase}
-					</motion.h2>
+					<h2 className='animateTitle'>{phrase}</h2>
 				</div>
 			))}
-		</motion.div>
-		// </Scroll>
+		</div>
 	);
 };
 

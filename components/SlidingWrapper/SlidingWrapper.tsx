@@ -15,28 +15,26 @@ const SlidingWrapper = ({ href, label, setShowFloatingWrapper }: Props) => {
 	const { setMenu, endLoading } = useContext(ThemeContext);
 	const wrapperRef = useRef(null);
 	useEffect(() => {
-		const children = Array.from(wrapperRef.current.children);
-		gsap.set(children, { opacity: 0 });
+		const link = document.querySelectorAll('.animateLink');
+		gsap.set(link, { opacity: 0 });
 		endLoading
-			? gsap.to(children[0] as HTMLElement, { opacity: 1 })
-			: gsap.to(children, { opacity: 0, stagger: 3 });
+			? gsap.to(link, { opacity: 1, stagger: 0.3 })
+			: gsap.to(link, { opacity: 0, stagger: 0.3 });
 	}, [endLoading, wrapperRef]);
 	return (
 		<div
 			className={styles.slidingWrapper}
-			// onMouseLeave={() => setShowFloatingWrapper(false)}
 			ref={wrapperRef}
 		>
 			<Link
 				href={href}
-				className={styles.linkWrapper}
+				className={`${styles.linkWrapper} animateLink`}
 				onMouseMove={() => setShowFloatingWrapper(true)}
 				onClick={() => {
 					setTimeout(() => {
 						setMenu(false);
 					}, 1000);
 				}}
-				// onMouseLeave={() => setShowFloatingWrapper(false)}
 			>
 				{label}
 			</Link>
