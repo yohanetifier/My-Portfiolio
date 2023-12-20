@@ -7,6 +7,14 @@
     position: relative;
 }
 
+.imgWrapper,
+.imgWrapper1,
+.imgWrapper2,
+.imgWrapper3,
+.imgWrapper4 {
+    opacity: 0;
+}
+
 .imgWrapper {
     border: 2px solid purple;
     position: absolute;

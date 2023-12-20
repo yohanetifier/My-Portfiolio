@@ -1,8 +1,7 @@
-import { Variants, motion } from 'framer-motion';
 import Image from 'next/image';
-import React from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './AnimatedImg.module.scss';
-import { container } from '../AnimatedWords/AnimatedWords';
+import gsap from 'gsap';
 
 export type ArrayOfImg = {
 	src: string;
@@ -16,39 +15,42 @@ type Props = {
 	setAnimationSecondComplete: (arg: boolean) => void;
 };
 
-const imageVariants: Variants = {
-	hidden: { opacity: 0, transition: { duration: 0.3 } },
-	show: { opacity: 1, transition: { duration: 0.3 } },
-};
-
 const AnimatedImg = ({
 	arrayOfImg,
 	animationComplete,
 	setAnimationSecondComplete,
 }: Props) => {
+	const wrapperRef = useRef(null);
+	useEffect(() => {
+		const children = Array.from(wrapperRef.current.children);
+		animationComplete &&
+			gsap.to(children, {
+				opacity: 1,
+				stagger: 0.3,
+				onComplete: () => {
+					setAnimationSecondComplete(true);
+				},
+			});
+	}, [wrapperRef, animationComplete]);
 	return (
-		<motion.div
+		<div
 			className={styles.container}
-			variants={container}
-			initial='hidden'
-			animate={animationComplete ? 'show' : ''}
-			onAnimationComplete={() => setAnimationSecondComplete(true)}
+			ref={wrapperRef}
 		>
 			{arrayOfImg.map(({ src, alt, className }, i) => (
 				<>
-					<motion.figure
+					<figure
 						className={`${className} figure`}
 						key={i}
-						variants={imageVariants}
 					>
 						<Image
 							src={src}
 							alt={alt}
 						/>
-					</motion.figure>
+					</figure>
 				</>
 			))}
-		</motion.div>
+		</div>
 	);
 };
 

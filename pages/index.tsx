@@ -1,21 +1,12 @@
 import { isDevEnv } from '../lib/constants';
-import { GetStaticProps } from 'next';
-import { getHomePage } from '../lib/api';
 import styles from '../styles/index.module.scss';
 import Introduction from '../components/Introduction/Introduction';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Scene from '../components/Scene/Scene';
 import { Leva } from 'leva';
-import Header from '../components/Header/Header';
 import { ScrollControls } from '@react-three/drei';
-import {
-	ThemeContext,
-	ThemeContextProvider,
-} from '../components/Context/ThemeContext';
-import PageTransition from '../components/PageTransition/PageTransition';
-import Menu from '../components/Menu/Menu';
-import Cursor from '../components/Cursor/Cursor';
+import { ThemeContext } from '../components/Context/ThemeContext';
 
 interface Images {
 	src: string;
