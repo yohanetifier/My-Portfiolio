@@ -1,8 +1,16 @@
+@import "../../styles/breakpoint.module.scss";
+
 .alignTitle {
     display: flex;
     font-size: 100px;
+    @include desktopS {
+        font-size: 75px;
+    }
+    @include tabletM {
+        font-size: 50px;
+    }
     position: relative;
-    width: 1000px;
+    width: 100vw;
 }
 
 .tranformFont {
@@ -17,9 +25,21 @@
     position: relative;
     // left: 50px;
     left: 350px;
+    @include desktopS {
+        left: 300px;
+    }
+    @include tabletM {
+        left: 180px;
+    }
 }
 
 .overlapMessage {
     position: absolute;
     left: 300px;
+    @include desktopS {
+        left: 250px;
+    }
+    @include tabletM {
+        left: 150px;
+    }
 }

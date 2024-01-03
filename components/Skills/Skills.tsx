@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useRef } from 'react';
 import styles from './Skills.module.scss';
 import gsap from 'gsap';
@@ -5,6 +6,7 @@ import gsap from 'gsap';
 interface Props {}
 
 const Skills = (props: Props) => {
+	// const desktopS = window.matchMedia('(max-width: 1024px)');
 	const jobRef = useRef(null);
 	const angleBracketLeftRef = useRef(null);
 	const angleBracketRightRef = useRef(null);

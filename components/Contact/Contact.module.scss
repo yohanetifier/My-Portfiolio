@@ -1,10 +1,12 @@
+@import "../../styles//breakpoint.module.scss";
+
 .mainWrapper {
     width: 100vw;
     height: 100vh;
     background-color: grey;
     position: relative;
     // z-index: 1000;
-    border: 2px solid purple;
+    // border: 2px solid purple;
 }
 
 .leftWrapper {
@@ -27,14 +29,35 @@
 .subtitle {
     font-size: 40px;
     margin-right: 100px;
+    text-decoration: underline;
+    cursor: pointer;
+    @include desktopS {
+        position: absolute;
+        width: 60%;
+        // font-size: 30px;
+        margin-right: 0px;
+    }
 }
 
 .showEmail {
     width: 40%;
     font-size: 40px;
+    @include desktopS {
+        position: absolute;
+        left: 500px;
+    }
+    @include tabletM {
+        font-size: 24px;
+        // border: 2px solid red;
+        left: 400px;
+    }
 }
 
 .emailWrapper {
     display: flex;
     align-items: center;
+    position: relative;
+    @include desktopS {
+        width: 80vw;
+    }
 }
