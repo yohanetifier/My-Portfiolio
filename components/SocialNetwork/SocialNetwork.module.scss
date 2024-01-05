@@ -1,3 +1,8 @@
+@import "../../styles/breakpoint.module.scss";
+
 .mainWrapper {
     margin-top: 50px;
+    @include mobileL {
+        margin-top: 20px;
+    }
 }

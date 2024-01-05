@@ -1,12 +1,11 @@
-@import "../../styles//breakpoint.module.scss";
+@import "../../styles/breakpoint.module.scss";
+@import "../../styles/variables.module.scss";
 
 .mainWrapper {
     width: 100vw;
     height: 100vh;
     background-color: grey;
     position: relative;
-    // z-index: 1000;
-    // border: 2px solid purple;
 }
 
 .leftWrapper {
@@ -16,6 +15,9 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    @include mobileL {
+        margin-left: 50px;
+    }
 }
 
 .contactWrapper {
@@ -37,19 +39,27 @@
         // font-size: 30px;
         margin-right: 0px;
     }
+    @include mobileL {
+        font-size: $fontSizeMobileL;
+    }
+    @include mobileM {
+        font-size: $fontSizeMobileM;
+    }
 }
 
 .showEmail {
     width: 40%;
-    font-size: 40px;
+    // font-size: 40px;
     @include desktopS {
         position: absolute;
         left: 500px;
     }
     @include tabletM {
-        font-size: 24px;
-        // border: 2px solid red;
+        // font-size: 24px;
         left: 400px;
+    }
+    @include mobileL {
+        left: 200px;
     }
 }
 

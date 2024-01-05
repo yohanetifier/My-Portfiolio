@@ -9,6 +9,12 @@
     @include tabletM {
         font-size: 50px;
     }
+    @include mobileL {
+        font-size: 28px;
+    }
+    @include mobileM {
+        font-size: 25px;
+    }
     position: relative;
     width: 100vw;
 }
@@ -31,6 +37,12 @@
     @include tabletM {
         left: 180px;
     }
+    @include mobileL {
+        left: 135px;
+    }
+    @include mobileM {
+        left: 100px;
+    }
 }
 
 .overlapMessage {
@@ -41,5 +53,11 @@
     }
     @include tabletM {
         left: 150px;
+    }
+    @include mobileL {
+        left: 103px;
+    }
+    @include mobileM {
+        left: 80px;
     }
 }

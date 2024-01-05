@@ -1,3 +1,5 @@
+@import "../../styles/breakpoint.module.scss";
+
 .mainWrapper {
     position: relative;
 }
@@ -21,4 +23,13 @@
 .email {
     display: flex;
     font-size: 30px;
+    @include tabletM {
+        font-size: 23px;
+    }
+    @include tabletS {
+        font-size: 22px;
+    }
+    @include mobileL {
+        font-size: 10px;
+    }
 }

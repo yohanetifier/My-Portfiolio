@@ -1,5 +1,15 @@
+@import "../../styles/breakpoint.module.scss";
+
 .icon {
     width: 50px;
     height: 50px;
     margin-right: 20px;
+    @include mobileL {
+        width: 30px;
+        height: 30px;
+    }
+    @include mobileM {
+        width: 25px;
+        height: 25px;
+    }
 }
