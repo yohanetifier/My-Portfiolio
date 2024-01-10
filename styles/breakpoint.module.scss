@@ -31,13 +31,21 @@
         @content;
     }
 }
-
+@mixin desktopXs {
+    @media screen and (max-width: 912px) {
+        @content;
+    }
+}
 @mixin desktopS {
     @media screen and (max-width: 1024px) {
         @content;
     }
 }
-
+@mixin NestHubMax {
+    @media only screen and (min-width: 1280px) and (max-width: 1440px) and (min-height: 800px) and (max-height: 900px) {
+        @content;
+    }
+}
 @mixin desktopM {
     @media screen and (max-width: 1280px) {
         @content;

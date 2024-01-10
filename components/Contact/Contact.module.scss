@@ -33,11 +33,17 @@
     margin-right: 100px;
     text-decoration: underline;
     cursor: pointer;
+    @include NestHubMax {
+        font-size: 25px;
+    }
     @include desktopS {
         position: absolute;
         width: 60%;
-        // font-size: 30px;
         margin-right: 0px;
+    }
+    @include tabletXs {
+        font-size: 20px;
+        width: 100%;
     }
     @include mobileL {
         font-size: $fontSizeMobileL;
@@ -49,14 +55,23 @@
 
 .showEmail {
     width: 40%;
-    // font-size: 40px;
+    @include NestHubMax {
+        width: 50%;
+    }
     @include desktopS {
         position: absolute;
         left: 500px;
     }
+    @include desktopXs {
+        left: 425px;
+        width: 60%;
+    }
     @include tabletM {
-        // font-size: 24px;
         left: 400px;
+    }
+    @include tabletXs {
+        left: 214px;
+        width: 100%;
     }
     @include mobileL {
         left: 200px;

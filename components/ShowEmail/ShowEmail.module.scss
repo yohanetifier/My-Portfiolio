@@ -23,6 +23,9 @@
 .email {
     display: flex;
     font-size: 30px;
+    @include NestHubMax {
+        font-size: 25px;
+    }
     @include tabletM {
         font-size: 23px;
     }

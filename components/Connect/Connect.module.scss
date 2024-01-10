@@ -3,11 +3,20 @@
 .alignTitle {
     display: flex;
     font-size: 100px;
+    @include NestHubMax {
+        font-size: 75px;
+    }
     @include desktopS {
         font-size: 75px;
     }
+    @media screen and (max-width: 912px) {
+        font-size: 60px;
+    }
     @include tabletM {
         font-size: 50px;
+    }
+    @include tabletXs {
+        font-size: 30px;
     }
     @include mobileL {
         font-size: 28px;
@@ -31,11 +40,20 @@
     position: relative;
     // left: 50px;
     left: 350px;
+    @include NestHubMax {
+        left: 276px;
+    }
     @include desktopS {
         left: 300px;
     }
+    @include desktopXs {
+        left: 234px;
+    }
     @include tabletM {
         left: 180px;
+    }
+    @include tabletXs {
+        left: 125px;
     }
     @include mobileL {
         left: 135px;
@@ -48,11 +66,20 @@
 .overlapMessage {
     position: absolute;
     left: 300px;
+    @include NestHubMax {
+        left: 220px;
+    }
     @include desktopS {
         left: 250px;
     }
+    @include desktopXs {
+        left: 188px;
+    }
     @include tabletM {
         left: 150px;
+    }
+    @include tabletXs {
+        left: 95px;
     }
     @include mobileL {
         left: 103px;

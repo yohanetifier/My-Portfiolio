@@ -9,9 +9,15 @@ interface Props {
 	href: string;
 	label: string;
 	setShowFloatingWrapper: (arg: boolean) => void;
+	className?: string;
 }
 
-const SlidingWrapper = ({ href, label, setShowFloatingWrapper }: Props) => {
+const SlidingWrapper = ({
+	href,
+	label,
+	setShowFloatingWrapper,
+	className,
+}: Props) => {
 	const { setMenu, endLoading } = useContext(ThemeContext);
 	const wrapperRef = useRef(null);
 	useEffect(() => {
@@ -28,7 +34,7 @@ const SlidingWrapper = ({ href, label, setShowFloatingWrapper }: Props) => {
 		>
 			<Link
 				href={href}
-				className={`${styles.linkWrapper} animateLink`}
+				className={`${styles.linkWrapper} animateLink ${className}`}
 				onMouseMove={() => setShowFloatingWrapper(true)}
 				onClick={() => {
 					setTimeout(() => {

@@ -23,10 +23,13 @@
     width: 70%;
     display: flex;
     justify-content: center;
+    @include NestHubMax {
+        font-size: 30px;
+    }
     @include tabletM {
         font-size: $fontSizeTabletM;
     }
-    @include mobileL {
+    @include tabletXs {
         font-size: $fontSizeMobileL;
     }
     @include mobileM {
@@ -44,6 +47,12 @@
     @include desktopS {
         left: 40px;
     }
+    @include desktopXs {
+        left: 0px;
+    }
+    @include tabletXs {
+        left: 55px;
+    }
     @include mobileL {
         left: 15px;
     }
@@ -53,6 +62,12 @@
     right: 50px;
     @include desktopS {
         right: 30px;
+    }
+    @include desktopXs {
+        right: 0px;
+    }
+    @include tabletXs {
+        right: 55px;
     }
     @include mobileL {
         right: 10px;

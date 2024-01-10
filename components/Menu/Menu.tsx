@@ -52,14 +52,17 @@ const Menu = (props: Props) => {
 		{
 			href: '/work',
 			label: 'work',
+			className: 'work',
 		},
 		{
 			href: '/about',
 			label: 'about',
+			className: 'about',
 		},
 		{
 			href: '/contact',
 			label: 'contact',
+			className: 'contact',
 		},
 	];
 
@@ -92,14 +95,16 @@ const Menu = (props: Props) => {
 				flottant wrapper
 			</div> */}
 			<div className={styles.slidingWrapper}></div>
-			{route.map(({ href, label }, i) => (
+			{route.map(({ href, label, className }, i) => (
 				<SlidingWrapper
 					href={href}
 					label={label}
 					key={i}
 					setShowFloatingWrapper={setShowFloatingWrapper}
+					className={className}
 				/>
 			))}
+
 			<div className={`${styles.slidingWrapper} ${styles.socialNetwork}`}>
 				<SocialNetwork />
 			</div>

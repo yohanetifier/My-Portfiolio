@@ -1,3 +1,5 @@
+@import "../../styles/breakpoint.module.scss";
+
 .slidingWrapper {
     height: 20%;
     transform: translateX(100%);
@@ -10,6 +12,24 @@
     align-items: center;
     position: relative;
     z-index: 2;
+    @include desktopS {
+        font-size: 200px;
+    }
+    @include tabletM {
+        font-size: 165px;
+    }
+    @include tabletS {
+        font-size: 159px;
+    }
+    @include tabletXs {
+        font-size: 100px;
+    }
+    @include mobileL {
+        font-size: 85px;
+    }
+    @include mobileM {
+        font-size: 72px;
+    }
 }
 
 .imgWrapper {
@@ -20,6 +40,7 @@
     border-radius: 50%;
 }
 
-// .linkWrapper {
-//     opacity: 0;
-// }
+.linkWrapper {
+    opacity: 0;
+    position: relative;
+}

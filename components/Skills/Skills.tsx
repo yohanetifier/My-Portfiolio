@@ -13,10 +13,16 @@ const Skills = (props: Props) => {
 	let tabletM;
 	let tabletS;
 	let mobileL;
+	let tabletXs;
+	let nestHubMax;
 	if (typeof window !== 'undefined') {
 		tabletM = window.matchMedia('(max-width: 900px)').matches;
 		tabletS = window.matchMedia('(max-width: 768px)').matches;
 		mobileL = window.matchMedia('(max-width: 500px)').matches;
+		tabletXs = window.matchMedia('(max-width: 540px)').matches;
+		nestHubMax = window.matchMedia(
+			'(min-width: 1280px) and (max-width: 1440px) and (min-height: 800px) and (max-height: 900px)',
+		).matches;
 	}
 	useEffect(() => {
 		const children = Array.from(jobRef.current.children);
@@ -42,8 +48,22 @@ const Skills = (props: Props) => {
 		animate(children[1] as HTMLElement, 0, 1, '100%', '0%');
 		animate(children[1] as HTMLElement, 1, 0, '0%', '-100%');
 		tl.to(angleBracketLeftRef.current, {
-			x: mobileL ? '60' : tabletS ? '120' : tabletM ? '140' : '180',
-		}).to(angleBracketRightRef.current, { x: '-420%', duration: 0.5 }, '<');
+			x: mobileL
+				? '60'
+				: tabletXs
+				? '70'
+				: tabletS
+				? '120'
+				: tabletM
+				? '140'
+				: nestHubMax
+				? '110'
+				: '180',
+		}).to(
+			angleBracketRightRef.current,
+			{ x: nestHubMax ? '-350%' : '-420%', duration: 0.5 },
+			'<',
+		);
 		animate(children[2] as HTMLElement, 0, 1, '100%', '0%', '<');
 		animate(children[2] as HTMLElement, 1, 0, '0%', '-100%');
 		tl.to(angleBracketLeftRef.current, { x: '0' }).to(
@@ -51,7 +71,7 @@ const Skills = (props: Props) => {
 			{ x: '0' },
 			'<',
 		);
-	}, [jobRef, tabletM, tabletS, mobileL]);
+	}, [jobRef, tabletM, tabletS, mobileL, tabletXs, nestHubMax]);
 	return (
 		<div className={styles.jobProfile}>
 			<span
