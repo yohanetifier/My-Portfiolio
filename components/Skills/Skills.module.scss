@@ -35,6 +35,9 @@
     @include mobileM {
         font-size: $fontSizeMobileM;
     }
+    @include mobileS {
+        font-size: 12px;
+    }
 }
 
 .angleBracketLeft,

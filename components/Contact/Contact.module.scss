@@ -51,6 +51,9 @@
     @include mobileM {
         font-size: $fontSizeMobileM;
     }
+    @include mobileS {
+        font-size: 12px;
+    }
 }
 
 .showEmail {
@@ -75,6 +78,9 @@
     }
     @include mobileL {
         left: 200px;
+    }
+    @include mobileS {
+        left: 128px;
     }
 }
 

@@ -1,3 +1,5 @@
+@import "../../styles/breakpoint.module.scss";
+
 .menu {
     position: absolute;
     width: 100vw;
@@ -49,4 +51,34 @@
     width: 200px;
     height: 200px;
     // opacity: 0;
+}
+
+.work {
+    position: relative;
+    @include mobileL {
+        top: 40px;
+    }
+    @include mobileM {
+        top: 20px;
+    }
+}
+
+.about {
+    position: relative;
+    @include mobileL {
+        bottom: 30px;
+    }
+    @include mobileM {
+        top: -40px;
+    }
+}
+
+.contact {
+    position: relative;
+    @include mobileL {
+        bottom: 100px;
+    }
+    @include mobileM {
+        bottom: 100px;
+    }
 }

@@ -144,4 +144,5 @@
 /* * Set The real size to the canvas */
 canvas {
 	width: 100vw;
+	height: 100vh;
 }

@@ -3,6 +3,8 @@
 .alignTitle {
     display: flex;
     font-size: 100px;
+    position: relative;
+    width: 100vw;
     @include NestHubMax {
         font-size: 75px;
     }
@@ -24,8 +26,9 @@
     @include mobileM {
         font-size: 25px;
     }
-    position: relative;
-    width: 100vw;
+    @include mobileS {
+        font-size: 16px;
+    }
 }
 
 .tranformFont {
@@ -61,6 +64,9 @@
     @include mobileM {
         left: 100px;
     }
+    @include mobileS {
+        left: 65px;
+    }
 }
 
 .overlapMessage {
@@ -86,5 +92,8 @@
     }
     @include mobileM {
         left: 80px;
+    }
+    @include mobileS {
+        left: 53px;
     }
 }

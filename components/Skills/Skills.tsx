@@ -15,11 +15,13 @@ const Skills = (props: Props) => {
 	let mobileL;
 	let tabletXs;
 	let nestHubMax;
+	let mobileS;
 	if (typeof window !== 'undefined') {
 		tabletM = window.matchMedia('(max-width: 900px)').matches;
 		tabletS = window.matchMedia('(max-width: 768px)').matches;
 		mobileL = window.matchMedia('(max-width: 500px)').matches;
 		tabletXs = window.matchMedia('(max-width: 540px)').matches;
+		mobileS = window.matchMedia('(max-width: 280px)').matches;
 		nestHubMax = window.matchMedia(
 			'(min-width: 1280px) and (max-width: 1440px) and (min-height: 800px) and (max-height: 900px)',
 		).matches;
@@ -48,7 +50,9 @@ const Skills = (props: Props) => {
 		animate(children[1] as HTMLElement, 0, 1, '100%', '0%');
 		animate(children[1] as HTMLElement, 1, 0, '0%', '-100%');
 		tl.to(angleBracketLeftRef.current, {
-			x: mobileL
+			x: mobileS
+				? '40'
+				: mobileL
 				? '60'
 				: tabletXs
 				? '70'
@@ -71,7 +75,7 @@ const Skills = (props: Props) => {
 			{ x: '0' },
 			'<',
 		);
-	}, [jobRef, tabletM, tabletS, mobileL, tabletXs, nestHubMax]);
+	}, [jobRef, tabletM, tabletS, mobileL, tabletXs, nestHubMax, mobileS]);
 	return (
 		<div className={styles.jobProfile}>
 			<span

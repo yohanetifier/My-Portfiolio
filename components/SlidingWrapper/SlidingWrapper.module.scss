@@ -13,7 +13,7 @@
     position: relative;
     z-index: 2;
     @include desktopS {
-        font-size: 200px;
+        font-size: 92px;
     }
     @include tabletM {
         font-size: 165px;
@@ -29,6 +29,9 @@
     }
     @include mobileM {
         font-size: 72px;
+    }
+    @include mobileS {
+        font-size: 55px;
     }
 }
 

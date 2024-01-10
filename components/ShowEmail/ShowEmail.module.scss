@@ -35,4 +35,7 @@
     @include mobileL {
         font-size: 10px;
     }
+    @include mobileS {
+        font-size: 8px;
+    }
 }
