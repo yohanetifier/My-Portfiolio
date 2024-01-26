@@ -11,147 +11,202 @@ import {
 import { useControls } from 'leva';
 
 interface Props {}
+let tabletS;
+let mobileS;
 let mobileM;
 if (typeof window !== 'undefined') {
-	mobileM = window.matchMedia('(max-width: 375px)');
+	tabletS = window.matchMedia('(max-width: 768px)').matches;
+	mobileM = window.matchMedia('(max-width: 450px)').matches;
+	mobileS = window.matchMedia('(max-width: 280px)').matches;
 }
 const about = () => {
-	const { react, mongo, nodeJs, expressJs, docker, typescript } = useControls(
-		'position',
-		{
-			react: {
-				value: {
-					x: mobileM ? -2 : 1,
-					y: 1,
-					z: mobileM ? 0 : -5,
-				},
-			},
-			mongo: {
-				value: {
-					x: mobileM ? -2 : -5,
-					y: mobileM ? 0 : 1,
-					z: mobileM ? 0 : 3,
-				},
-			},
-			nodeJs: {
-				value: {
-					x: mobileM ? -2 : -1,
-					y: mobileM ? -1 : 2,
-					z: mobileM ? 0 : 1,
-				},
-			},
-			expressJs: {
-				value: {
-					x: mobileM ? -2 : 3,
-					y: mobileM ? -2 : 1,
-					z: mobileM ? 0 : 2,
-				},
-			},
-			docker: {
-				value: {
-					x: mobileM ? -2 : -4,
-					y: mobileM ? -3 : -1,
-					z: mobileM ? 0 : 1,
-				},
-			},
-			typescript: {
-				value: {
-					x: mobileM ? -2 : -6,
-					y: mobileM ? -4 : 3,
-					z: mobileM ? 0 : -1,
-				},
+	const {
+		react,
+		mongo,
+		nodeJs,
+		expressJs,
+		docker,
+		typescript,
+		nextJs,
+		git,
+		ciCd,
+		graphQl,
+		threeD,
+		r3F,
+	} = useControls('position', {
+		react: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : 1,
+				y: tabletS ? 2 : 1,
+				z: tabletS ? 0 : -5,
 			},
 		},
-	);
+		mongo: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : -5,
+				y: tabletS ? 0 : 1,
+				z: tabletS ? 0 : -3,
+			},
+		},
+		nodeJs: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : -1,
+				y: tabletS ? -1 : 2,
+				z: tabletS ? 0 : 1,
+			},
+		},
+		expressJs: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : 3,
+				y: tabletS ? -2 : 1,
+				z: tabletS ? 0 : 0,
+			},
+		},
+		docker: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : -1,
+				y: tabletS ? -3 : -2,
+				z: tabletS ? 0 : 1,
+			},
+		},
+		typescript: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : -8,
+				y: tabletS ? -4 : 3,
+				z: tabletS ? 0 : -1,
+			},
+		},
+		nextJs: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : -5,
+				y: tabletS ? 1 : -1,
+				z: tabletS ? 0 : 1,
+			},
+		},
+		git: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : 4,
+				y: tabletS ? -6 : 2,
+				z: tabletS ? 0 : 1,
+			},
+		},
+		ciCd: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : 3,
+				y: tabletS ? -7 : -1,
+				z: tabletS ? 0 : -1,
+			},
+		},
+		graphQl: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : 3,
+				y: tabletS ? -8 : -2,
+				z: tabletS ? 0 : 0.5,
+			},
+		},
+		threeD: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : -0.5,
+				y: tabletS ? -9 : -1,
+				z: tabletS ? 0 : 0.5,
+			},
+		},
+		r3F: {
+			value: {
+				x: mobileM ? -1 : tabletS ? -2 : -6.5,
+				y: tabletS ? -5 : 0.5,
+				z: tabletS ? 0 : 0.5,
+			},
+		},
+	});
 	const props = {
 		font: '/fonts/helvetiker_regular.typeface.json',
-		size: 0.5,
+		size: mobileS ? 0.3 : mobileM ? 0.4 : 0.5,
 	};
 	return (
 		<section>
 			<Canvas>
-				{/* <OrbitControls /> */}
+				{!tabletS && <OrbitControls />}
 				<ambientLight />
 				<Avatar />
-				{/* <Float> */}
-				<ScrollControls>
+				<ScrollControls
+					pages={2}
+					damping={1}
+				>
 					<Scroll>
 						<Text3D
-							// font='/fonts/helvetiker_regular.typeface.json'
 							position={[react.x, react.y, react.z]}
-							size={0.5}
 							{...props}
 						>
 							React
 						</Text3D>
+						<Text3D
+							position={[mongo.x, mongo.y, mongo.z]}
+							{...props}
+						>
+							Mongo
+						</Text3D>
+						<Text3D
+							position={[nodeJs.x, nodeJs.y, nodeJs.z]}
+							{...props}
+						>
+							NodeJs
+						</Text3D>
+						<Text3D
+							position={[expressJs.x, expressJs.y, expressJs.z]}
+							{...props}
+						>
+							ExpressJS
+						</Text3D>
+						<Text3D
+							position={[docker.x, docker.y, docker.z]}
+							{...props}
+						>
+							Docker
+						</Text3D>
+						<Text3D
+							position={[typescript.x, typescript.y, typescript.z]}
+							{...props}
+						>
+							Typescript
+						</Text3D>
+						<Text3D
+							position={[nextJs.x, nextJs.y, nextJs.z]}
+							{...props}
+						>
+							NextJs
+						</Text3D>
+						<Text3D
+							position={[git.x, git.y, git.z]}
+							{...props}
+						>
+							Git
+						</Text3D>
+						<Text3D
+							position={[ciCd.x, ciCd.y, ciCd.z]}
+							{...props}
+						>
+							CI/CD
+						</Text3D>
+						<Text3D
+							position={[graphQl.x, graphQl.y, graphQl.z]}
+							{...props}
+						>
+							GraphQL
+						</Text3D>
+						<Text3D
+							position={[threeD.x, threeD.y, threeD.z]}
+							{...props}
+						>
+							3D
+						</Text3D>
+						<Text3D
+							position={[r3F.x, r3F.y, r3F.z]}
+							{...props}
+						>
+							R3F
+						</Text3D>
 					</Scroll>
-					{/* </Float> */}
-					{/* <Float> */}
-					<Text3D
-						// font='/fonts/helvetiker_regular.typeface.json'
-						position={[mongo.x, mongo.y, mongo.z]}
-						// size={0.5}
-						{...props}
-					>
-						Mongo
-					</Text3D>
-					{/* </Float> */}
-					<Text3D
-						// font='/fonts/helvetiker_regular.typeface.json'
-						position={[nodeJs.x, nodeJs.y, nodeJs.z]}
-						// size={0.5}
-						{...props}
-					>
-						NodeJs
-					</Text3D>
-					<Text3D
-						position={[expressJs.x, expressJs.y, expressJs.z]}
-						{...props}
-					>
-						ExpressJS
-					</Text3D>
-					<Text3D
-						position={[docker.x, docker.y, docker.z]}
-						{...props}
-					>
-						Docker
-					</Text3D>
-					<Text3D
-						position={[typescript.x, typescript.y, typescript.z]}
-						{...props}
-					>
-						Typescript
-					</Text3D>
-					<Text3D
-						position={[4, -1, -1]}
-						{...props}
-					>
-						NextJs
-					</Text3D>
-					<Text3D
-						position={[4, 2, 1]}
-						{...props}
-					>
-						Git
-					</Text3D>
-					<Text3D
-						position={[0, 2, 1]}
-						{...props}
-					>
-						CI/CD
-					</Text3D>
-					<Text3D
-						position={[3, -2, 0.5]}
-						{...props}
-					>
-						GraphQL
-					</Text3D>
-					<Text3D
-						position={[-0.5, -1, 0.5]}
-						{...props}
-					>
-						3D
-					</Text3D>
 				</ScrollControls>
 			</Canvas>
 		</section>
