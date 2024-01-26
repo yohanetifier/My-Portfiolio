@@ -130,17 +130,6 @@ export default function Chess(props) {
 					bannerPhrase={["LET'S", 'BUILD THE SITE', 'OF THE FUTURE']}
 					scrollingDown={scrollingDown}
 				/>
-				{/* {scrollingDown && ( */}
-				{/* <h2
-					ref={workTitleRef}
-					className={
-						// title ? `${styles.title} ${styles.animateTitle}` : styles.cursor
-						title ? `${styles.cursor} ${styles.animatedCursor}` : styles.cursor
-						// styles.cursor
-					}
-				>
-					{title}
-				</h2> */}
 				<Cursor
 					ref={workTitleRef}
 					title={title}
@@ -156,36 +145,8 @@ export default function Chess(props) {
 					positionY={whiteQueenPosition.y}
 					positionZ={whiteQueenPosition.z}
 				/>
-				{/* <mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.Queen_1.geometry}
-					material={nodes.Queen_1.material}
-					position={[-0.44, 0.18, 5.18]}
-				/> */}
+
 				<Checkboard scrollingDown={scrollingDown} />
-				{/* <group position={[-9.14, 0, 3.88]} rotation={[0, 1.56, 0]}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube003.geometry}
-          material={materials.Checker}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube003_1.geometry}
-          material={materials.Material}
-        />
-      </group> */}
-				{/* <mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.Pawn.geometry}
-					material={materials['pawn white']}
-					position={[-3.28, 0.42, 4.93]}
-					rotation={[Math.PI / 2, 0, 0]}
-				/> */}
 				<Pawn
 					positionX={whitePawnPosition.x}
 					positionY={whitePawnPosition.y}

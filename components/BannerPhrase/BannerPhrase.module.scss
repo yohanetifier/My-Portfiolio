@@ -1,3 +1,5 @@
+@import "../../styles/breakpoint.module.scss";
+
 .title {
     position: absolute;
     left: 2vw;
@@ -6,6 +8,28 @@
     width: 50vw;
     font-weight: bold;
     font-family: "Bungee";
+    @include desktopS {
+        font-size: 74px;
+        top: 500px;
+        width: 100vw;
+    }
+    @include desktopXs {
+        top: 500px;
+    }
+    @include tabletS {
+        font-size: 60px;
+        top: 250px;
+        left: 0;
+    }
+    @include mobileL {
+        font-size: 40px;
+        top: 270px;
+        width: 100vw;
+    }
+    @include mobileS {
+        font-size: 30px;
+        top: 239px;
+    }
 }
 
 .overflowHidden {

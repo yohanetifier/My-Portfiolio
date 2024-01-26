@@ -47,13 +47,13 @@ export default function Index({ introduction }) {
 	let finalClass;
 	return (
 		<div className={styles.wrapper}>
-			{/* {!animationSecondComplete ? ( */}
-			<Introduction
-				words={words}
-				images={images}
-				setAnimationSecondComplete={setAnimationSecondComplete}
-			/>
-			{/* ) : (
+			{!animationSecondComplete ? (
+				<Introduction
+					words={words}
+					images={images}
+					setAnimationSecondComplete={setAnimationSecondComplete}
+				/>
+			) : (
 				<>
 					{isDevEnv && <Leva collapsed />}
 					<Canvas camera={{ position: [40, 15, 30], fov: 50 }}>
@@ -62,7 +62,7 @@ export default function Index({ introduction }) {
 						</ScrollControls>
 					</Canvas>
 				</>
-			)} */}
+			)}
 		</div>
 	);
 }
