@@ -11,11 +11,13 @@ import {
 import { useControls } from 'leva';
 
 interface Props {}
+let desktopS;
 let tabletS;
 let mobileS;
 let mobileM;
 if (typeof window !== 'undefined') {
-	tabletS = window.matchMedia('(max-width: 768px)').matches;
+	desktopS = window.matchMedia('(max-width: 1024px)').matches;
+	tabletS = window.matchMedia('(max-width: 912px)').matches;
 	mobileM = window.matchMedia('(max-width: 450px)').matches;
 	mobileS = window.matchMedia('(max-width: 280px)').matches;
 }
@@ -57,7 +59,7 @@ const about = () => {
 		},
 		expressJs: {
 			value: {
-				x: mobileM ? -1 : tabletS ? -2 : 3,
+				x: mobileM ? -1 : tabletS ? -2 : desktopS ? 2 : 3,
 				y: tabletS ? -2 : 1,
 				z: tabletS ? 0 : 0,
 			},
@@ -71,21 +73,21 @@ const about = () => {
 		},
 		typescript: {
 			value: {
-				x: mobileM ? -1 : tabletS ? -2 : -8,
+				x: mobileM ? -1 : tabletS ? -2 : desktopS ? -5 : -8,
 				y: tabletS ? -4 : 3,
 				z: tabletS ? 0 : -1,
 			},
 		},
 		nextJs: {
 			value: {
-				x: mobileM ? -1 : tabletS ? -2 : -5,
+				x: mobileM ? -1 : tabletS ? -2 : desktopS ? -3 : -5,
 				y: tabletS ? 1 : -1,
 				z: tabletS ? 0 : 1,
 			},
 		},
 		git: {
 			value: {
-				x: mobileM ? -1 : tabletS ? -2 : 4,
+				x: mobileM ? -1 : tabletS ? -2 : desktopS ? 2 : 4,
 				y: tabletS ? -6 : 2,
 				z: tabletS ? 0 : 1,
 			},
@@ -99,7 +101,7 @@ const about = () => {
 		},
 		graphQl: {
 			value: {
-				x: mobileM ? -1 : tabletS ? -2 : 3,
+				x: mobileM ? -1 : tabletS ? -2 : desktopS ? 2 : 3,
 				y: tabletS ? -8 : -2,
 				z: tabletS ? 0 : 0.5,
 			},
@@ -113,7 +115,7 @@ const about = () => {
 		},
 		r3F: {
 			value: {
-				x: mobileM ? -1 : tabletS ? -2 : -6.5,
+				x: mobileM ? -1 : tabletS ? -2 : desktopS ? -0.5 : -6.5,
 				y: tabletS ? -5 : 0.5,
 				z: tabletS ? 0 : 0.5,
 			},
@@ -121,7 +123,7 @@ const about = () => {
 	});
 	const props = {
 		font: '/fonts/helvetiker_regular.typeface.json',
-		size: mobileS ? 0.3 : mobileM ? 0.4 : 0.5,
+		size: mobileS ? 0.3 : mobileM ? 0.4 : 0.4,
 	};
 	return (
 		<section>

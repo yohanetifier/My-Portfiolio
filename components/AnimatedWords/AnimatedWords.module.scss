@@ -1,6 +1,17 @@
+@import "../../styles/breakpoint.module.scss";
+
 .title {
     font-size: 200px;
     display: flex;
+    @include tabletXs {
+        font-size: 150px;
+    }
+    @include mobileM {
+        font-size: 120px;
+    }
+    @include mobileS {
+        font-size: 94px;
+    }
 }
 
 .letter {

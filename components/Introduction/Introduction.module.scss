@@ -1,3 +1,5 @@
+@import "../../styles/breakpoint.module.scss";
+
 .wrapper {
     display: flex;
     justify-content: center;
@@ -21,6 +23,10 @@
     width: 200px;
     height: 300px;
     transform: rotate(50deg);
+    @include mobileS {
+        width: 100px;
+        height: 230px;
+    }
 }
 
 .imgWrapper1 {
@@ -29,6 +35,10 @@
     width: 200px;
     height: 300px;
     transform: rotate(-20deg);
+    @include mobileS {
+        width: 100px;
+        height: 230px;
+    }
 }
 
 .imgWrapper2 {
@@ -37,6 +47,18 @@
     width: 400px;
     height: 500px;
     transform: rotate(30deg);
+    @include tabletXs {
+        width: 350px;
+        height: 450px;
+    }
+    @include mobileM {
+        width: 250px;
+        height: 300px;
+    }
+    @include mobileS {
+        width: 200px;
+        height: 250px;
+    }
 }
 
 .imgWrapper3 {
@@ -45,6 +67,14 @@
     width: 350px;
     height: 350px;
     transform: rotate(10deg);
+    @include mobileM {
+        width: 300px;
+        height: 300px;
+    }
+    @include mobileS {
+        width: 200px;
+        height: 200px;
+    }
 }
 
 .imgWrapper4 {
@@ -52,4 +82,16 @@
     position: absolute;
     width: 300px;
     height: 600px;
+    @include tabletXs {
+        width: 250px;
+        height: 500px;
+    }
+    @include mobileM {
+        width: 200px;
+        height: 400px;
+    }
+    @include mobileS {
+        width: 150px;
+        height: 300px;
+    }
 }

@@ -45,44 +45,24 @@ export default function Index({ introduction }) {
 	let showMenu = styles.showMenu;
 	let showCanvas = styles.hideMenu;
 	let finalClass;
-	// useEffect(() => {
-	// 	!isClosed ? (finalClass = showMenu) : (finalClass = showCanvas);
-	// }, [isClosed]);
-
 	return (
-		// <StrictMode>
 		<div className={styles.wrapper}>
-			{!animationSecondComplete ? (
-				<Introduction
-					words={words}
-					images={images}
-					setAnimationSecondComplete={setAnimationSecondComplete}
-				/>
-			) : (
+			{/* {!animationSecondComplete ? ( */}
+			<Introduction
+				words={words}
+				images={images}
+				setAnimationSecondComplete={setAnimationSecondComplete}
+			/>
+			{/* ) : (
 				<>
 					{isDevEnv && <Leva collapsed />}
-					{/* <ThemeContextProvider> */}
-					{/* <PageTransition /> */}
-					{/* <Header /> */}
-					{/* <Menu /> */}
 					<Canvas camera={{ position: [40, 15, 30], fov: 50 }}>
 						<ScrollControls>
 							<Scene bannerPhrase={bannerPhrase} />
 						</ScrollControls>
 					</Canvas>
-					{/* </PageTransition> */}
-					{/* </ThemeContextProvider> */}
 				</>
-			)}
+			)} */}
 		</div>
-		// </StrictMode>
 	);
 }
-
-// export const getStaticProps: GetStaticProps = async () => {
-// 	const introduction = await getHomePage();
-// 	return {
-// 		props: { introduction },
-// 		revalidate: 10,
-// 	};
-// };
