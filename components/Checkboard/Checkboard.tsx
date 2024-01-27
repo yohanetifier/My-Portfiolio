@@ -1,11 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useGLTF, useCursor, CycleRaycast, Html } from '@react-three/drei';
+import { useRef, useState } from 'react';
+import { useGLTF, useCursor } from '@react-three/drei';
 import { useControls } from 'leva';
-import { useFrame } from '@react-three/fiber';
-import styles from './Checkboard.module.scss';
-import { motion } from 'framer-motion-3d';
-import * as THREE from 'three';
-import { animate, useMotionValue } from 'framer-motion';
 import ActionCase from '../ActionCase/ActionCase';
 import NormalCase from '../NormalCase/NormalCase';
 
@@ -74,43 +69,9 @@ const Checkboard = ({ scrollingDown }: Props) => {
 		}
 	}
 
-	// useEffect(() => {
-	// 	console.log('scrollingDown', scrollingDown);
-	// }, [scrollingDown]);
-	// useFrame(({ clock }) => {
-	// 	colorPurpleRgba = new THREE.Color(0.5, 0, 0.5, Math.abs(Math.sin(clock.elapsedTime)));
-
-	// 	setColor(new THREE.Color(0.5, 0, 1, Math.abs(Math.sin(clock.elapsedTime))));
-	// });
-
-	// useEffect(() => {
-	// 	let allCase = [];
-	// 	groupArray.current.traverse(child => allCase.push(child));
-
-	// 	let rowFourth = allCase.filter(e => e.position.x === 12);
-	// 	let rowThird = allCase.filter(e => e.position.x === 15);
-	// 	let columnC = allCase.filter(e => e.position.z === 15);
-	// 	let columnF = allCase.filter(e => e.position.z === 6);
-	// 	let columnE = allCase.filter(e => e.position.z === 9);
-
-	// 	let xCase = allCase.filter(e => e.position.x === 15);
-	// 	let pawnCase = allCase.filter(e => e.position.z === 9 && e.position.x === 12);
-	// 	let knightCase = allCase.filter(e => e.position.z === 6 && e.position.x === 15);
-	// 	let bishopCase = allCase.filter(e => e.position.z === 15 && e.position.x === 12);
-
-	// 	for (let i = 0; i < pawnCase.length; i++) {
-	// 		pawnCase[i].material.color = scrollingDown ? color : new THREE.Color('white');
-	// 		// pawnCase[i].material.transparent = true;
-	// 		setPawnCase(pawnCase[i]);
-	// 		// pawnCase.current = pawnCase[i];
-	// 		// pawnCase[i].material.opacity = 1;
-	// 		knightCase[i].material.color = scrollingDown ? color : new THREE.Color('white');
-	// 		bishopCase[i].material.color = scrollingDown ? color : new THREE.Color('white');
-	// 	}
-	// }, [changeColor, scrollingDown]);
-
 	return (
 		<>
+			{/* <OrbitControls /> */}
 			<group
 				position={[position.x, position.y, position.z]}
 				rotation={[rotation.x, rotation.y, rotation.z]}
@@ -120,37 +81,6 @@ const Checkboard = ({ scrollingDown }: Props) => {
 			</group>
 		</>
 	);
-
-	// const checkboardRef = useRef(null);
-	// const { nodes, materials } = useGLTF('./queen-and-checkboard-test4.glb');
-	// const texture = useTexture('./lastbaked.jpg');
-	// // texture.flipY = false;
-
-	// return (
-	// 	<group
-	// 		position={[-9.14, 0, 3.88]}
-	// 		rotation={[0, 1.56, 0]}
-	// 	>
-	// 		<mesh
-	// 			castShadow
-	// 			receiveShadow
-	// 			geometry={nodes.Cube003.geometry}
-	// 			// material={texture}
-	// 			// map={materials.Checker}
-	// 		>
-	// 			<meshBasicMaterial
-	// 				map={generateChessboardTexture()}
-	// 				// map-flipY={false}
-	// 			/>
-	// 		</mesh>
-	// 		<mesh
-	// 			castShadow
-	// 			receiveShadow
-	// 			geometry={nodes.Cube003_1.geometry}
-	// 			material={materials.Material}
-	// 		/>
-	// 	</group>
-	// );
 };
 
 export default Checkboard;
