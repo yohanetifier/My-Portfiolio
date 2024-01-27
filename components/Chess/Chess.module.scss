@@ -1,3 +1,5 @@
+@import "../../styles/breakpoint.module.scss";
+
 .work {
     border: 2px solid red;
     color: red;
@@ -77,4 +79,38 @@
     border: 5px solid white;
     border-radius: 20px;
     transition: all 200ms;
+}
+
+.link {
+    position: absolute;
+    width: 180px;
+    border: 5px solid white;
+    border-radius: 20px;
+    transition: all 500ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.contact {
+    @include tabletM {
+        top: 580px;
+        left: 100px;
+    }
+}
+
+.work {
+    @include tabletM {
+        top: 660px;
+        left: 500px;
+    }
+}
+
+.about {
+    @include tabletM {
+        top: 580px;
+        left: 370px;
+    }
 }

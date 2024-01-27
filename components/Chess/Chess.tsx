@@ -15,6 +15,7 @@ import styles from './Chess.module.scss';
 import { ThemeContext } from '../Context/ThemeContext';
 import gsap from 'gsap';
 import Cursor from '../Cursor/Cursor';
+import Link from 'next/link';
 
 export default function Chess(props) {
 	const scroll = useScroll();
@@ -112,6 +113,27 @@ export default function Chess(props) {
 					title={title}
 				/>
 				{/* )} */}
+				{scrollingDown && (
+					<h2 className={`${styles.link} ${styles.contact}`}>
+						<span>Contact</span>
+					</h2>
+				)}
+				{scrollingDown && (
+					<Link
+						className={`${styles.link} ${styles.work}`}
+						href='/work'
+					>
+						<span>Work</span>
+					</Link>
+				)}
+				{scrollingDown && (
+					<Link
+						className={`${styles.link} ${styles.about}`}
+						href='/about'
+					>
+						<span>About</span>
+					</Link>
+				)}
 			</Scroll>
 			<group
 				{...props}
