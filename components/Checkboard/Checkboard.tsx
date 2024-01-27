@@ -9,11 +9,14 @@ type Props = {
 };
 
 const Checkboard = ({ scrollingDown }: Props) => {
+	let desktopS = window.matchMedia('(max-width: 1024px)').matches;
+	let mobileL = window.matchMedia('(max-width: 500px)').matches;
+	let tabletS = window.matchMedia('(max-width: 768px)').matches;
 	const { position, rotation } = useControls('chessboard', {
 		position: {
 			value: {
-				x: 0,
-				y: 3,
+				x: mobileL ? -8 : tabletS ? -5 : desktopS ? -5 : 0,
+				y: mobileL ? -5 : tabletS ? -3 : desktopS ? -3 : 3,
 				z: -12,
 			},
 			step: 1,
@@ -30,7 +33,7 @@ const Checkboard = ({ scrollingDown }: Props) => {
 	const actionCase = useRef();
 	const { nodes, materials } = useGLTF('./queen-and-checkboard-test4.glb');
 	const boardSize = 8;
-	const tileSize = 3;
+	const tileSize = mobileL ? 1.5 : desktopS ? 2 : 3;
 	const chessboardArray = [];
 	const [color, setColor] = useState<string>('white');
 	const [hovered, set] = useState<boolean>(false);
