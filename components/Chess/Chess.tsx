@@ -23,6 +23,9 @@ export default function Chess(props) {
 	const lightRef = useRef();
 	const { title, scrollingDown, setScrollingDown } = useContext(ThemeContext);
 	const workTitleRef = useRef(null);
+	const [isFinished, setIsFinished] = useState(false);
+	const isTouchDevice =
+		'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 	useFrame(state => {
 		const animation = (y, fov, intensity, isScrollingDown) => {
@@ -107,18 +110,19 @@ export default function Chess(props) {
 				<BannerPhrase
 					bannerPhrase={["LET'S", 'BUILD THE SITE', 'OF THE FUTURE']}
 					scrollingDown={scrollingDown}
+					setIsFinished={setIsFinished}
 				/>
 				<Cursor
 					ref={workTitleRef}
 					title={title}
 				/>
 				{/* )} */}
-				{scrollingDown && (
+				{isTouchDevice && scrollingDown && isFinished && (
 					<h2 className={`${styles.link} ${styles.contact}`}>
 						<span>Contact</span>
 					</h2>
 				)}
-				{scrollingDown && (
+				{isTouchDevice && scrollingDown && isFinished && (
 					<Link
 						className={`${styles.link} ${styles.work}`}
 						href='/work'
@@ -126,7 +130,7 @@ export default function Chess(props) {
 						<span>Work</span>
 					</Link>
 				)}
-				{scrollingDown && (
+				{isTouchDevice && scrollingDown && isFinished && (
 					<Link
 						className={`${styles.link} ${styles.about}`}
 						href='/about'

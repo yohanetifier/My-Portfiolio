@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { RefObject, useState } from 'react';
 import styles from './Introduction.module.scss';
 import AnimatedWords from '../AnimatedWords/AnimatedWords';
 import AnimatedImg from '../AnimatedImg/AnimatedImg';
@@ -10,9 +10,15 @@ type Props = {
 	words: string[];
 	images: SourceImage[];
 	setAnimationSecondComplete: (arg: boolean) => void;
+	counter?: RefObject<number>;
 };
 
-const Introduction = ({ words, images, setAnimationSecondComplete }: Props) => {
+const Introduction = ({
+	words,
+	images,
+	setAnimationSecondComplete,
+	counter,
+}: Props) => {
 	const [animationComplete, setAnimationComplete] = useState<boolean>(false);
 	const imagesArray = [
 		{
@@ -52,6 +58,7 @@ const Introduction = ({ words, images, setAnimationSecondComplete }: Props) => {
 				arrayOfImg={imagesArray}
 				animationComplete={animationComplete}
 				setAnimationSecondComplete={setAnimationSecondComplete}
+				counter={counter}
 			/>
 		</div>
 	);

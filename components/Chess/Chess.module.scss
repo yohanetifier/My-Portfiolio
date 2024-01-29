@@ -8,30 +8,6 @@
     left: 43vw;
 }
 
-// .workTitle,
-// .aboutTitle,
-// .contactTitle {
-//     font-size: 40px;
-//     text-transform: uppercase;
-//     position: absolute;
-//     color: white;
-// }
-
-// .workTitle {
-//     left: 57vw;
-//     top: 49vh;
-// }
-
-// .aboutTitle {
-//     left: 49vw;
-//     top: 40vh;
-// }
-
-// .contactTitle {
-//     left: 32vw;
-//     top: 40vh;
-// }
-
 .title {
     border: 5px solid white;
     position: absolute;
@@ -46,16 +22,6 @@
     font-weight: bold;
     transform: scale(0);
 }
-
-// .cursor {
-//     border: 1px solid white;
-//     position: absolute;
-//     border-radius: 50%;
-//     background-color: transparent;
-//     width: 50px;
-//     height: 50px;
-//     scale: 1;
-// }
 
 .cursor {
     border: 1px solid white;
@@ -92,12 +58,38 @@
     align-items: center;
     text-transform: uppercase;
     font-size: 30px;
+    @include tabletXs {
+        font-size: 20px;
+        width: 140px;
+    }
+    @include mobileM {
+        font-size: 16px;
+        width: 108px;
+    }
 }
 
 .contact {
+    @include desktopS {
+        border: 2px solid purple;
+    }
     @include tabletM {
         top: 580px;
         left: 100px;
+    }
+    @include tabletS {
+        top: 500px;
+    }
+    @include tabletXs {
+        top: 357px;
+        left: 60px;
+    }
+    @include mobileL {
+        top: 403px;
+        left: 10px;
+    }
+    @include mobileM {
+        top: 291px;
+        left: 36px;
     }
 }
 
@@ -106,11 +98,41 @@
         top: 660px;
         left: 500px;
     }
+    @include tabletS {
+        top: 575px;
+    }
+    @include tabletXs {
+        top: 398px;
+        left: 316px;
+    }
+    @include mobileL {
+        top: 446px;
+        left: 232px;
+    }
+    @include mobileM {
+        top: 326px;
+        left: 203px;
+    }
 }
 
 .about {
     @include tabletM {
         top: 580px;
         left: 370px;
+    }
+    @include tabletS {
+        top: 500px;
+    }
+    @include tabletXs {
+        top: 357px;
+        left: 223px;
+    }
+    @include mobileL {
+        top: 403px;
+        left: 162px;
+    }
+    @include mobileM {
+        top: 291px;
+        left: 151px;
     }
 }

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 import styles from './AnimatedImg.module.scss';
 import gsap from 'gsap';
 
@@ -13,12 +13,14 @@ type Props = {
 	arrayOfImg: ArrayOfImg[];
 	animationComplete: boolean;
 	setAnimationSecondComplete: (arg: boolean) => void;
+	counter?: RefObject<number>;
 };
 
 const AnimatedImg = ({
 	arrayOfImg,
 	animationComplete,
 	setAnimationSecondComplete,
+	counter,
 }: Props) => {
 	const wrapperRef = useRef(null);
 	useEffect(() => {
@@ -29,6 +31,8 @@ const AnimatedImg = ({
 				stagger: 0.3,
 				onComplete: () => {
 					setAnimationSecondComplete(true);
+					counter.current = 1;
+					console.log(counter.current);
 				},
 			});
 	}, [wrapperRef, animationComplete]);
