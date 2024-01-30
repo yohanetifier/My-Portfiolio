@@ -70,7 +70,8 @@
 
 .contact {
     @include desktopS {
-        border: 2px solid purple;
+        top: 600px;
+        left: 177px;
     }
     @include tabletM {
         top: 580px;
@@ -94,6 +95,9 @@
 }
 
 .work {
+    @include desktopS {
+        left: 634px;
+    }
     @include tabletM {
         top: 660px;
         left: 500px;
@@ -116,6 +120,10 @@
 }
 
 .about {
+    @include desktopS {
+        top: 600px;
+        left: 458px;
+    }
     @include tabletM {
         top: 580px;
         left: 370px;
