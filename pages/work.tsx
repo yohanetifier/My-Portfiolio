@@ -1,12 +1,16 @@
 import { Canvas } from '@react-three/fiber';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from '../components/Work/Work.module.scss';
 import Work from '../components/Work/Work';
 import PageTransition from '../components/PageTransition/PageTransition';
+import { ThemeContext } from '../components/Context/ThemeContext';
 
 interface Props {}
 
 const work = (props: Props) => {
+	const { setPrevPath } = useContext(ThemeContext);
+	setPrevPath('work');
+
 	const [activeTexture, setActiveTexture] = useState<number>(0);
 	const [hasClickedOn, setHasClickedOn] = useState<string>('');
 	const [arrayLengthOfTexture, setArrayLengthOfTexture] = useState<number>(0);

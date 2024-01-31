@@ -21,6 +21,8 @@ export const ThemeContext = createContext({
 	setTransition: (arg: string) => {},
 	endLoading: false,
 	setEndLoading: (arg: boolean) => {},
+	prevPath: '',
+	setPrevPath: (arg: string) => {},
 });
 
 export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
@@ -34,6 +36,7 @@ export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
 	const [showFloatingWrapper, setShowFloatingWrapper] = useState(false);
 	const [transition, setTransition] = useState('');
 	const [endLoading, setEndLoading] = useState(false);
+	const [prevPath, setPrevPath] = useState('');
 
 	return (
 		<ThemeContext.Provider
@@ -54,6 +57,8 @@ export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
 				setTransition,
 				endLoading,
 				setEndLoading,
+				prevPath,
+				setPrevPath,
 			}}
 		>
 			{' '}

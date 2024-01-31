@@ -31,8 +31,7 @@ const AnimatedImg = ({
 				stagger: 0.3,
 				onComplete: () => {
 					setAnimationSecondComplete(true);
-					counter.current = 1;
-					console.log(counter.current);
+					localStorage.setItem('playOnce', '1');
 				},
 			});
 	}, [wrapperRef, animationComplete]);

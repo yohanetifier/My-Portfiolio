@@ -1,17 +1,22 @@
+'use client';
+import { useContext, useEffect } from 'react';
 import styles from './BannerPhrase.module.scss';
 import gsap from 'gsap';
+import { ThemeContext } from '../Context/ThemeContext';
+import { useRouter } from 'next/navigation';
 
 type Props = {
 	bannerPhrase: String[];
-	scrollingDown: boolean;
 	setIsFinished?: (arg: boolean) => void;
+	scrollingDown: boolean;
 };
 
 const BannerPhrase = ({
 	bannerPhrase,
-	scrollingDown,
 	setIsFinished,
+	scrollingDown,
 }: Props) => {
+	// const { scrollingDown, setScrollingDown } = useContext(ThemeContext);
 	const title = document.querySelectorAll('.animateTitle');
 	scrollingDown
 		? gsap.to(title, {

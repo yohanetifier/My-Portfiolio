@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Avatar } from '../components/Avatar/Avatar';
 import {
 	Float,
@@ -9,6 +9,7 @@ import {
 	Scroll,
 } from '@react-three/drei';
 import { useControls } from 'leva';
+import { ThemeContext } from '../components/Context/ThemeContext';
 
 interface Props {}
 let desktopS;
@@ -22,6 +23,10 @@ if (typeof window !== 'undefined') {
 	mobileS = window.matchMedia('(max-width: 280px)').matches;
 }
 const about = () => {
+	//Setup the prevPath so that the animation on the home page works fine
+	const { setPrevPath } = useContext(ThemeContext);
+	setPrevPath('about');
+
 	const {
 		react,
 		mongo,

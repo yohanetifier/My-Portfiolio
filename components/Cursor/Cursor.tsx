@@ -4,23 +4,31 @@ import gsap from 'gsap';
 
 interface Props {
 	title: string;
+	isFinished: boolean;
 }
 
 const Cursor = forwardRef(
-	({ title }: Props, ref: React.ForwardedRef<HTMLHeadingElement>) => {
+	(
+		{ title, isFinished }: Props,
+		ref: React.ForwardedRef<HTMLHeadingElement>,
+	) => {
 		const cursorRef = useRef(null);
 		return (
 			<h2
 				ref={ref}
 				className={
 					// title ? `${styles.title} ${styles.animateTitle}` : styles.cursor
-					title ? `${styles.cursor} ${styles.animatedCursor}` : styles.cursor
+					isFinished && title
+						? `${styles.cursor} ${styles.animatedCursor}`
+						: styles.cursor
 					// styles.cursor
 				}
 			>
 				<span
 					className={
-						title ? `${styles.test} ${styles.animatedTest}` : styles.test
+						isFinished && title
+							? `${styles.test} ${styles.animatedTest}`
+							: styles.test
 					}
 				>
 					{title}

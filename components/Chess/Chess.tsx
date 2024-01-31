@@ -16,12 +16,18 @@ import { ThemeContext } from '../Context/ThemeContext';
 import gsap from 'gsap';
 import Cursor from '../Cursor/Cursor';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Chess(props) {
 	const scroll = useScroll();
 	const [lastPosition, setLastPosition] = useState(0);
 	const lightRef = useRef();
-	const { title, scrollingDown, setScrollingDown } = useContext(ThemeContext);
+	const { title, scrollingDown, setScrollingDown, prevPath, setPrevPath } =
+		useContext(ThemeContext);
+	if (prevPath) {
+		setScrollingDown(false);
+		setPrevPath('');
+	}
 	const workTitleRef = useRef(null);
 	const [isFinished, setIsFinished] = useState(false);
 	const isTouchDevice =
@@ -83,22 +89,11 @@ export default function Chess(props) {
 	) as HTMLElement;
 
 	useEffect(() => {
-		// if (workTitleRef && workTitleRef.current) {
 		window.addEventListener('mousemove', e => {
 			workTitleRef.current.style.top = e.clientY + 'px';
 			workTitleRef.current.style.left = e.clientX + 'px';
-			// gsap.to(titleElement, {
-			// 	x: 100,
-			// 	duration: 2,
-			// });
 		});
-		// }
 	}, [title]);
-	let displayTitleByCase = {
-		work: <h2 className={styles.workTitle}> {title} </h2>,
-		about: <h2 className={styles.aboutTitle}> {title} </h2>,
-		contact: <h2 className={styles.contactTitle}> {title} </h2>,
-	};
 
 	return (
 		<>
@@ -109,12 +104,14 @@ export default function Chess(props) {
 			<Scroll html>
 				<BannerPhrase
 					bannerPhrase={["LET'S", 'BUILD THE SITE', 'OF THE FUTURE']}
-					scrollingDown={scrollingDown}
 					setIsFinished={setIsFinished}
+					scrollingDown={scrollingDown}
 				/>
+
 				<Cursor
 					ref={workTitleRef}
 					title={title}
+					isFinished={isFinished}
 				/>
 				{/* )} */}
 				{isTouchDevice && scrollingDown && isFinished && (
