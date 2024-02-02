@@ -1,8 +1,15 @@
+@import "../../styles/breakpoint.module.scss";
+
 .button {
     position: relative;
     width: 60px;
     height: 35px;
     z-index: 2;
+    @include mobileL {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .firstBar,
@@ -14,6 +21,9 @@
     position: absolute;
     transform: rotate(0deg);
     transition: transform 500ms;
+    @include mobileL {
+        width: 60%;
+    }
 }
 
 .firstBar {

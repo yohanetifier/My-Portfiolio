@@ -2,6 +2,7 @@ import React, {
 	ReactElement,
 	useContext,
 	useEffect,
+	useLayoutEffect,
 	useRef,
 	useState,
 } from 'react';
@@ -19,6 +20,11 @@ const Menu = (props: Props) => {
 	const containerRef = useRef(null);
 	const floatingWrapper = useRef(null);
 	const [showFloatingWrapper, setShowFloatingWrapper] = useState(false);
+	const height = useRef(0);
+	useLayoutEffect(() => {
+		height.current = window.innerHeight;
+	}, [height]);
+
 	useEffect(() => {
 		const childrenArray = Array.from(containerRef.current.children);
 		menu
@@ -86,6 +92,7 @@ const Menu = (props: Props) => {
 		<div
 			ref={containerRef}
 			className={`${styles.menu}`}
+			style={{ height: height.current }}
 			// onMouseMove={e => handleMove(e)}
 		>
 			{/* <div

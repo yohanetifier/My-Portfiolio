@@ -9,16 +9,19 @@ type Props = {
 	bannerPhrase: String[];
 	setIsFinished?: (arg: boolean) => void;
 	scrollingDown: boolean;
+	isTouchDevice: boolean;
 };
 
 const BannerPhrase = ({
 	bannerPhrase,
 	setIsFinished,
 	scrollingDown,
+	isTouchDevice,
 }: Props) => {
 	// const { scrollingDown, setScrollingDown } = useContext(ThemeContext);
 	const title = document.querySelectorAll('.animateTitle');
-	scrollingDown
+	console.log('isTouchDevice', isTouchDevice);
+	!isTouchDevice && scrollingDown
 		? gsap.to(title, {
 				y: 120,
 				stagger: 0.5,

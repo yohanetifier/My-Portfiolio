@@ -35,7 +35,7 @@ const PageTransition = ({ rows = 5, children }: Props) => {
 							router.push(`/${title}`);
 						}
 					} else {
-						if (progress > 0.8) {
+						if (progress > 0.75) {
 							router.push(`/${title}`);
 						}
 					}

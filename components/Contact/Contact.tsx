@@ -1,4 +1,5 @@
-import { useState } from 'react';
+'use client';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './Contact.module.scss';
 import SocialNetwork from '../SocialNetwork/SocialNetwork';
 import ShowEmail from '../ShowEmail/ShowEmail';
@@ -11,9 +12,16 @@ interface Props {
 
 const Contact = ({ title, subtitle }: Props) => {
 	const [show, setShow] = useState<boolean>(false);
+	const height = useRef(0);
+	useLayoutEffect(() => {
+		height.current = window.innerHeight;
+	}, [height]);
 
 	return (
-		<section className={styles.mainWrapper}>
+		<section
+			className={styles.mainWrapper}
+			style={{ height: height.current }}
+		>
 			<div className={styles.leftWrapper}>
 				<div className={styles.contactWrapper}>
 					<Connect />

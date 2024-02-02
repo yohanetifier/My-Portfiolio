@@ -1,7 +1,12 @@
+@import "../../styles/breakpoint.module.scss";
+
 .font {
     font-family: "Almarai";
     font-weight: 700;
     text-transform: uppercase;
+    @include mobileL {
+        font-size: 12px;
+    }
 }
 
 .personInfo {
