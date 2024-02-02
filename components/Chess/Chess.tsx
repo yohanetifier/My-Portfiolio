@@ -97,14 +97,14 @@ export default function Chess(props) {
 		`.${styles.cursor}`,
 	) as HTMLElement;
 
-	useEffect(() => {
-		if (!isTouchDevice) {
-			window.addEventListener('mousemove', e => {
-				workTitleRef.current.style.top = e.clientY + 'px';
-				workTitleRef.current.style.left = e.clientX + 'px';
-			});
-		}
-	}, [title, isTouchDevice]);
+	// useEffect(() => {
+	// 	if (!isTouchDevice) {
+	// 		window.addEventListener('mousemove', e => {
+	// 			workTitleRef.current.style.top = e.clientY + 'px';
+	// 			workTitleRef.current.style.left = e.clientX + 'px';
+	// 		});
+	// 	}
+	// }, [title, isTouchDevice]);
 
 	const handleClick = e => {
 		e.stopPropagation();
@@ -128,7 +128,7 @@ export default function Chess(props) {
 
 				{!isTouchDevice && (
 					<Cursor
-						ref={workTitleRef}
+						// ref={workTitleRef}
 						title={title}
 						isFinished={isFinished}
 					/>

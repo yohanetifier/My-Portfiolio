@@ -5,6 +5,7 @@ import SocialNetwork from '../SocialNetwork/SocialNetwork';
 import ShowEmail from '../ShowEmail/ShowEmail';
 import Footer from '../Footer/Footer';
 import Connect from '../Connect/Connect';
+import Cursor from '../Cursor/Cursor';
 interface Props {
 	title: string;
 	subtitle: string;
@@ -22,6 +23,7 @@ const Contact = ({ title, subtitle }: Props) => {
 			className={styles.mainWrapper}
 			style={{ height: height.current }}
 		>
+			<Cursor />
 			<div className={styles.leftWrapper}>
 				<div className={styles.contactWrapper}>
 					<Connect />
