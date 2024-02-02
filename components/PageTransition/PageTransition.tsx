@@ -12,10 +12,11 @@ import { useRouter } from 'next/router';
 
 interface Props {
 	rows?: number;
+	children: React.ReactNode;
 }
 
-const PageTransition = ({ rows = 5 }: Props) => {
-	const { loading, setLoading } = useContext(ThemeContext);
+const PageTransition = ({ rows = 5, children }: Props) => {
+	const { loading, setLoading, title } = useContext(ThemeContext);
 	const router = useRouter();
 	const containerRef = useRef(null);
 	let tl;
@@ -26,26 +27,45 @@ const PageTransition = ({ rows = 5 }: Props) => {
 			tl = gsap.to(childrenArray, {
 				x,
 				stagger: 0.2,
-				duration: 0.3,
+				duration: 0.4,
+				onUpdate: () => {
+					const progress = tl.progress();
+					if (title === 'work' || title === 'about') {
+						if (progress > 0.2) {
+							router.push(`/${title}`);
+						}
+					} else {
+						if (progress > 0.8) {
+							router.push(`/${title}`);
+						}
+					}
+				},
+				onComplete: () => {
+					startAnimation('100%');
+				},
 			});
 		}
 	};
 
 	useEffect(() => {
-		router.events.on('routeChangeStart', () => {
+		if (loading) {
 			startAnimation(0);
-		});
-		router.events.on('routeChangeComplete', () => {
-			setTimeout(() => {
-				startAnimation('-100%');
-			}, 2000);
-		});
+		} // router.events.on('routeChangeStart', () => {
+
+		// 	setLoading(true);
+		// 	startAnimation(0);
+		// });
+		// router.events.on('routeChangeComplete', () => {
+		// 	setTimeout(() => {
+		// 		startAnimation('-100%');
+		// 	}, 2000);
+		// });
 		// return () => {
 		// 	router.events.off('routeChangeStart', startAnimation);
 		// };
 	}, [loading]);
 
-	return (
+	return loading ? (
 		<div
 			ref={containerRef}
 			className={styles.subWrapper}
@@ -58,6 +78,8 @@ const PageTransition = ({ rows = 5 }: Props) => {
 				></div>
 			))}
 		</div>
+	) : (
+		<>{children}</>
 	);
 };
 

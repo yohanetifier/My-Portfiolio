@@ -12,7 +12,7 @@ interface Props {
 }
 
 const ActionCase = ({ tileSize, x, y, scrollingDown, color }: Props) => {
-	const { setTitle } = useContext(ThemeContext);
+	const { setTitle, setLoading } = useContext(ThemeContext);
 	const [hovered, setHovered] = useState<boolean>(false);
 	const ACTION_COLOR = '#303030';
 	const router = useRouter();
@@ -30,14 +30,17 @@ const ActionCase = ({ tileSize, x, y, scrollingDown, color }: Props) => {
 	};
 
 	const title = setUpTitleOnHover(x, y);
-
+	const handleClick = e => {
+		e.stopPropagation();
+		setTitle(title);
+		setLoading(true);
+	};
 	return (
 		<mesh
 			key={`${x}-${y}`}
 			position={[x * tileSize, 0, y * tileSize]}
 			onClick={e => {
-				e.stopPropagation();
-				scrollingDown && router.push(`/${title}`);
+				handleClick(e);
 			}}
 			onPointerOver={() => setTitle(title)}
 			onPointerOut={() => {

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import styles from './Logo.module.scss';
+import { ThemeContext } from '../Context/ThemeContext';
 
 interface Props {
 	src: string;
@@ -8,8 +9,9 @@ interface Props {
 }
 
 const Logo = ({ src, alt }: Props) => {
+	const { setMenu } = useContext(ThemeContext);
 	return (
-		<div>
+		<div onClick={() => setMenu(false)}>
 			<Image
 				src={src}
 				alt={alt}

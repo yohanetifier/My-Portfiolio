@@ -22,8 +22,15 @@ export default function Chess(props) {
 	const scroll = useScroll();
 	const [lastPosition, setLastPosition] = useState(0);
 	const lightRef = useRef();
-	const { title, scrollingDown, setScrollingDown, prevPath, setPrevPath } =
-		useContext(ThemeContext);
+	const {
+		title,
+		setTitle,
+		setLoading,
+		scrollingDown,
+		setScrollingDown,
+		prevPath,
+		setPrevPath,
+	} = useContext(ThemeContext);
 	if (prevPath) {
 		setScrollingDown(false);
 		setPrevPath('');
@@ -95,6 +102,12 @@ export default function Chess(props) {
 		});
 	}, [title]);
 
+	const handleClick = e => {
+		e.stopPropagation();
+		setTitle(title);
+		setLoading(true);
+	};
+
 	return (
 		<>
 			<ambientLight
@@ -116,7 +129,13 @@ export default function Chess(props) {
 				{/* )} */}
 				{isTouchDevice && scrollingDown && isFinished && (
 					<h2 className={`${styles.link} ${styles.contact}`}>
-						<span>Contact</span>
+						<span
+							onClick={e => {
+								handleClick(e);
+							}}
+						>
+							Contact
+						</span>
 					</h2>
 				)}
 				{isTouchDevice && scrollingDown && isFinished && (
