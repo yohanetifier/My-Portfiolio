@@ -1,0 +1,13 @@
+@import "../../styles/breakpoint.module.scss";
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    border: 2px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: auto;
+    @include tabletXs {
+    }
+}

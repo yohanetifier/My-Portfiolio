@@ -150,5 +150,5 @@ canvas {
 body,
 a,
 button {
-	cursor: none;
+	/* cursor: none; */
 }

@@ -1,6 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { useThree, extend, useFrame } from '@react-three/fiber';
-import { shaderMaterial, useTexture } from '@react-three/drei';
+import {
+	MeshPortalMaterial,
+	OrbitControls,
+	shaderMaterial,
+	useTexture,
+	useVideoTexture,
+} from '@react-three/drei';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 
@@ -20,8 +26,8 @@ const Work = ({
 	const ref = useRef<THREE.ShaderMaterial>(null);
 	const [countClick, setCountClick] = useState(0);
 	const { camera } = useThree();
-	const urlTexture = './the-buyer.png';
-	const theBuyerImage = useTexture(urlTexture);
+	const urlTexture = '/assets/HallesTrottemant.mp4';
+	const theBuyerImage = useVideoTexture(urlTexture);
 	const tolefiTexture = useTexture('/tolefi.png');
 	let arrayOfTexture = [
 		theBuyerImage,
@@ -55,25 +61,25 @@ const Work = ({
 		});
 	};
 
-	useFrame(() => {
-		if (hasClickedOn === 'next') {
-			ref.current.uniforms.currentImage.value =
-				arrayOfTexture[activeTexture - 1];
-			ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture];
-			animateTexture();
-		} else if (hasClickedOn === 'prev') {
-			ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture];
-			animateTexture();
-		} else {
-			ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
-			// Initialize the texture at the beginning
-			if (countClick === 0) {
-				ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
-				ref.current.uniforms.nextImage.value =
-					arrayOfTexture[activeTexture + 1];
-			}
-		}
-	});
+	// useFrame(() => {
+	// 	if (hasClickedOn === 'next') {
+	// 		ref.current.uniforms.currentImage.value =
+	// 			arrayOfTexture[activeTexture - 1];
+	// 		ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture];
+	// 		animateTexture();
+	// 	} else if (hasClickedOn === 'prev') {
+	// 		ref.current.uniforms.nextImage.value = arrayOfTexture[activeTexture];
+	// 		animateTexture();
+	// 	} else {
+	// 		ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
+	// 		// Initialize the texture at the beginning
+	// 		if (countClick === 0) {
+	// 			ref.current.uniforms.currentImage.value = arrayOfTexture[activeTexture];
+	// 			ref.current.uniforms.nextImage.value =
+	// 				arrayOfTexture[activeTexture + 1];
+	// 		}
+	// 	}
+	// });
 
 	const uniforms = {
 		currentImage,
@@ -123,8 +129,9 @@ const Work = ({
 
 	return (
 		<mesh>
-			<planeGeometry args={[fovY * camera.aspect, fovY, 10, 10]} />
-			<distortionShaderMaterial ref={ref} />
+			<OrbitControls />
+			<planeGeometry args={[1, 1, 1]} />
+			<meshBasicMaterial map={theBuyerImage} />
 		</mesh>
 	);
 };

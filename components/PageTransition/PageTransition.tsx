@@ -31,18 +31,25 @@ const PageTransition = ({ rows = 5, children }: Props) => {
 				onUpdate: () => {
 					const progress = tl.progress();
 					if (title === 'work' || title === 'about') {
-						if (progress > 0.2) {
-							router.push(`/${title}`);
-						}
+						// if (progress > 0.5) {
+						router.push(`/${title}`);
+						setTimeout(() => {
+							startAnimation('100%');
+						}, 5000);
+						// }
 					} else {
-						if (progress > 0.75) {
-							router.push(`/${title}`);
-						}
+						router.push(`/${title}`);
+						setTimeout(() => {
+							startAnimation('100%');
+						}, 5000);
+						// if (progress > 0.75) {
+						// 	router.push(`/${title}`);
+						// }
 					}
 				},
-				onComplete: () => {
-					startAnimation('100%');
-				},
+				// onComplete: () => {
+				// 	startAnimation('100%');
+				// },
 			});
 		}
 	};

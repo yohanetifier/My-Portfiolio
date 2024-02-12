@@ -1,0 +1,24 @@
+@import "../../styles/breakpoint.module.scss";
+
+.wrapper {
+    border: 1px solid #000;
+    // flex-grow: 1;
+    height: 70%;
+    flex: 0 0 700px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    @include tabletXs {
+        flex: 0 0 300px;
+    }
+    @include mobileS {
+        flex: 0 0 244px;
+    }
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

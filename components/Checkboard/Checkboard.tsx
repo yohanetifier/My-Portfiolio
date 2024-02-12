@@ -15,9 +15,9 @@ const Checkboard = ({ scrollingDown }: Props) => {
 	const { position, rotation } = useControls('chessboard', {
 		position: {
 			value: {
-				x: mobileL ? -8 : tabletS ? -5 : desktopS ? -5 : 0,
+				x: mobileL ? -8 : tabletS ? -5 : desktopS ? -5 : -1,
 				y: mobileL ? -5 : tabletS ? -3 : desktopS ? -3 : 3,
-				z: -12,
+				z: -13,
 			},
 			step: 1,
 		},

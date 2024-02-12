@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ThemeContextProvider>
 			<PageTransition />
-			<Cursor />
+			{/* <Cursor /> */}
 			<Header />
 			<Menu />
 			<Component {...pageProps} />
