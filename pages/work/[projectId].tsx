@@ -8,10 +8,10 @@ interface Props {}
 const pages = (props: Props) => {
 	const { query } = useRouter();
 	const videoRef = useRef();
-	useEffect(() => {
-		gsap.set(videoRef.current, { scale: 0 });
-		gsap.to(videoRef.current, { scale: 1, duration: 2 });
-	}, []);
+	// useEffect(() => {
+	// 	gsap.set(videoRef.current, { scale: 0 });
+	// 	gsap.to(videoRef.current, { scale: 1, duration: 2 });
+	// }, []);
 	return (
 		<div className={styles.wrapper}>
 			<video

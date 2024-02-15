@@ -10,14 +10,13 @@ interface Props {
 
 const Cursor = ({ title, isFinished }: Props) => {
 	const { menu } = useContext(ThemeContext);
-	console.log('menu', menu);
 	const cursorRef = useRef(null);
-	useEffect(() => {
-		window.addEventListener('mousemove', e => {
-			cursorRef.current.style.top = e.clientY + 'px';
-			cursorRef.current.style.left = e.clientX + 'px';
-		});
-	}, [title]);
+	// useEffect(() => {
+	// 	window.addEventListener('mousemove', e => {
+	// 		cursorRef.current.style.top = e.clientY + 'px';
+	// 		cursorRef.current.style.left = e.clientX + 'px';
+	// 	});
+	// }, [title]);
 	return (
 		<h2
 			ref={cursorRef}

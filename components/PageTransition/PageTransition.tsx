@@ -12,10 +12,10 @@ import { useRouter } from 'next/router';
 
 interface Props {
 	rows?: number;
-	children: React.ReactNode;
+	// children: React.ReactNode;
 }
 
-const PageTransition = ({ rows = 5, children }: Props) => {
+const PageTransition = ({ rows = 5 }: Props) => {
 	const { loading, setLoading, title } = useContext(ThemeContext);
 	const router = useRouter();
 	const containerRef = useRef(null);
@@ -32,24 +32,19 @@ const PageTransition = ({ rows = 5, children }: Props) => {
 					const progress = tl.progress();
 					if (title === 'work' || title === 'about') {
 						// if (progress > 0.5) {
-						router.push(`/${title}`);
-						setTimeout(() => {
-							startAnimation('100%');
-						}, 5000);
-						// }
-					} else {
-						router.push(`/${title}`);
-						setTimeout(() => {
-							startAnimation('100%');
-						}, 5000);
-						// if (progress > 0.75) {
-						// 	router.push(`/${title}`);
+						// router.push(`/${title}`);
+						// setTimeout(() => {
+						// 	startAnimation('100%');
+						// }, 5000);
 						// }
 					}
 				},
-				// onComplete: () => {
-				// 	startAnimation('100%');
-				// },
+				onComplete: () => {
+					router.push(`/${title}`);
+					setTimeout(() => {
+						startAnimation('100%');
+					}, 2000);
+				},
 			});
 		}
 	};
@@ -57,8 +52,11 @@ const PageTransition = ({ rows = 5, children }: Props) => {
 	useEffect(() => {
 		if (loading) {
 			startAnimation(0);
-		} // router.events.on('routeChangeStart', () => {
-
+		}
+		// router.events.on('routeChangeStart', () => {
+		// router.events.on('routeChangeStart', () => {
+		// 	startAnimation(0);
+		// });
 		// 	setLoading(true);
 		// 	startAnimation(0);
 		// });
@@ -72,7 +70,7 @@ const PageTransition = ({ rows = 5, children }: Props) => {
 		// };
 	}, [loading]);
 
-	return loading ? (
+	return (
 		<div
 			ref={containerRef}
 			className={styles.subWrapper}
@@ -85,8 +83,6 @@ const PageTransition = ({ rows = 5, children }: Props) => {
 				></div>
 			))}
 		</div>
-	) : (
-		<>{children}</>
 	);
 };
 

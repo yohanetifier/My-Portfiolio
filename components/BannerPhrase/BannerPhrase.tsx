@@ -20,7 +20,6 @@ const BannerPhrase = ({
 }: Props) => {
 	// const { scrollingDown, setScrollingDown } = useContext(ThemeContext);
 	const title = document.querySelectorAll('.animateTitle');
-	console.log('isTouchDevice', isTouchDevice);
 	!isTouchDevice && scrollingDown
 		? gsap.to(title, {
 				y: 120,

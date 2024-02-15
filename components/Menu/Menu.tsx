@@ -2,7 +2,6 @@ import React, {
 	ReactElement,
 	useContext,
 	useEffect,
-	useLayoutEffect,
 	useRef,
 	useState,
 } from 'react';
@@ -21,7 +20,7 @@ const Menu = (props: Props) => {
 	const floatingWrapper = useRef(null);
 	const [showFloatingWrapper, setShowFloatingWrapper] = useState(false);
 	const height = useRef(0);
-	useLayoutEffect(() => {
+	useEffect(() => {
 		height.current = window.innerHeight;
 	}, [height]);
 
@@ -82,25 +81,12 @@ const Menu = (props: Props) => {
 		floatingWrapper.current.style.left = e.clientX + 'px';
 	};
 
-	// let classTest;
-	// if (showFloatingWrapper) {
-	// 	classTest = styles.floatingWrapper
-	// }else {
-	// 	classTest = `${styles.floatingWrapper}`
-	// }
 	return (
 		<div
 			ref={containerRef}
 			className={`${styles.menu}`}
 			style={{ height: height.current }}
-			// onMouseMove={e => handleMove(e)}
 		>
-			{/* <div
-				ref={floatingWrapper}
-				className={styles.floatingWrapper}
-			>
-				flottant wrapper
-			</div> */}
 			<div className={styles.slidingWrapper}></div>
 			{route.map(({ href, label, className }, i) => (
 				<SlidingWrapper

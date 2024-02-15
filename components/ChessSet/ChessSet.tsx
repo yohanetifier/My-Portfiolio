@@ -6,7 +6,7 @@ Source: https://sketchfab.com/3d-models/chess-set-a2664ea4fcaa4a64ad077667d9d0c7
 Title: Chess set
 */
 
-import React, { useContext, useLayoutEffect, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Text3D, useGLTF } from '@react-three/drei';
 import { useControls } from 'leva';
 import { useRouter } from 'next/router';
@@ -106,6 +106,7 @@ export function ChessSet(props) {
 		e.stopPropagation();
 		setTitle(title);
 		setLoading(true);
+		// router.push(`/${title}`);
 	};
 
 	/* Handle Text Hover  */

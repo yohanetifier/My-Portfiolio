@@ -42,13 +42,9 @@ export default function Index({ introduction }) {
 		},
 	];
 
-	let showMenu = styles.showMenu;
-	let showCanvas = styles.hideMenu;
-	let finalClass;
 	let value = useRef(null);
 	useEffect(() => {
 		value.current = localStorage.getItem('playOnce');
-		console.log(value.current);
 	}, [value]);
 	return (
 		<div className={styles.wrapper}>

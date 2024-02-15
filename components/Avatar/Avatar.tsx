@@ -10,10 +10,8 @@ export function Avatar(props) {
 	const { nodes, materials } = useGLTF('/656f80bd869b42cd909ab754.glb');
 	const avatarRef = useRef(null);
 	const { animations } = useFBX('/animations/Waving.fbx');
-	console.log(animations);
 
 	animations[0].name = 'Waving';
-	console.log(animations[0].name);
 
 	const { actions } = useAnimations(animations, avatarRef);
 

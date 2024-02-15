@@ -162,12 +162,12 @@ export default function Chess(props) {
 					isTouchDevice={isTouchDevice}
 				/>
 
-				{!isTouchDevice && (
+				{/* {!isTouchDevice && (
 					<Cursor
 						title={title}
 						isFinished={isFinished}
 					/>
-				)}
+				)} */}
 			</Scroll>
 
 			{/* <group

@@ -1,4 +1,5 @@
-import React, { useContext, useLayoutEffect, useRef } from 'react';
+'use client';
+import React, { useContext, useEffect, useRef } from 'react';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import styles from './SocialNetwork.module.scss';
 import IconLink from '../IconLink/IconLink';
@@ -10,7 +11,7 @@ interface Props {}
 const SocialNetwork = (props: Props) => {
 	const wrapperRef = useRef(null);
 	const { endLoading } = useContext(ThemeContext);
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const children = Array.from(wrapperRef.current.children);
 		const tl = gsap.timeline({});
 		gsap.set(children, { opacity: 0 });

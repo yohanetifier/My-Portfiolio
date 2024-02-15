@@ -1,8 +1,7 @@
 import { Canvas } from '@react-three/fiber';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Avatar } from '../components/Avatar/Avatar';
 import {
-	Float,
 	OrbitControls,
 	Text3D,
 	ScrollControls,
@@ -27,9 +26,6 @@ const about = () => {
 	const { setPrevPath } = useContext(ThemeContext);
 	setPrevPath('about');
 	const textRef = useRef(null);
-	useEffect(() => {
-		console.log(textRef.current);
-	}, [textRef.current]);
 	const {
 		react,
 		mongo,
