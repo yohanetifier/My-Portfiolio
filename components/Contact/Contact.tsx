@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Contact.module.scss';
 import SocialNetwork from '../SocialNetwork/SocialNetwork';
@@ -21,7 +21,7 @@ const Contact = ({ title, subtitle }: Props) => {
 	return (
 		<section
 			className={styles.mainWrapper}
-			style={{ height: height.current }}
+			style={{ height: '100vh' }}
 		>
 			<Cursor />
 			<div className={styles.leftWrapper}>

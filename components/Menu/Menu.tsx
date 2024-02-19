@@ -55,17 +55,17 @@ const Menu = (props: Props) => {
 
 	const route = [
 		{
-			href: '/work',
+			href: 'work',
 			label: 'work',
 			className: styles.work,
 		},
 		{
-			href: '/about',
+			href: 'about',
 			label: 'about',
 			className: styles.about,
 		},
 		{
-			href: '/contact',
+			href: 'contact',
 			label: 'contact',
 			className: styles.contact,
 		},

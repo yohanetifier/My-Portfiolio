@@ -7,7 +7,7 @@ Title: Chess set
 */
 
 import React, { useContext, useRef, useState } from 'react';
-import { Text3D, useGLTF } from '@react-three/drei';
+import { Text3D, useCursor, useGLTF } from '@react-three/drei';
 import { useControls } from 'leva';
 import { useRouter } from 'next/router';
 import gsap from 'gsap';
@@ -15,6 +15,8 @@ import { ThemeContext } from '../Context/ThemeContext';
 
 export function ChessSet(props) {
 	const router = useRouter();
+	const [hovered, set] = useState();
+	useCursor(hovered);
 	const { nodes, materials } = useGLTF('/chess_set.glb');
 	const { setTitle, setLoading } = useContext(ThemeContext);
 	const contactRef = useRef(null);
@@ -104,9 +106,8 @@ export function ChessSet(props) {
 	/* Handle click */
 	const handleClick = (e, title) => {
 		e.stopPropagation();
-		setTitle(title);
 		setLoading(true);
-		// router.push(`/${title}`);
+		setTitle(title);
 	};
 
 	/* Handle Text Hover  */
@@ -133,10 +134,12 @@ export function ChessSet(props) {
 				position={[contactPosition.x, contactPosition.y, contactPosition.z]}
 				rotation={[contactRotation.x, contactRotation.y, contactRotation.z]}
 				onClick={e => handleClick(e, 'contact')}
-				onPointerOver={e => {
-					handleTextHover('contact');
-				}}
-				onPointerLeave={() => handleTextLeave('contact')}
+				onPointerOver={() => set(true)}
+				onPointerLeave={() => set(false)}
+				// onPointerOver={e => {
+				// 	handleTextHover('contact');
+				// }}
+				// onPointerLeave={() => handleTextLeave('contact')}
 				// onPointerOut={() => setHover('contact')}
 			>
 				Contact
@@ -148,10 +151,12 @@ export function ChessSet(props) {
 				position={[aboutPosition.x, aboutPosition.y, aboutPosition.z]}
 				rotation={[aboutRotation.x, aboutRotation.y, aboutRotation.z]}
 				onClick={e => handleClick(e, 'about')}
-				onPointerOver={e => {
-					handleTextHover('about');
-				}}
-				onPointerLeave={() => handleTextLeave('about')}
+				onPointerOver={() => set(true)}
+				onPointerLeave={() => set(false)}
+				// onPointerOver={e => {
+				// 	handleTextHover('about');
+				// }}
+				// onPointerLeave={() => handleTextLeave('about')}
 			>
 				About
 				<meshBasicMaterial color='black' />
@@ -162,10 +167,12 @@ export function ChessSet(props) {
 				position={[workPosition.x, workPosition.y, workPosition.z]}
 				rotation={[workRotation.x, workRotation.y, workRotation.z]}
 				onClick={e => handleClick(e, 'work')}
-				onPointerOver={e => {
-					handleTextHover('work');
-				}}
-				onPointerLeave={() => handleTextLeave('work')}
+				onPointerOver={() => set(true)}
+				onPointerLeave={() => set(false)}
+				// onPointerOver={e => {
+				// 	handleTextHover('work');
+				// }}
+				// onPointerLeave={() => handleTextLeave('work')}
 			>
 				Work
 				<meshBasicMaterial color='black' />

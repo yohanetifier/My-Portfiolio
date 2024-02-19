@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ThemeContext } from '../Context/ThemeContext';
 import gsap from 'gsap';
+import { useRouter } from 'next/router';
 
 interface Props {
 	href: string;
@@ -18,7 +19,8 @@ const SlidingWrapper = ({
 	setShowFloatingWrapper,
 	className,
 }: Props) => {
-	const { setMenu, endLoading } = useContext(ThemeContext);
+	const { setMenu, endLoading, setLoading, setTitle } =
+		useContext(ThemeContext);
 	const wrapperRef = useRef(null);
 	useEffect(() => {
 		const link = document.querySelectorAll('.animateLink');
@@ -27,23 +29,32 @@ const SlidingWrapper = ({
 			? gsap.to(link, { opacity: 1, stagger: 0.3 })
 			: gsap.to(link, { opacity: 0, stagger: 0.3 });
 	}, [endLoading, wrapperRef]);
+
+	const router = useRouter();
+	const handleClick = (e, href) => {
+		e.stopPropagation();
+		setTimeout(() => {
+			setMenu(false);
+		}, 1000);
+		router.push(`/${href}`);
+	};
 	return (
 		<div
 			className={styles.slidingWrapper}
 			ref={wrapperRef}
 		>
-			<Link
-				href={href}
+			<p
+				// href={href}
+				// href={href}
 				className={`${styles.linkWrapper} animateLink ${className}`}
 				onMouseMove={() => setShowFloatingWrapper(true)}
-				onClick={() => {
-					setTimeout(() => {
-						setMenu(false);
-					}, 1000);
+				onClick={e => {
+					handleClick(e, href);
+					// setMenu(false);
 				}}
 			>
 				{label}
-			</Link>
+			</p>
 		</div>
 	);
 };

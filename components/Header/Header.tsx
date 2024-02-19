@@ -13,12 +13,12 @@ const Header = (props: Props) => {
 	return (
 		<header className={styles.wrapper}>
 			<div className={styles.header}>
-				<Link href='/'>
-					<Logo
-						src='/logo.png'
-						alt='logo'
-					/>
-				</Link>
+				{/* <Link href='/'> */}
+				<Logo
+					src='/logo.png'
+					alt='logo'
+				/>
+				{/* </Link> */}
 				<Description
 					name='Yohan Etifier'
 					subtitle='Creative web developer'

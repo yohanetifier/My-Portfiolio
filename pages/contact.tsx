@@ -5,9 +5,9 @@ import { ThemeContext } from '../components/Context/ThemeContext';
 interface Props {}
 
 const contact = (props: Props) => {
-	const { setPrevPath } = useContext(ThemeContext);
+	// const { setPrevPath } = useContext(ThemeContext);
 	//Setup the prevPath so that the animation on the home page works fine
-	setPrevPath('contact');
+	// setPrevPath('contact');
 
 	return (
 		<Contact

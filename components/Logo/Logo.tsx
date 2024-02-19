@@ -9,9 +9,13 @@ interface Props {
 }
 
 const Logo = ({ src, alt }: Props) => {
-	const { setMenu } = useContext(ThemeContext);
+	const handleClick = () => {
+		setMenu(false);
+		setLoading(true);
+	};
+	const { setMenu, setLoading } = useContext(ThemeContext);
 	return (
-		<div onClick={() => setMenu(false)}>
+		<div onClick={() => handleClick()}>
 			<Image
 				src={src}
 				alt={alt}

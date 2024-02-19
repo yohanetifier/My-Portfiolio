@@ -23,8 +23,8 @@ if (typeof window !== 'undefined') {
 }
 const about = () => {
 	//Setup the prevPath so that the animation on the home page works fine
-	const { setPrevPath } = useContext(ThemeContext);
-	setPrevPath('about');
+	// const { setPrevPath } = useContext(ThemeContext);
+	// setPrevPath('about');
 	const textRef = useRef(null);
 	const {
 		react,

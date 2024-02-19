@@ -1,10 +1,4 @@
-import React, {
-	useEffect,
-	useRef,
-	ReactNode,
-	useContext,
-	useState,
-} from 'react';
+import { useEffect, useRef, useContext } from 'react';
 import styles from './PageTransition.module.scss';
 import gsap from 'gsap';
 import { ThemeContext } from '../Context/ThemeContext';
@@ -12,11 +6,10 @@ import { useRouter } from 'next/router';
 
 interface Props {
 	rows?: number;
-	// children: React.ReactNode;
 }
 
 const PageTransition = ({ rows = 5 }: Props) => {
-	const { loading, setLoading, title } = useContext(ThemeContext);
+	const { loading, setLoading, title, setTitle } = useContext(ThemeContext);
 	const router = useRouter();
 	const containerRef = useRef(null);
 	let tl;
@@ -28,21 +21,11 @@ const PageTransition = ({ rows = 5 }: Props) => {
 				x,
 				stagger: 0.2,
 				duration: 0.4,
-				onUpdate: () => {
-					const progress = tl.progress();
-					if (title === 'work' || title === 'about') {
-						// if (progress > 0.5) {
-						// router.push(`/${title}`);
-						// setTimeout(() => {
-						// 	startAnimation('100%');
-						// }, 5000);
-						// }
-					}
-				},
 				onComplete: () => {
 					router.push(`/${title}`);
 					setTimeout(() => {
 						startAnimation('100%');
+						setLoading(false);
 					}, 2000);
 				},
 			});
@@ -52,22 +35,9 @@ const PageTransition = ({ rows = 5 }: Props) => {
 	useEffect(() => {
 		if (loading) {
 			startAnimation(0);
+		} else {
+			setTitle('');
 		}
-		// router.events.on('routeChangeStart', () => {
-		// router.events.on('routeChangeStart', () => {
-		// 	startAnimation(0);
-		// });
-		// 	setLoading(true);
-		// 	startAnimation(0);
-		// });
-		// router.events.on('routeChangeComplete', () => {
-		// 	setTimeout(() => {
-		// 		startAnimation('-100%');
-		// 	}, 2000);
-		// });
-		// return () => {
-		// 	router.events.off('routeChangeStart', startAnimation);
-		// };
 	}, [loading]);
 
 	return (
