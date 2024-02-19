@@ -66,7 +66,6 @@ const Scene = ({ bannerPhrase }: Props) => {
 	const { camera } = useThree();
 	const cameraRef = useRef();
 	cameraRef.current = camera;
-	isDevEnv && useHelper(cameraRef, THREE.CameraHelper, 'red');
 
 	return (
 		<>
