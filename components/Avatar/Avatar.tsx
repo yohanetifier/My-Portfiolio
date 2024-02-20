@@ -7,7 +7,7 @@ import React, { useEffect, useRef } from 'react';
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei';
 
 export function Avatar(props) {
-	const { nodes, materials } = useGLTF('/656f80bd869b42cd909ab754.glb');
+	const { nodes, materials }: any = useGLTF('/656f80bd869b42cd909ab754.glb');
 	const avatarRef = useRef(null);
 	const { animations } = useFBX('/animations/Waving.fbx');
 
@@ -31,8 +31,9 @@ export function Avatar(props) {
 				object={nodes.Hips}
 			/>
 			<skinnedMesh
+				{...props}
 				name='Wolf3D_Avatar'
-				geometry={nodes.Wolf3D_Avatar.geometry}
+				geometry={nodes.Wolf3D_Avatar?.geometry}
 				material={materials.Wolf3D_Avatar}
 				skeleton={nodes.Wolf3D_Avatar.skeleton}
 				morphTargetDictionary={nodes.Wolf3D_Avatar.morphTargetDictionary}

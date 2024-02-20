@@ -9,34 +9,39 @@ interface Props {
 }
 
 const PageTransition = ({ rows = 5 }: Props) => {
-	const { loading, setLoading, title, setTitle } = useContext(ThemeContext);
+	const { loading, setLoading, title, setTitle, setMenu } =
+		useContext(ThemeContext);
 	const router = useRouter();
 	const containerRef = useRef(null);
-	let tl;
-
-	const startAnimation = (x: number | string) => {
-		if (containerRef.current) {
-			const childrenArray = Array.from(containerRef.current.children);
-			tl = gsap.to(childrenArray, {
-				x,
-				stagger: 0.2,
-				duration: 0.4,
-				onComplete: () => {
-					router.push(`/${title}`);
-					setTimeout(() => {
-						startAnimation('100%');
-						setLoading(false);
-					}, 2000);
-				},
-			});
-		}
-	};
+	let childrenArray;
 
 	useEffect(() => {
 		if (loading) {
-			startAnimation(0);
+			if (containerRef.current) {
+				childrenArray = Array.from(containerRef.current.children);
+				gsap.to(childrenArray, {
+					x: 0,
+					stagger: 0.2,
+					duration: 0.4,
+					onComplete: () => {
+						router.push(`/${title}`);
+						setTimeout(() => {
+							setMenu(false);
+							setLoading(false);
+						}, 2000);
+					},
+				});
+			}
 		} else {
-			setTitle('');
+			childrenArray = Array.from(containerRef.current.children);
+			gsap.to(childrenArray, {
+				x: '100%',
+				stagger: 0.2,
+				duration: 0.4,
+				onComplete: () => {
+					setLoading(false);
+				},
+			});
 		}
 	}, [loading]);
 

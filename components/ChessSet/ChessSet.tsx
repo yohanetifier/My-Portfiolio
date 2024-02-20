@@ -12,12 +12,17 @@ import { useControls } from 'leva';
 import { useRouter } from 'next/router';
 import gsap from 'gsap';
 import { ThemeContext } from '../Context/ThemeContext';
+import { MeshProps } from '@react-three/fiber';
+
+interface CustomMeshProps extends MeshProps {
+	castShadow?: boolean;
+}
 
 export function ChessSet(props) {
 	const router = useRouter();
-	const [hovered, set] = useState();
+	const [hovered, set]: any = useState();
 	useCursor(hovered);
-	const { nodes, materials } = useGLTF('/chess_set.glb');
+	const { nodes, materials }: any = useGLTF('/chess_set.glb');
 	const { setTitle, setLoading } = useContext(ThemeContext);
 	const contactRef = useRef(null);
 	const [hover, setHover] = useState({
@@ -105,7 +110,7 @@ export function ChessSet(props) {
 
 	/* Handle click */
 	const handleClick = (e, title) => {
-		e.stopPropagation();
+		// e.stopPropagation();
 		setLoading(true);
 		setTitle(title);
 	};
@@ -136,11 +141,6 @@ export function ChessSet(props) {
 				onClick={e => handleClick(e, 'contact')}
 				onPointerOver={() => set(true)}
 				onPointerLeave={() => set(false)}
-				// onPointerOver={e => {
-				// 	handleTextHover('contact');
-				// }}
-				// onPointerLeave={() => handleTextLeave('contact')}
-				// onPointerOut={() => setHover('contact')}
 			>
 				Contact
 				<meshBasicMaterial color='black' />
@@ -182,12 +182,14 @@ export function ChessSet(props) {
 				scale={[7.939, 46.607, 7.939]}
 			>
 				<mesh
+					{...props}
 					castShadow
 					receiveShadow
 					geometry={nodes.Object_6.geometry}
 					material={materials['Material.002']}
 				/>
 				<mesh
+					{...props}
 					castShadow
 					receiveShadow
 					geometry={nodes.Object_7.geometry}
@@ -196,18 +198,21 @@ export function ChessSet(props) {
 			</group>
 			<group position={[0, -0.417, 0]}>
 				<mesh
+					{...props}
 					castShadow
 					receiveShadow
 					geometry={nodes.Object_9.geometry}
 					material={materials['Material.004']}
 				/>
 				<mesh
+					{...props}
 					castShadow
 					receiveShadow
 					geometry={nodes.Object_10.geometry}
 					material={materials['Material.006']}
 				/>
 				<mesh
+					{...props}
 					castShadow
 					receiveShadow
 					geometry={nodes.Object_11.geometry}
@@ -215,6 +220,7 @@ export function ChessSet(props) {
 				/>
 			</group>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_4.geometry}
@@ -224,6 +230,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_13.geometry}
@@ -233,6 +240,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_15.geometry}
@@ -242,6 +250,7 @@ export function ChessSet(props) {
 				scale={0.224}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_17.geometry}
@@ -251,6 +260,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_19.geometry}
@@ -260,6 +270,7 @@ export function ChessSet(props) {
 				scale={0.224}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_21.geometry}
@@ -269,6 +280,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_23.geometry}
@@ -278,6 +290,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_25.geometry}
@@ -287,6 +300,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_27.geometry}
@@ -296,6 +310,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_29.geometry}
@@ -305,6 +320,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_31.geometry}
@@ -314,6 +330,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_33.geometry}
@@ -323,6 +340,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_35.geometry}
@@ -332,6 +350,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_37.geometry}
@@ -341,6 +360,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_39.geometry}
@@ -350,6 +370,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_41.geometry}
@@ -359,6 +380,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_43.geometry}
@@ -368,6 +390,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_45.geometry}
@@ -377,6 +400,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_47.geometry}
@@ -386,6 +410,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_49.geometry}
@@ -395,6 +420,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_51.geometry}
@@ -404,6 +430,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_53.geometry}
@@ -413,6 +440,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_55.geometry}
@@ -422,6 +450,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_57.geometry}
@@ -431,6 +460,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_59.geometry}
@@ -440,6 +470,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_61.geometry}
@@ -449,6 +480,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_63.geometry}
@@ -458,6 +490,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_65.geometry}
@@ -467,6 +500,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_67.geometry}
@@ -476,6 +510,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_69.geometry}
@@ -485,6 +520,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_71.geometry}
@@ -494,6 +530,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_73.geometry}
@@ -503,6 +540,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_75.geometry}
@@ -512,6 +550,7 @@ export function ChessSet(props) {
 				scale={0.151}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_77.geometry}
@@ -521,6 +560,7 @@ export function ChessSet(props) {
 				scale={1.3}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_79.geometry}
@@ -530,6 +570,7 @@ export function ChessSet(props) {
 				scale={1.3}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_81.geometry}
@@ -539,6 +580,7 @@ export function ChessSet(props) {
 				scale={1.3}
 			/>
 			<mesh
+				{...props}
 				castShadow
 				receiveShadow
 				geometry={nodes.Object_83.geometry}

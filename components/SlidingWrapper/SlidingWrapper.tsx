@@ -19,7 +19,7 @@ const SlidingWrapper = ({
 	setShowFloatingWrapper,
 	className,
 }: Props) => {
-	const { setMenu, endLoading, setLoading, setTitle } =
+	const { setMenu, endLoading, setLoading, setTitle, title } =
 		useContext(ThemeContext);
 	const wrapperRef = useRef(null);
 	useEffect(() => {
@@ -32,20 +32,20 @@ const SlidingWrapper = ({
 
 	const router = useRouter();
 	const handleClick = (e, href) => {
-		e.stopPropagation();
+		e.preventDefault();
+		setTitle(href);
+		setLoading(true);
 		setTimeout(() => {
 			setMenu(false);
 		}, 1000);
-		router.push(`/${href}`);
 	};
 	return (
 		<div
 			className={styles.slidingWrapper}
 			ref={wrapperRef}
 		>
-			<p
-				// href={href}
-				// href={href}
+			<Link
+				href={href}
 				className={`${styles.linkWrapper} animateLink ${className}`}
 				onMouseMove={() => setShowFloatingWrapper(true)}
 				onClick={e => {
@@ -54,7 +54,7 @@ const SlidingWrapper = ({
 				}}
 			>
 				{label}
-			</p>
+			</Link>
 		</div>
 	);
 };
