@@ -34,7 +34,6 @@ export default function Chess(props) {
 	// 	setScrollingDown(false);
 	// 	// setPrevPath('');
 	// }
-	const workTitleRef = useRef(null);
 	const [isFinished, setIsFinished] = useState(false);
 	const isTouchDevice =
 		'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -64,73 +63,12 @@ export default function Chess(props) {
 		}
 	});
 
-	const { whiteQueenPosition } = useControls('whiteQueen', {
-		whiteQueenPosition: {
-			value: { x: -0.44, y: 0.18, z: 5.18 },
-			step: 0.01,
-		},
-	});
-
-	const { whitePawnPosition } = useControls('whitePawn', {
-		whitePawnPosition: {
-			value: { x: -3.28, y: 0.42, z: 4.93 },
-			step: 0.01,
-		},
-	});
-
-	const { whiteRightRock } = useControls('whiteRightRock', {
-		whiteRightRock: {
-			value: {
-				x: 0,
-				y: 0,
-				z: 0,
-			},
-		},
-	});
-
-	const { nodes, materials } = useGLTF('./checkboard.glb');
-
-	const variants = {
-		hidden: {
-			opacity: 0,
-		},
-		visible: {
-			opacity: 1,
-			transition: {
-				duration: 1,
-			},
-		},
-	};
-
-	const titleElement = document.querySelector(
-		`.${styles.cursor}`,
-	) as HTMLElement;
-
-	// useEffect(() => {
-	// 	if (!isTouchDevice) {
-	// 		window.addEventListener('mousemove', e => {
-	// 			workTitleRef.current.style.top = e.clientY + 'px';
-	// 			workTitleRef.current.style.left = e.clientX + 'px';
-	// 		});
-	// 	}
-	// }, [title, isTouchDevice]);
-
-	const handleClick = e => {
-		e.stopPropagation();
-		setTitle(title);
-		setLoading(true);
-	};
-
 	const ref = useRef();
 	return (
 		<>
-			{/* <ambientLight
-				ref={lightRef}
-				// intensity={isTouchDevice ? 1 : 0}
-				intensity={15}
-			/> */}
 			<TransformControls object={ref} />
 			<directionalLight
+				{...props}
 				position={[0, 5, 0]}
 				intensity={25}
 			/>
@@ -141,63 +79,7 @@ export default function Chess(props) {
 					scrollingDown={scrollingDown}
 					isTouchDevice={isTouchDevice}
 				/>
-
-				{/* {!isTouchDevice && (
-					<Cursor
-						title={title}
-						isFinished={isFinished}
-					/>
-				)} */}
 			</Scroll>
-
-			{/* <group
-				{...props}
-				dispose={null}
-			>
-			
-
-				<Checkboard scrollingDown={scrollingDown} />
-				<BlackPawn />
-				<WhitePawn />
-				<WhiteChessCastle
-					positionX={whiteRightRock.x}
-					positionY={whiteRightRock.y}
-					positionZ={whiteRightRock.z}
-				/>
-				<WhiteChessCastle
-					positionX={3.7}
-					positionY={4.89}
-					positionZ={16.03}
-				/>
-				<BlackElephant />
-				<WhiteElephant />
-				<BlackKing />
-				<WhiteKing />
-				<BlackHorse />
-				<WhiteHorse />
-				
-				<Rook />
-				
-				<mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.knight_top.geometry}
-					material={nodes.knight_top.material}
-					position={[0.01, 1.27, -2.27]}
-					rotation={[0, -0.03, 0]}
-				/>
-				<WhiteQueen />
-				<BlackQueen />
-				<mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.KIng001.geometry}
-					material={nodes.KIng001.material}
-					position={[-0.42, 0.03, 2.8]}
-					// position={nodes.KIng001.position}
-					rotation={[0, -1.23, 0]}
-				/>
-			</group> */}
 
 			<ChessSet />
 		</>
