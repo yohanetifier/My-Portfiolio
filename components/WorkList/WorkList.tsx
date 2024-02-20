@@ -6,7 +6,7 @@ import gsap from 'gsap';
 interface Props {}
 
 const WorkList = (props: Props) => {
-	const wrapperRef = useRef();
+	const wrapperRef = useRef(null);
 	const projectList = [
 		'Alliance Gaz',
 		'The Buyer',
