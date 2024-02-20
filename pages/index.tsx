@@ -17,7 +17,7 @@ export default function Index({ introduction }) {
 	const { isClosed } = useContext(ThemeContext);
 	const [animationSecondComplete, setAnimationSecondComplete] =
 		useState<boolean>(false);
-	const words: String[] = ['H', 'E', 'L', 'L', 'O'];
+	const words: string[] = ['H', 'E', 'L', 'L', 'O'];
 	const bannerPhrase: String[] = ["LET'S BUILD", 'THE SITE', 'OF THE FUTURE'];
 	const images: Images[] = [
 		{
@@ -53,7 +53,7 @@ export default function Index({ introduction }) {
 					words={words}
 					images={images}
 					setAnimationSecondComplete={setAnimationSecondComplete}
-					counter={counter}
+					// counter={counter}
 				/>
 			) : (
 				<>
