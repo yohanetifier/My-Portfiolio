@@ -10,7 +10,7 @@ const Project = (props: Props) => {
 		<div className={styles.wrapper}>
 			<video
 				autoPlay
-				src={`/assets/videos/${query.projectId}.mp4`}
+				src={`/assets/videos/projects/${query.projectId}.mp4`}
 				className={styles.video}
 			></video>
 		</div>
