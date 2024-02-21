@@ -9,11 +9,12 @@ interface Props {
 }
 
 const Logo = ({ src, alt }: Props) => {
+	const { setMenu, setLoading, setTitle } = useContext(ThemeContext);
 	const handleClick = () => {
 		setMenu(false);
 		setLoading(true);
+		setTitle('/');
 	};
-	const { setMenu, setLoading } = useContext(ThemeContext);
 	return (
 		<div onClick={() => handleClick()}>
 			<Image
