@@ -16,7 +16,7 @@ const Header = (props: Props) => {
 				{/* <Link href='/'> */}
 				<Logo
 					src='/logo.png'
-					alt='logo'
+					alt='log'
 				/>
 				{/* </Link> */}
 				<Description
