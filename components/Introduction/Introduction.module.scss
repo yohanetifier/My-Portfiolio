@@ -18,11 +18,15 @@
 }
 
 .imgWrapper {
-    border: 2px solid purple;
     position: absolute;
     width: 200px;
     height: 300px;
     transform: rotate(50deg);
+    & > img {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
     @include mobileS {
         width: 100px;
         height: 230px;
@@ -30,11 +34,15 @@
 }
 
 .imgWrapper1 {
-    border: 2px solid blue;
     position: absolute;
     width: 200px;
     height: 300px;
     transform: rotate(-20deg);
+    & > img {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
     @include mobileS {
         width: 100px;
         height: 230px;
@@ -42,11 +50,15 @@
 }
 
 .imgWrapper2 {
-    border: 2px solid orange;
     position: absolute;
     width: 400px;
     height: 500px;
     transform: rotate(30deg);
+    & > img {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
     @include tabletXs {
         width: 350px;
         height: 450px;
@@ -62,11 +74,15 @@
 }
 
 .imgWrapper3 {
-    border: 2px solid green;
     position: absolute;
     width: 350px;
     height: 350px;
     transform: rotate(10deg);
+    & > img {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
     @include mobileM {
         width: 300px;
         height: 300px;
@@ -78,10 +94,14 @@
 }
 
 .imgWrapper4 {
-    border: 2px solid white;
     position: absolute;
     width: 300px;
     height: 600px;
+    & > img {
+        width: 300px;
+        height: 600px;
+        background-size: cover;
+    }
     @include tabletXs {
         width: 250px;
         height: 500px;

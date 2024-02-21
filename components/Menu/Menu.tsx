@@ -70,7 +70,6 @@ const Menu = (props: Props) => {
 			className: styles.contact,
 		},
 	];
-
 	const handleMove = e => {
 		if (showFloatingWrapper) {
 			floatingWrapper.current.style.opacity = 1;

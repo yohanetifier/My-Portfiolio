@@ -11,6 +11,7 @@ type Props = {
 	images: SourceImage[];
 	setAnimationSecondComplete: (arg: boolean) => void;
 	counter?: RefObject<number>;
+	setHideIntro: (arg: boolean) => void;
 };
 
 const Introduction = ({
@@ -18,31 +19,32 @@ const Introduction = ({
 	images,
 	setAnimationSecondComplete,
 	counter,
+	setHideIntro,
 }: Props) => {
 	const [animationComplete, setAnimationComplete] = useState<boolean>(false);
 	const imagesArray = [
 		{
-			src: '',
-			alt: '',
+			src: '/assets/images/poker.jpeg',
+			alt: 'poker',
 			className: styles.imgWrapper,
 		},
 		{
-			src: '',
-			alt: '',
+			src: '/assets/images/plane.jpeg',
+			alt: 'plane',
 			className: styles.imgWrapper1,
 		},
 		{
-			src: '',
-			alt: '',
+			src: '/assets/images/echecs.jpeg',
+			alt: 'echecs',
 			className: styles.imgWrapper2,
 		},
 		{
-			src: '',
+			src: '/assets/images/fitness.jpeg',
 			alt: '',
 			className: styles.imgWrapper3,
 		},
 		{
-			src: '',
+			src: '/assets/images/foot.jpeg',
 			alt: '',
 			className: styles.imgWrapper4,
 		},
@@ -59,6 +61,7 @@ const Introduction = ({
 				animationComplete={animationComplete}
 				setAnimationSecondComplete={setAnimationSecondComplete}
 				counter={counter}
+				setHideIntro={setHideIntro}
 			/>
 		</div>
 	);

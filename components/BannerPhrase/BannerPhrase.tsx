@@ -20,21 +20,23 @@ const BannerPhrase = ({
 }: Props) => {
 	// const { scrollingDown, setScrollingDown } = useContext(ThemeContext);
 	const title = document.querySelectorAll('.animateTitle');
-	!isTouchDevice && scrollingDown
-		? gsap.to(title, {
-				y: 120,
-				stagger: 0.5,
-				onComplete: () => {
-					setIsFinished(true);
-				},
-		  })
-		: gsap.to(title, {
-				y: 0,
-				stagger: 0.5,
-				onUpdate: () => {
-					setIsFinished(false);
-				},
-		  });
+	useEffect(() => {
+		!isTouchDevice && scrollingDown
+			? gsap.to(title, {
+					y: 120,
+					stagger: 0.5,
+					onComplete: () => {
+						setIsFinished(true);
+					},
+			  })
+			: gsap.to(title, {
+					y: 0,
+					stagger: 0.5,
+					onUpdate: () => {
+						setIsFinished(false);
+					},
+			  });
+	}, [isTouchDevice, scrollingDown]);
 
 	return (
 		<div className={styles.title}>

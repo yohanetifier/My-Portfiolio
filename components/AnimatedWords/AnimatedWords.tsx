@@ -16,7 +16,7 @@ const AnimatedWords = ({ arrayOfLetter, setAnimationComplete }: Props) => {
 			{ x: -100, opacity: 0 },
 			{
 				x: 0,
-				stagger: 0.2,
+				stagger: 0.5,
 				opacity: 1,
 				onComplete: () => {
 					setAnimationComplete(true);

@@ -1,3 +1,4 @@
+'use client';
 import { isDevEnv } from '../lib/constants';
 import styles from '../styles/index.module.scss';
 import Introduction from '../components/Introduction/Introduction';
@@ -14,7 +15,7 @@ interface Images {
 }
 
 export default function Index({ introduction }) {
-	const { isClosed } = useContext(ThemeContext);
+	const { isClosed, hideIntro, setHideIntro } = useContext(ThemeContext);
 	const [animationSecondComplete, setAnimationSecondComplete] =
 		useState<boolean>(false);
 	const words: string[] = ['H', 'E', 'L', 'L', 'O'];
@@ -42,17 +43,22 @@ export default function Index({ introduction }) {
 		},
 	];
 
-	let value = useRef(null);
+	// let value = useRef(null);
+	// const [value, setValue] = useState()
+	// const [hideIntro, setHideIntro] = useState(false);
 	useEffect(() => {
-		value.current = localStorage.getItem('playOnce');
-	}, [value]);
+		window.addEventListener('unload', () => {
+			setHideIntro(false);
+		});
+	}, [hideIntro]);
 	return (
 		<div className={styles.wrapper}>
-			{!value ? (
+			{!hideIntro ? (
 				<Introduction
 					words={words}
 					images={images}
 					setAnimationSecondComplete={setAnimationSecondComplete}
+					setHideIntro={setHideIntro}
 					// counter={counter}
 				/>
 			) : (

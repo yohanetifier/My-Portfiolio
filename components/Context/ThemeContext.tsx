@@ -23,12 +23,14 @@ export const ThemeContext = createContext({
 	setEndLoading: (arg: boolean) => {},
 	prevPath: '',
 	setPrevPath: (arg: string) => {},
+	hideIntro: false,
+	setHideIntro: (arg: boolean) => {},
 });
 
 export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
 	children,
 }) => {
-	const [title, setTitle] = useState<string>('');
+	const [title, setTitle] = useState('');
 	const [scrollingDown, setScrollingDown] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [menu, setMenu] = useState(false);
@@ -37,6 +39,7 @@ export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
 	const [transition, setTransition] = useState('');
 	const [endLoading, setEndLoading] = useState(false);
 	const [prevPath, setPrevPath] = useState('');
+	const [hideIntro, setHideIntro] = useState(false);
 
 	return (
 		<ThemeContext.Provider
@@ -59,6 +62,8 @@ export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
 				setEndLoading,
 				prevPath,
 				setPrevPath,
+				hideIntro,
+				setHideIntro,
 			}}
 		>
 			{' '}
