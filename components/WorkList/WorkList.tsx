@@ -8,17 +8,17 @@ interface Props {}
 const WorkList = (props: Props) => {
 	const wrapperRef = useRef(null);
 	const projectList = [
-		'Alliance Gaz',
-		'The Buyer',
-		'Tolefi',
-		'App Bermudes',
-		'DRALM',
-		'Hinderer-Wolff',
-		'Jego',
-		'La causerie',
-		'les halles trottemant',
-		'Mcharraire',
-		'Vse',
+		'alliance-gaz',
+		'the-buyer',
+		'tolefi',
+		'app-bermudes',
+		'dralm',
+		'hinderer-wolff',
+		'jego',
+		'la-causerie',
+		'les-halles-trottemant',
+		'mcharraire',
+		'vse',
 	];
 
 	useEffect(() => {
@@ -38,7 +38,7 @@ const WorkList = (props: Props) => {
 			{projectList.map((project, index) => (
 				<WorkCard
 					key={index}
-					href={`/work/${project.toLowerCase().split(' ').join('-')}`}
+					href={`/work/${project.toLowerCase()}`}
 					imageSrc={`/assets/images/${project
 						.toLowerCase()
 						.split(' ')
