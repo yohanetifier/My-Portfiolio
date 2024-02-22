@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { RefObject, useContext, useEffect, useRef } from 'react';
+import React, { RefObject, useContext, useEffect, useRef } from 'react';
 import styles from './AnimatedImg.module.scss';
 import gsap from 'gsap';
 import { ThemeContext } from '../Context/ThemeContext';
@@ -13,16 +13,13 @@ export type ArrayOfImg = {
 type Props = {
 	arrayOfImg: ArrayOfImg[];
 	animationComplete: boolean;
-	setAnimationSecondComplete: (arg: boolean) => void;
 	counter?: RefObject<number>;
-	setHideIntro: (arg: boolean) => void;
+	setHideIntro: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const AnimatedImg = ({
 	arrayOfImg,
 	animationComplete,
-	setAnimationSecondComplete,
-	counter,
 	setHideIntro,
 }: Props) => {
 	const wrapperRef = useRef(null);
@@ -35,9 +32,9 @@ const AnimatedImg = ({
 				.to(children, {
 					opacity: 1,
 					stagger: 0.5,
-					onComplete: () => {
-						setAnimationSecondComplete(true);
-					},
+					// onComplete: () => {
+					// setAnimationSecondComplete(true);
+					// },
 				})
 				.to(children[4] as HTMLElement, {
 					y: '200%',

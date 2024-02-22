@@ -2,9 +2,7 @@ import React, { useRef } from 'react';
 import styles from './Footer.module.scss';
 import Skills from '../Skills/Skills';
 
-interface Props {}
-
-const Footer = (props: Props) => {
+const Footer = () => {
 	const wrapper = useRef(null);
 	return (
 		<div

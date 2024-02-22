@@ -9,18 +9,11 @@ type SourceImage = Pick<ArrayOfImg, 'src' | 'alt'>;
 type Props = {
 	words: string[];
 	images: SourceImage[];
-	setAnimationSecondComplete: (arg: boolean) => void;
 	counter?: RefObject<number>;
-	setHideIntro: (arg: boolean) => void;
+	setHideIntro: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Introduction = ({
-	words,
-	images,
-	setAnimationSecondComplete,
-	counter,
-	setHideIntro,
-}: Props) => {
+const Introduction = ({ words, counter, setHideIntro }: Props) => {
 	const [animationComplete, setAnimationComplete] = useState<boolean>(false);
 	const imagesArray = [
 		{
@@ -59,7 +52,6 @@ const Introduction = ({
 			<AnimatedImg
 				arrayOfImg={imagesArray}
 				animationComplete={animationComplete}
-				setAnimationSecondComplete={setAnimationSecondComplete}
 				counter={counter}
 				setHideIntro={setHideIntro}
 			/>

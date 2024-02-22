@@ -1,23 +1,14 @@
-import React, {
-	ReactElement,
-	useContext,
-	useEffect,
-	useRef,
-	useState,
-} from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from './Menu.module.scss';
 import { ThemeContext } from '../Context/ThemeContext';
 import gsap from 'gsap';
-import Link from 'next/link';
 import SocialNetwork from '../SocialNetwork/SocialNetwork';
 import SlidingWrapper from '../SlidingWrapper/SlidingWrapper';
 
-interface Props {}
-const Menu = (props: Props) => {
-	const { menu, setMenu, setIsClosed, setEndLoading } =
-		useContext(ThemeContext);
+const Menu = () => {
+	const { menu, setEndLoading } = useContext(ThemeContext);
 	const containerRef = useRef(null);
-	const floatingWrapper = useRef(null);
+	// const floatingWrapper = useRef(null);
 	const [showFloatingWrapper, setShowFloatingWrapper] = useState(false);
 	const height = useRef(0);
 	useEffect(() => {
@@ -51,7 +42,7 @@ const Menu = (props: Props) => {
 						containerRef.current.style.zIndex = 0;
 					},
 			  });
-	}, [menu, , containerRef, showFloatingWrapper]);
+	}, [menu, containerRef, showFloatingWrapper]);
 
 	const route = [
 		{
@@ -70,21 +61,21 @@ const Menu = (props: Props) => {
 			className: styles.contact,
 		},
 	];
-	const handleMove = e => {
-		if (showFloatingWrapper) {
-			floatingWrapper.current.style.opacity = 1;
-		} else {
-			floatingWrapper.current.style.opacity = 0;
-		}
-		floatingWrapper.current.style.top = e.clientY + 'px';
-		floatingWrapper.current.style.left = e.clientX + 'px';
-	};
+	// const handleMove = e => {
+	// 	if (showFloatingWrapper) {
+	// 		floatingWrapper.current.style.opacity = 1;
+	// 	} else {
+	// 		floatingWrapper.current.style.opacity = 0;
+	// 	}
+	// 	floatingWrapper.current.style.top = e.clientY + 'px';
+	// 	floatingWrapper.current.style.left = e.clientX + 'px';
+	// };
 
 	return (
 		<div
 			ref={containerRef}
 			className={`${styles.menu}`}
-			style={{ height: height.current }}
+			// style={{ height: height.current }}
 		>
 			<div className={styles.slidingWrapper}></div>
 			{route.map(({ href, label, className }, i) => (

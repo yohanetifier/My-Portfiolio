@@ -152,3 +152,8 @@ a,
 button {
 	/* cursor: none; */
 }
+
+body {
+	/* Disable scroll */
+	overflow: hidden;
+}

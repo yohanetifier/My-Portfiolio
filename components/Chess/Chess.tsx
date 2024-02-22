@@ -9,10 +9,8 @@ import {
 	Scroll,
 	TransformControls,
 } from '@react-three/drei';
-import { useControls } from 'leva';
 import { useFrame } from '@react-three/fiber';
 import BannerPhrase from '../BannerPhrase/BannerPhrase';
-import styles from './Chess.module.scss';
 import { ThemeContext } from '../Context/ThemeContext';
 import gsap from 'gsap';
 import { ChessSet } from '../ChessSet/ChessSet';
@@ -21,15 +19,7 @@ export default function Chess(props) {
 	const scroll = useScroll();
 	const [lastPosition, setLastPosition] = useState(0);
 	const lightRef = useRef();
-	const {
-		title,
-		setTitle,
-		setLoading,
-		scrollingDown,
-		setScrollingDown,
-		prevPath,
-		setPrevPath,
-	} = useContext(ThemeContext);
+	const { scrollingDown, setScrollingDown } = useContext(ThemeContext);
 	// if (prevPath) {
 	// 	setScrollingDown(false);
 	// 	// setPrevPath('');

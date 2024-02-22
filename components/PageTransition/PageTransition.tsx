@@ -9,8 +9,7 @@ interface Props {
 }
 
 const PageTransition = ({ rows = 5 }: Props) => {
-	const { loading, setLoading, title, setTitle, setMenu } =
-		useContext(ThemeContext);
+	const { loading, setLoading, title, setMenu } = useContext(ThemeContext);
 	const router = useRouter();
 	const containerRef = useRef(null);
 	let childrenArray;

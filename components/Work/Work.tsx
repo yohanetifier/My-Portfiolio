@@ -1,31 +1,22 @@
-import React, { useRef, useState } from 'react';
-import { useThree, extend, useFrame } from '@react-three/fiber';
+import React from 'react';
+import { extend } from '@react-three/fiber';
 import {
-	MeshPortalMaterial,
 	OrbitControls,
 	shaderMaterial,
 	useTexture,
 	useVideoTexture,
 } from '@react-three/drei';
-import * as THREE from 'three';
-import { gsap } from 'gsap';
 
 interface Props {
 	activeTexture: number;
-	setArrayLengthOfTexture: (arg: number) => void;
+	setArrayLengthOfTexture: React.Dispatch<React.SetStateAction<number>>;
 	hasClickedOn: string;
-	setHasClickedOn: (arg: string) => void;
+	setHasClickedOn: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Work = ({
-	activeTexture,
-	setArrayLengthOfTexture,
-	hasClickedOn,
-	setHasClickedOn,
-}: Props) => {
-	const ref = useRef<THREE.ShaderMaterial>(null);
-	const [countClick, setCountClick] = useState(0);
-	const { camera } = useThree();
+const Work = ({ setArrayLengthOfTexture }: Props) => {
+	// const ref = useRef<THREE.ShaderMaterial>(null);
+	// const [countClick, setCountClick] = useState(0);
 	const urlTexture = '/assets/HallesTrottemant.mp4';
 	const theBuyerImage = useVideoTexture(urlTexture);
 	const tolefiTexture = useTexture('/tolefi.png');
@@ -44,22 +35,22 @@ const Work = ({
 	let nextImage;
 
 	// Reset State
-	const resetState = () => {
-		countClick === 0 && setCountClick(countClick + 1);
-		ref.current.uniforms.uTime.value = 0.0;
-		setHasClickedOn('');
-	};
+	// const resetState = () => {
+	// 	countClick === 0 && setCountClick(countClick + 1);
+	// 	ref.current.uniforms.uTime.value = 0.0;
+	// 	setHasClickedOn('');
+	// };
 
 	// Animate Texture
-	const animateTexture = () => {
-		gsap.to(ref.current.uniforms.uTime, {
-			value: 1,
-			duration: 1,
-			onComplete: () => {
-				resetState();
-			},
-		});
-	};
+	// const animateTexture = () => {
+	// 	gsap.to(ref.current.uniforms.uTime, {
+	// 		value: 1,
+	// 		duration: 1,
+	// 		onComplete: () => {
+	// 			resetState();
+	// 		},
+	// 	});
+	// };
 
 	// useFrame(() => {
 	// 	if (hasClickedOn === 'next') {
@@ -123,9 +114,9 @@ const Work = ({
 	);
 	extend({ DistortionShaderMaterial });
 
-	const distanceToPlane = camera.position.z;
-	const degToRad = (camera.fov * Math.PI) / 180;
-	const fovY = distanceToPlane * Math.tan(degToRad / 2) * 2;
+	// const distanceToPlane = camera.position.z;
+	// const degToRad = (camera.fov * Math.PI) / 180;
+	// const fovY = distanceToPlane * Math.tan(degToRad / 2) * 2;
 
 	return (
 		<mesh>

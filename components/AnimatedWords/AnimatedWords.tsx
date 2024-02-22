@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './AnimatedWords.module.scss';
 import gsap from 'gsap';
 
 type Props = {
 	arrayOfLetter: string[];
-	setAnimationComplete: (arg: boolean) => void;
+	setAnimationComplete: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const AnimatedWords = ({ arrayOfLetter, setAnimationComplete }: Props) => {

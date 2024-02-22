@@ -7,6 +7,15 @@
     // z-index: 9;
     overflow: hidden;
     font-family: "Bungee";
+    @include tabletXs {
+        & > div:nth-child(5) {
+            & > div {
+                position: relative;
+                top: -100px;
+                overflow: hidden;
+            }
+        }
+    }
 }
 
 .centerWrapper {

@@ -3,9 +3,7 @@ import WorkCard from '../WorkCard/WorkCard';
 import styles from './WorkList.module.scss';
 import gsap from 'gsap';
 
-interface Props {}
-
-const WorkList = (props: Props) => {
+const WorkList = () => {
 	const wrapperRef = useRef(null);
 	const projectList = [
 		'alliance-gaz',

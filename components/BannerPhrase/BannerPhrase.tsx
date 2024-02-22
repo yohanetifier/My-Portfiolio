@@ -1,13 +1,11 @@
 'use client';
-import { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './BannerPhrase.module.scss';
 import gsap from 'gsap';
-import { ThemeContext } from '../Context/ThemeContext';
-import { useRouter } from 'next/navigation';
 
 type Props = {
 	bannerPhrase: String[];
-	setIsFinished?: (arg: boolean) => void;
+	setIsFinished?: React.Dispatch<React.SetStateAction<boolean>>;
 	scrollingDown: boolean;
 	isTouchDevice: boolean;
 };
@@ -18,7 +16,6 @@ const BannerPhrase = ({
 	scrollingDown,
 	isTouchDevice,
 }: Props) => {
-	// const { scrollingDown, setScrollingDown } = useContext(ThemeContext);
 	const title = document.querySelectorAll('.animateTitle');
 	useEffect(() => {
 		!isTouchDevice && scrollingDown
@@ -28,14 +25,14 @@ const BannerPhrase = ({
 					onComplete: () => {
 						setIsFinished(true);
 					},
-			  })
+				})
 			: gsap.to(title, {
 					y: 0,
 					stagger: 0.5,
 					onUpdate: () => {
 						setIsFinished(false);
-					},
-			  });
+					}
+				});
 	}, [isTouchDevice, scrollingDown]);
 
 	return (

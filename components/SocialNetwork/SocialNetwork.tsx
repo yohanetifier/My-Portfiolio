@@ -6,9 +6,7 @@ import IconLink from '../IconLink/IconLink';
 import { ThemeContext } from '../Context/ThemeContext';
 import gsap from 'gsap';
 
-interface Props {}
-
-const SocialNetwork = (props: Props) => {
+const SocialNetwork = () => {
 	const wrapperRef = useRef(null);
 	const { endLoading } = useContext(ThemeContext);
 	useEffect(() => {

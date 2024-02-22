@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import styles from './Button.module.scss';
 import { ThemeContext } from '../Context/ThemeContext';
-interface Props {}
 
-const Button = (props: Props) => {
+const Button = () => {
 	const { menu, setMenu } = useContext(ThemeContext);
 	return (
 		<button

@@ -1,13 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './Connect.module.scss';
 import gsap from 'gsap';
-import { shuffledLetters } from '../../lib/utils';
 
-interface Props {
-	// letters: string;
-}
-
-const Connect = (props: Props) => {
+const Connect = () => {
 	const titleRef = useRef(null);
 	const overlapWrapperRef = useRef(null);
 	const togetherRef = useRef(null);

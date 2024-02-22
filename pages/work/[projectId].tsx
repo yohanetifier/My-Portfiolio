@@ -1,8 +1,6 @@
 import Project from '../../components/Project/Project';
 
-interface Props {}
-
-const pages = (props: Props) => {
+const pages = () => {
 	return <Project />;
 };
 

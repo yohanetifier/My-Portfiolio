@@ -2,9 +2,7 @@ import React from 'react';
 import styles from './Project.module.scss';
 import { useRouter } from 'next/router';
 
-interface Props {}
-
-const Project = (props: Props) => {
+const Project = () => {
 	const { query } = useRouter();
 	return (
 		<div className={styles.wrapper}>

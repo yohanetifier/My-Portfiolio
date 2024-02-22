@@ -7,11 +7,10 @@ import Footer from '../Footer/Footer';
 import Connect from '../Connect/Connect';
 import Cursor from '../Cursor/Cursor';
 interface Props {
-	title: string;
 	subtitle: string;
 }
 
-const Contact = ({ title, subtitle }: Props) => {
+const Contact = ({ subtitle }: Props) => {
 	const [show, setShow] = useState<boolean>(false);
 	const height = useRef(0);
 	useEffect(() => {

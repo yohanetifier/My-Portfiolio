@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import styles from './SlidingWrapper.module.scss';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ThemeContext } from '../Context/ThemeContext';
 import gsap from 'gsap';
-import { useRouter } from 'next/router';
 
 interface Props {
 	href: string;
 	label: string;
-	setShowFloatingWrapper: (arg: boolean) => void;
+	setShowFloatingWrapper: React.Dispatch<React.SetStateAction<boolean>>;
 	className?: string;
 }
 
@@ -19,7 +17,7 @@ const SlidingWrapper = ({
 	setShowFloatingWrapper,
 	className,
 }: Props) => {
-	const { setMenu, endLoading, setLoading, setTitle, title } =
+	const { setMenu, endLoading, setLoading, setTitle } =
 		useContext(ThemeContext);
 	const wrapperRef = useRef(null);
 	useEffect(() => {
@@ -30,7 +28,6 @@ const SlidingWrapper = ({
 			: gsap.to(link, { opacity: 0, stagger: 0.3 });
 	}, [endLoading, wrapperRef]);
 
-	const router = useRouter();
 	const handleClick = (e, href) => {
 		e.preventDefault();
 		setTitle(href);

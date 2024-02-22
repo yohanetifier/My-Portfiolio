@@ -2,9 +2,7 @@ import { Text3D } from '@react-three/drei';
 import { useControls } from 'leva';
 import React from 'react';
 
-interface Props {}
-
-const Technos = ({}: Props) => {
+const Technos = () => {
 	let desktopS;
 	let tabletS;
 	let mobileS;
@@ -119,42 +117,42 @@ const Technos = ({}: Props) => {
 			expressJsR: {
 				value: {
 					x: 0,
-					y: -0.5,
+					y: tabletS ? 0 : -0.5,
 					z: 0,
 				},
 			},
 			typescriptR: {
 				value: {
 					x: 0,
-					y: 0.5,
+					y: tabletS ? 0 : 0.5,
 					z: 0,
 				},
 			},
 			r3fR: {
 				value: {
 					x: 0,
-					y: 0.5,
+					y: tabletS ? 0 : 0.5,
 					z: 0,
 				},
 			},
 			nextJsR: {
 				value: {
 					x: 0,
-					y: 0.5,
+					y: tabletS ? 0 : 0.5,
 					z: 0,
 				},
 			},
 			graphqlR: {
 				value: {
 					x: 0,
-					y: -0.5,
+					y: tabletS ? 0 : -0.5,
 					z: 0,
 				},
 			},
 			gitR: {
 				value: {
 					x: 0,
-					y: -0.5,
+					y: tabletS ? 0 : -0.5,
 					z: 0,
 				},
 			},

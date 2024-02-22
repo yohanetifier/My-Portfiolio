@@ -2,7 +2,7 @@
 import { isDevEnv } from '../lib/constants';
 import styles from '../styles/index.module.scss';
 import Introduction from '../components/Introduction/Introduction';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Scene from '../components/Scene/Scene';
 import { Leva } from 'leva';
@@ -14,10 +14,8 @@ interface Images {
 	alt: string;
 }
 
-export default function Index({ introduction }) {
-	const { isClosed, hideIntro, setHideIntro } = useContext(ThemeContext);
-	const [animationSecondComplete, setAnimationSecondComplete] =
-		useState<boolean>(false);
+export default function Index() {
+	const { hideIntro, setHideIntro } = useContext(ThemeContext);
 	const words: string[] = ['H', 'E', 'L', 'L', 'O'];
 	const bannerPhrase: String[] = ["LET'S BUILD", 'THE SITE', 'OF THE FUTURE'];
 	const images: Images[] = [
@@ -43,9 +41,6 @@ export default function Index({ introduction }) {
 		},
 	];
 
-	// let value = useRef(null);
-	// const [value, setValue] = useState()
-	// const [hideIntro, setHideIntro] = useState(false);
 	useEffect(() => {
 		window.addEventListener('unload', () => {
 			setHideIntro(false);
@@ -57,16 +52,14 @@ export default function Index({ introduction }) {
 				<Introduction
 					words={words}
 					images={images}
-					setAnimationSecondComplete={setAnimationSecondComplete}
 					setHideIntro={setHideIntro}
-					// counter={counter}
 				/>
 			) : (
 				<>
 					{isDevEnv && <Leva collapsed />}
 					<Canvas camera={{ position: [40, 15, 30], fov: 50 }}>
 						<ScrollControls>
-							<Scene bannerPhrase={bannerPhrase} />
+							<Scene />
 						</ScrollControls>
 					</Canvas>
 				</>
