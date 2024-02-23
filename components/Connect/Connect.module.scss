@@ -25,12 +25,14 @@
         font-size: 30px;
     }
     @include mobileL {
+        margin-bottom: 10px;
         font-size: 28px;
     }
     @include mobileM {
         font-size: 25px;
     }
     @include mobileS {
+        width: 70vw;
         font-size: 16px;
     }
 }
@@ -40,64 +42,77 @@
 }
 
 .overlapWrapper {
-    position: absolute;
-}
-
-.together {
     position: relative;
-    // left: 50px;
-    left: 350px;
-    @include NestHubMax {
-        left: 276px;
-    }
-    @include desktopS {
-        left: 300px;
-    }
-    @include desktopXs {
-        left: 234px;
-    }
-    @include tabletM {
-        left: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    @include desktopM {
+        width: 277px;
     }
     @include tabletXs {
-        left: 125px;
+        width: 150px;
     }
     @include mobileL {
-        left: 135px;
-    }
-    @include mobileM {
-        left: 100px;
-    }
-    @include mobileS {
-        left: 65px;
+        width: 200px;
     }
 }
+
+// .together {
+//     position: relative;
+//     // left: 50px;
+//     left: 350px;
+//     @include NestHubMax {
+//         left: 276px;
+//     }
+//     @include desktopS {
+//         left: 300px;
+//     }
+//     @include desktopXs {
+//         left: 234px;
+//     }
+//     @include tabletM {
+//         left: 180px;
+//     }
+//     @include tabletXs {
+//         left: 125px;
+//     }
+//     @include mobileL {
+//         left: 130px;
+//     }
+//     @include mobileM {
+//         left: 100px;
+//     }
+//     @include mobileS {
+//         left: 65px;
+//     }
+// }
 
 .overlapMessage {
     position: absolute;
-    left: 300px;
-    @include NestHubMax {
-        left: 220px;
-    }
-    @include desktopS {
-        left: 250px;
-    }
-    @include desktopXs {
-        left: 188px;
-    }
-    @include tabletM {
-        left: 150px;
-    }
-    @include tabletXs {
-        left: 95px;
-    }
-    @include mobileL {
-        left: 103px;
-    }
-    @include mobileM {
-        left: 80px;
-    }
-    @include mobileS {
-        left: 53px;
-    }
+    // left: 300px;
+    // @include NestHubMax {
+    //     left: 220px;
+    // }
+    // @include desktopS {
+    //     left: 250px;
+    // }
+    // @include desktopXs {
+    //     left: 188px;
+    // }
+    // @include tabletM {
+    //     left: 150px;
+    // }
+    // @include tabletXs {
+    //     left: 95px;
+    // }
+    // @include mobileL {
+    //     left: 103px;
+    // }
+    // @include mobileM {
+    //     left: 80px;
+    // }
+    // @include mobileS {
+    //     left: 53px;
+    // }
 }

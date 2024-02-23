@@ -56,7 +56,12 @@ export default function Index() {
 				/>
 			) : (
 				<>
-					{isDevEnv && <Leva collapsed />}
+					{isDevEnv && (
+						<Leva
+							collapsed
+							hidden
+						/>
+					)}
 					<Canvas camera={{ position: [40, 15, 30], fov: 50 }}>
 						<ScrollControls>
 							<Scene />

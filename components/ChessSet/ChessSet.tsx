@@ -8,7 +8,7 @@ Title: Chess set
 
 import React, { useContext, useRef, useState } from 'react';
 import { Text3D, useCursor, useGLTF } from '@react-three/drei';
-import { useControls } from 'leva';
+import { useControls, Leva } from 'leva';
 import { ThemeContext } from '../Context/ThemeContext';
 
 export function ChessSet(props) {
@@ -16,7 +16,8 @@ export function ChessSet(props) {
 	useCursor(hovered);
 	const { nodes, materials }: any = useGLTF('/chess_set.glb');
 	const { setTitle, setLoading } = useContext(ThemeContext);
-	const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+	const isTouchDevice =
+		'ontouchstart' in window || navigator.maxTouchPoints > 0;
 	const contactRef = useRef(null);
 	const [hover, setHover] = useState({
 		contact: false,
@@ -124,6 +125,7 @@ export function ChessSet(props) {
 			position={[position.x, position.y, position.z]}
 			rotation={[rotation.x, rotation.y, rotation.z]}
 		>
+			<Leva hidden />
 			{!isTouchDevice && (
 				<>
 					<Text3D

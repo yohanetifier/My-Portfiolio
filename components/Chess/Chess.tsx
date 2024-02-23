@@ -56,7 +56,7 @@ export default function Chess(props) {
 	const ref = useRef();
 	return (
 		<>
-			<TransformControls object={ref} />
+			{/* <TransformControls object={ref} /> */}
 			<directionalLight
 				{...props}
 				position={[0, 5, 0]}

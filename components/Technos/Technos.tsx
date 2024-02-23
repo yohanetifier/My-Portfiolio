@@ -1,5 +1,5 @@
 import { Text3D } from '@react-three/drei';
-import { useControls } from 'leva';
+import { useControls, Leva } from 'leva';
 import React from 'react';
 
 const Technos = () => {
@@ -164,6 +164,7 @@ const Technos = () => {
 	};
 	return (
 		<>
+			<Leva hidden />
 			<Text3D
 				position={[react.x, react.y, react.z]}
 				{...props}

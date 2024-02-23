@@ -94,4 +94,7 @@
     @include desktopS {
         width: 80vw;
     }
+    @include mobileL {
+        margin-bottom: 10px;
+    }
 }
