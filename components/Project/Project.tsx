@@ -6,8 +6,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { ThemeContext } from '../Context/ThemeContext';
 
 const Project = () => {
-	const isTouchDevice =
-		'ontouchstart' in window || navigator.maxTouchPoints > 0;
+	// const isTouchDevice =
+	// 	'ontouchstart' in window || navigator.maxTouchPoints > 0;
 	const { query } = useRouter();
 	const { setLoading, setTitle } = useContext(ThemeContext);
 	const handleClick = e => {
@@ -17,19 +17,15 @@ const Project = () => {
 	};
 	return (
 		<div className={styles.wrapper}>
-			{!isTouchDevice && (
-				<>
-					<div
-						className={styles.goBack}
-						onClick={e => handleClick(e)}
-					>
-						<IconLink
-							link='/work'
-							icon={faArrowLeft}
-						/>
-					</div>
-				</>
-			)}
+			<div
+				className={styles.goBack}
+				onClick={e => handleClick(e)}
+			>
+				<IconLink
+					link='/work'
+					icon={faArrowLeft}
+				/>
+			</div>
 			<video
 				autoPlay
 				src={`/assets/videos/projects/${query.projectId}.mp4`}

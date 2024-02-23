@@ -5,6 +5,10 @@
     font-size: 100px;
     position: relative;
     width: 100vw;
+    @include desktopL {
+        width: 80vw;
+        font-size: 75px;
+    }
     @include NestHubMax {
         font-size: 75px;
     }

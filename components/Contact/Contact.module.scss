@@ -88,6 +88,9 @@
     display: flex;
     align-items: center;
     position: relative;
+    @include desktopL {
+        width: 100vw;
+    }
     @include desktopS {
         width: 80vw;
     }

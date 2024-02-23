@@ -8,9 +8,12 @@
     width: 50vw;
     font-weight: bold;
     font-family: "Bungee";
+    @include desktopL {
+        font-size: 74px;
+        top: 150px;
+    }
     @include desktopS {
         font-size: 74px;
-        top: 500px;
         width: 100vw;
     }
     @include desktopXs {
@@ -34,4 +37,10 @@
 
 .overflowHidden {
     overflow: hidden;
+}
+
+.test {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

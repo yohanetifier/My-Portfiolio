@@ -42,7 +42,7 @@ const Contact = ({ subtitle }: Props) => {
 					<SocialNetwork />
 				</div>
 			</div>
-			<Footer />
+			{/* <Footer /> */}
 		</section>
 	);
 };
