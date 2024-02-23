@@ -32,9 +32,6 @@ const AnimatedImg = ({
 				.to(children, {
 					opacity: 1,
 					stagger: 0.5,
-					// onComplete: () => {
-					// setAnimationSecondComplete(true);
-					// },
 				})
 				.to(children[4] as HTMLElement, {
 					y: '200%',

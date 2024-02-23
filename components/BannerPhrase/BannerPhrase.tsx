@@ -25,14 +25,14 @@ const BannerPhrase = ({
 					onComplete: () => {
 						setIsFinished(true);
 					},
-				})
+			  })
 			: gsap.to(title, {
 					y: 0,
 					stagger: 0.5,
 					onUpdate: () => {
 						setIsFinished(false);
-					}
-				});
+					},
+			  });
 	}, [isTouchDevice, scrollingDown]);
 
 	return (

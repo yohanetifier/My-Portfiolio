@@ -89,7 +89,7 @@ const Menu = () => {
 			))}
 
 			<div className={`${styles.slidingWrapper} ${styles.socialNetwork}`}>
-				<SocialNetwork />
+				<SocialNetwork isAnimated={true} />
 			</div>
 		</div>
 	);

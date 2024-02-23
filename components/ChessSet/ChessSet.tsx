@@ -9,21 +9,14 @@ Title: Chess set
 import React, { useContext, useRef, useState } from 'react';
 import { Text3D, useCursor, useGLTF } from '@react-three/drei';
 import { useControls } from 'leva';
-import { useRouter } from 'next/router';
-import gsap from 'gsap';
 import { ThemeContext } from '../Context/ThemeContext';
-import { MeshProps } from '@react-three/fiber';
-
-interface CustomMeshProps extends MeshProps {
-	castShadow?: boolean;
-}
 
 export function ChessSet(props) {
-	const router = useRouter();
 	const [hovered, set]: any = useState();
 	useCursor(hovered);
 	const { nodes, materials }: any = useGLTF('/chess_set.glb');
 	const { setTitle, setLoading } = useContext(ThemeContext);
+	const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 	const contactRef = useRef(null);
 	const [hover, setHover] = useState({
 		contact: false,
@@ -116,67 +109,70 @@ export function ChessSet(props) {
 	};
 
 	/* Handle Text Hover  */
-	const handleTextHover = text => {
-		setHover(prevState => ({ ...prevState, [text]: true }));
-	};
+	// const handleTextHover = text => {
+	// 	setHover(prevState => ({ ...prevState, [text]: true }));
+	// };
 
 	/* Handle Text leave */
-	const handleTextLeave = text => {
-		setHover(prevState => ({ ...prevState, [text]: false }));
-	};
+	// const handleTextLeave = text => {
+	// 	setHover(prevState => ({ ...prevState, [text]: false }));
+	// };
 
 	return (
 		<group
-			{...props}
 			dispose={null}
 			position={[position.x, position.y, position.z]}
 			rotation={[rotation.x, rotation.y, rotation.z]}
 		>
-			<Text3D
-				font='/fonts/helvetiker_regular.typeface.json'
-				ref={contactRef}
-				scale={hover.contact ? 0.9 : contactScale}
-				position={[contactPosition.x, contactPosition.y, contactPosition.z]}
-				rotation={[contactRotation.x, contactRotation.y, contactRotation.z]}
-				onClick={e => handleClick(e, 'contact')}
-				onPointerOver={() => set(true)}
-				onPointerLeave={() => set(false)}
-			>
-				Contact
-				<meshBasicMaterial color='black' />
-			</Text3D>
-			<Text3D
-				font='/fonts/helvetiker_regular.typeface.json'
-				scale={hover.about ? 0.9 : aboutScale}
-				position={[aboutPosition.x, aboutPosition.y, aboutPosition.z]}
-				rotation={[aboutRotation.x, aboutRotation.y, aboutRotation.z]}
-				onClick={e => handleClick(e, 'about')}
-				onPointerOver={() => set(true)}
-				onPointerLeave={() => set(false)}
-				// onPointerOver={e => {
-				// 	handleTextHover('about');
-				// }}
-				// onPointerLeave={() => handleTextLeave('about')}
-			>
-				About
-				<meshBasicMaterial color='black' />
-			</Text3D>
-			<Text3D
-				font='/fonts/helvetiker_regular.typeface.json'
-				scale={hover.work ? 0.9 : workScale}
-				position={[workPosition.x, workPosition.y, workPosition.z]}
-				rotation={[workRotation.x, workRotation.y, workRotation.z]}
-				onClick={e => handleClick(e, 'work')}
-				onPointerOver={() => set(true)}
-				onPointerLeave={() => set(false)}
-				// onPointerOver={e => {
-				// 	handleTextHover('work');
-				// }}
-				// onPointerLeave={() => handleTextLeave('work')}
-			>
-				Work
-				<meshBasicMaterial color='black' />
-			</Text3D>
+			{!isTouchDevice && (
+				<>
+					<Text3D
+						font='/fonts/helvetiker_regular.typeface.json'
+						ref={contactRef}
+						scale={hover.contact ? 0.9 : contactScale}
+						position={[contactPosition.x, contactPosition.y, contactPosition.z]}
+						rotation={[contactRotation.x, contactRotation.y, contactRotation.z]}
+						onClick={e => handleClick(e, 'contact')}
+						onPointerOver={() => set(true)}
+						onPointerLeave={() => set(false)}
+					>
+						Contact
+						<meshBasicMaterial color='black' />
+					</Text3D>
+					<Text3D
+						font='/fonts/helvetiker_regular.typeface.json'
+						scale={hover.about ? 0.9 : aboutScale}
+						position={[aboutPosition.x, aboutPosition.y, aboutPosition.z]}
+						rotation={[aboutRotation.x, aboutRotation.y, aboutRotation.z]}
+						onClick={e => handleClick(e, 'about')}
+						onPointerOver={() => set(true)}
+						onPointerLeave={() => set(false)}
+						// onPointerOver={e => {
+						// 	handleTextHover('about');
+						// }}
+						// onPointerLeave={() => handleTextLeave('about')}
+					>
+						About
+						<meshBasicMaterial color='black' />
+					</Text3D>
+					<Text3D
+						font='/fonts/helvetiker_regular.typeface.json'
+						scale={hover.work ? 0.9 : workScale}
+						position={[workPosition.x, workPosition.y, workPosition.z]}
+						rotation={[workRotation.x, workRotation.y, workRotation.z]}
+						onClick={e => handleClick(e, 'work')}
+						onPointerOver={() => set(true)}
+						onPointerLeave={() => set(false)}
+						// onPointerOver={e => {
+						// 	handleTextHover('work');
+						// }}
+						// onPointerLeave={() => handleTextLeave('work')}
+					>
+						Work
+						<meshBasicMaterial color='black' />
+					</Text3D>
+				</>
+			)}
 			<group
 				position={[0, 0.01, 0]}
 				scale={[7.939, 46.607, 7.939]}

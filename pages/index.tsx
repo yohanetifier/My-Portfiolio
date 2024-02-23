@@ -45,7 +45,7 @@ export default function Index() {
 		window.addEventListener('unload', () => {
 			setHideIntro(false);
 		});
-	}, [hideIntro]);
+	});
 	return (
 		<div className={styles.wrapper}>
 			{!hideIntro ? (

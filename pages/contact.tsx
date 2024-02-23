@@ -6,12 +6,7 @@ const contact = () => {
 	//Setup the prevPath so that the animation on the home page works fine
 	// setPrevPath('contact');
 
-	return (
-		<Contact
-			title='Work together?'
-			subtitle='Get in touch by email'
-		/>
-	);
+	return <Contact subtitle='Get in touch by email' />;
 };
 
 export default contact;

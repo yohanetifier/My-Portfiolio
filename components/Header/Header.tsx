@@ -9,7 +9,7 @@ const Header = () => {
 		<header className={styles.wrapper}>
 			<div className={styles.header}>
 				<Logo
-					src='/assets/images/YLOGO4.svg'
+					src='/assets/images/logo.png'
 					alt='log'
 				/>
 				<Description
