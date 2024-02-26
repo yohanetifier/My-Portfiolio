@@ -8,6 +8,7 @@ export type ArrayOfImg = {
 	src: string;
 	alt: string;
 	className: string;
+	id: number;
 };
 
 type Props = {
@@ -71,20 +72,18 @@ const AnimatedImg = ({
 			className={styles.container}
 			ref={wrapperRef}
 		>
-			{arrayOfImg.map(({ src, alt, className }, i) => (
-				<>
-					<figure
-						className={`${className} figure`}
-						key={i}
-					>
-						<Image
-							src={src}
-							alt={alt}
-							width={200}
-							height={200}
-						/>
-					</figure>
-				</>
+			{arrayOfImg.map(({ src, alt, className, id }) => (
+				<figure
+					className={`${className} figure`}
+					key={id}
+				>
+					<Image
+						src={src}
+						alt={alt}
+						width={200}
+						height={200}
+					/>
+				</figure>
 			))}
 		</div>
 	);

@@ -1,41 +1,48 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.2",
-    "@fortawesome/free-brands-svg-icons": "^6.4.2",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@react-three/drei": "^9.84.2",
-    "@react-three/fiber": "^8.14.2",
-    "@types/node": "^18.6.3",
-    "@types/react": "^18.0.15",
-    "@types/react-dom": "^18.0.6",
-    "classnames": "^2.3.1",
-    "date-fns": "^2.28.0",
-    "framer-motion": "^10.16.4",
-    "framer-motion-3d": "^10.16.4",
-    "gsap": "^3.12.2",
-    "leva": "^0.9.35",
-    "next": "latest",
-    "r3f-perf": "^7.1.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sass": "^1.67.0",
-    "three": "^0.156.1",
-    "typescript": "*"
-  },
-  "devDependencies": {
-    "autoprefixer": "10.4.7",
-    "eslint": "^8.51.0",
-    "eslint-config-next": "13.5.4",
-    "postcss": "8.4.14",
-    "prettier": "^3.0.3",
-    "tailwindcss": "^3.0.24"
-  }
+	"private": true,
+	"scripts": {
+		"dev": "next",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"test": "jest"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^6.4.2",
+		"@fortawesome/free-brands-svg-icons": "^6.4.2",
+		"@fortawesome/free-solid-svg-icons": "^6.4.2",
+		"@fortawesome/react-fontawesome": "^0.2.0",
+		"@react-three/drei": "^9.84.2",
+		"@react-three/fiber": "^8.14.2",
+		"@types/node": "^18.6.3",
+		"@types/react": "^18.0.15",
+		"@types/react-dom": "^18.0.6",
+		"classnames": "^2.3.1",
+		"date-fns": "^2.28.0",
+		"framer-motion": "^10.16.4",
+		"framer-motion-3d": "^10.16.4",
+		"gsap": "^3.12.2",
+		"leva": "^0.9.35",
+		"next": "latest",
+		"r3f-perf": "^7.1.2",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"sass": "^1.67.0",
+		"three": "^0.156.1",
+		"typescript": "*"
+	},
+	"devDependencies": {
+		"@testing-library/jest-dom": "^6.4.2",
+		"@testing-library/react": "^14.2.1",
+		"@types/jest": "^29.5.12",
+		"autoprefixer": "10.4.7",
+		"eslint": "^8.51.0",
+		"eslint-config-next": "13.5.4",
+		"jest": "^29.7.0",
+		"jest-environment-jsdom": "^29.7.0",
+		"postcss": "8.4.14",
+		"prettier": "^3.0.3",
+		"tailwindcss": "^3.0.24",
+		"ts-node": "^10.9.2"
+	}
 }

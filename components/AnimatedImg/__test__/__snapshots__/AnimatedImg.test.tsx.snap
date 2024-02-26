@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnimatedImg should render correctly 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <figure
+      class="exemple figure"
+    >
+      <img
+        alt="exemple"
+        data-nimg="1"
+        decoding="async"
+        height="200"
+        loading="lazy"
+        src="/_next/image?url=%2Fexemple.png&w=640&q=75"
+        srcset="/_next/image?url=%2Fexemple.png&w=256&q=75 1x, /_next/image?url=%2Fexemple.png&w=640&q=75 2x"
+        style="color: transparent;"
+        width="200"
+      />
+    </figure>
+    <figure
+      class="test figure"
+    >
+      <img
+        alt="test"
+        data-nimg="1"
+        decoding="async"
+        height="200"
+        loading="lazy"
+        src="/_next/image?url=%2Ftest.png&w=640&q=75"
+        srcset="/_next/image?url=%2Ftest.png&w=256&q=75 1x, /_next/image?url=%2Ftest.png&w=640&q=75 2x"
+        style="color: transparent;"
+        width="200"
+      />
+    </figure>
+  </div>
+</div>
+`;
