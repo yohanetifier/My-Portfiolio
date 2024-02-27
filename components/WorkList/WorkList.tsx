@@ -26,6 +26,10 @@ const WorkList = () => {
 			duration: 2,
 			stagger: 0.5,
 		});
+		wrapperRef.current.addEventListener('wheel', e => {
+			e.preventDefault();
+			wrapperRef.current.scrollLeft += e.deltaY;
+		});
 	}, []);
 
 	return (
