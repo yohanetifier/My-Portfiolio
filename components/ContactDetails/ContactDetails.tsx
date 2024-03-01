@@ -1,5 +1,4 @@
 import React from 'react';
-import IconWithText from '../IconWithText/IconWithText';
 import styles from './ContactDetails.module.scss';
 import { Contact } from '../../typings/contact';
 import IconLink from '../IconLink/IconLink';
