@@ -2,7 +2,7 @@ import React, { RefObject, useState } from 'react';
 import styles from './Introduction.module.scss';
 import AnimatedWords from '../AnimatedWords/AnimatedWords';
 import AnimatedImg from '../AnimatedImg/AnimatedImg';
-import { ArrayOfImg } from '../AnimatedImg/AnimatedImg';
+import { ArrayOfImg } from '../../typings/ArrayofImg';
 
 type SourceImage = Pick<ArrayOfImg, 'src' | 'alt'>;
 

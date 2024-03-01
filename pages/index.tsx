@@ -8,6 +8,7 @@ import Scene from '../components/Scene/Scene';
 import { Leva } from 'leva';
 import { ScrollControls } from '@react-three/drei';
 import { ThemeContext } from '../components/Context/ThemeContext';
+import Head from 'next/head';
 
 interface Images {
 	src: string;
@@ -48,6 +49,13 @@ export default function Index() {
 	});
 	return (
 		<div className={styles.wrapper}>
+			<Head>
+				<title>Portfolio Yohan Etifier</title>
+				<meta
+					name='description'
+					content='Yohan Etifier is a Freelance Creative Developer, he loves taking on challenges and solving problems'
+				/>
+			</Head>
 			{!hideIntro ? (
 				<Introduction
 					words={words}

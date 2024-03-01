@@ -3,6 +3,7 @@ import React from 'react';
 import { Avatar } from '../components/Avatar/Avatar';
 import { ScrollControls, Scroll } from '@react-three/drei';
 import Technos from '../components/Technos/Technos';
+import Head from 'next/head';
 
 let desktopS;
 
