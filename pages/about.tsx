@@ -17,6 +17,13 @@ const about = () => {
 	// setPrevPath('about');
 	return (
 		<section>
+			<Head>
+				<title>About</title>
+				<meta
+					name='description'
+					content='Yohan Etifier is a freelance creative web developer from Paris'
+				/>
+			</Head>
 			<Canvas>
 				{/* {!tabletS && <OrbitControls />} */}
 				<ambientLight />
