@@ -10,13 +10,13 @@ const ShowEmail = ({ show, className }: Props) => {
 	return (
 		<div className={`${styles.mainWrapper} ${className}`}>
 			<div className={styles.email}>yohan.etifier@gmail.com</div>
-			<div
+			{/* <div
 				className={
 					show
 						? `${styles.fixWrapper} ${styles.slidingWrapper}`
 						: styles.fixWrapper
 				}
-			></div>
+			></div> */}
 		</div>
 	);
 };

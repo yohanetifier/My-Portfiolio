@@ -22,7 +22,8 @@
     @include tabletS {
         font-size: 60px;
         top: 250px;
-        left: 0;
+        // left: 0;
+        left: 5vw;
     }
     @include mobileL {
         font-size: 40px;

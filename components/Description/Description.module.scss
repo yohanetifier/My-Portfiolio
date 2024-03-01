@@ -4,8 +4,8 @@
     font-family: "Almarai";
     font-weight: 700;
     text-transform: uppercase;
-    @include mobileL {
-        font-size: 12px;
+    @include tabletXs {
+        display: none;
     }
 }
 

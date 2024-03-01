@@ -36,9 +36,13 @@ const BannerPhrase = ({
 	}, [isTouchDevice, scrollingDown]);
 
 	return (
-		<div className={styles.title}>
+		<div
+			data-testid='mainWrapper'
+			className={styles.title}
+		>
 			{bannerPhrase.map((phrase, index) => (
 				<div
+					data-testid='wrapper'
 					className={styles.overflowHidden}
 					key={index}
 				>

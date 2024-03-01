@@ -1,0 +1,36 @@
+@import "../../styles/breakpoint.module.scss";
+
+.contact {
+    display: flex;
+    width: 400px;
+    gap: 50px;
+    & > h2 {
+        font-size: 80px;
+        @include desktopXs {
+            font-size: 55px;
+        }
+        @include tabletXs {
+            font-size: 28px;
+        }
+    }
+    @include tabletXs {
+        position: relative;
+        top: 20px;
+    }
+    @include mobileL {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.contactDetails {
+    position: relative;
+    top: 40px;
+    @include desktopXs {
+        top: 20px;
+    }
+    @include tabletXs {
+        top: 0;
+    }
+}

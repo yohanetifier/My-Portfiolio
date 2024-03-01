@@ -9,12 +9,11 @@
 }
 
 .leftWrapper {
-    width: 50%;
     height: 100%;
     margin-left: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     @include mobileL {
         margin-left: 50px;
     }
@@ -22,79 +21,4 @@
 
 .contactWrapper {
     height: 60%;
-}
-
-.title {
-    font-size: 100px;
-}
-
-.subtitle {
-    font-size: 40px;
-    margin-right: 100px;
-    text-decoration: underline;
-    cursor: pointer;
-    @include NestHubMax {
-        font-size: 25px;
-    }
-    @include desktopS {
-        position: absolute;
-        width: 60%;
-        margin-right: 0px;
-    }
-    @include tabletXs {
-        font-size: 20px;
-        width: 100%;
-    }
-    @include mobileL {
-        font-size: $fontSizeMobileL;
-    }
-    @include mobileM {
-        font-size: $fontSizeMobileM;
-    }
-    @include mobileS {
-        font-size: 12px;
-    }
-}
-
-.showEmail {
-    width: 40%;
-    @include NestHubMax {
-        width: 50%;
-    }
-    @include desktopS {
-        position: absolute;
-        left: 500px;
-    }
-    @include desktopXs {
-        left: 425px;
-        width: 60%;
-    }
-    @include tabletM {
-        left: 400px;
-    }
-    @include tabletXs {
-        left: 214px;
-        width: 100%;
-    }
-    @include mobileL {
-        left: 200px;
-    }
-    @include mobileS {
-        left: 128px;
-    }
-}
-
-.emailWrapper {
-    display: flex;
-    align-items: center;
-    position: relative;
-    @include desktopL {
-        width: 100vw;
-    }
-    @include desktopS {
-        width: 80vw;
-    }
-    @include mobileL {
-        margin-bottom: 10px;
-    }
 }

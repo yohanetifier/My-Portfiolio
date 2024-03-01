@@ -20,8 +20,8 @@ const Logo = ({ src, alt }: Props) => {
 			<Image
 				src={src}
 				alt={alt}
-				width={75}
-				height={75}
+				width={100}
+				height={300}
 				className={styles.logo}
 			/>
 		</div>

@@ -29,9 +29,11 @@ const AnimatedWords = ({ arrayOfLetter, setAnimationComplete }: Props) => {
 		<div
 			ref={wrapperRef}
 			className={styles.title}
+			data-testid='div'
 		>
 			{arrayOfLetter.map((letter, i) => (
 				<span
+					data-testid='span'
 					key={i}
 					className={styles.letter}
 				>

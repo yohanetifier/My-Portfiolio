@@ -6,6 +6,9 @@
     @include tabletXs {
         font-size: 150px;
     }
+    @include mobileL {
+        font-size: 120px;
+    }
     @include mobileM {
         font-size: 120px;
     }

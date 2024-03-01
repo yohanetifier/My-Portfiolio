@@ -1,11 +1,16 @@
-// 'use client';
 import { useState } from 'react';
 import styles from './Contact.module.scss';
-import SocialNetwork from '../SocialNetwork/SocialNetwork';
-import ShowEmail from '../ShowEmail/ShowEmail';
-import Footer from '../Footer/Footer';
 import Connect from '../Connect/Connect';
-// import Cursor from '../Cursor/Cursor';
+import IconWithText from '../IconWithText/IconWithText';
+import { faEnvelope, faX } from '@fortawesome/free-solid-svg-icons';
+import {
+	faGithub,
+	faInstagram,
+	faLinkedin,
+	faXTwitter,
+} from '@fortawesome/free-brands-svg-icons';
+import { Contact } from '../../typings/contact';
+import ContactDetails from '../ContactDetails/ContactDetails';
 interface Props {
 	subtitle: string;
 }
@@ -17,29 +22,43 @@ const Contact = ({ subtitle }: Props) => {
 	// 	height.current = window.innerHeight;
 	// }, [height]);
 
+	const contact: Contact[] = [
+		{
+			icon: faEnvelope,
+			text: 'yohanetifier@gmail.com',
+			href: '',
+		},
+
+		{
+			icon: faGithub,
+			text: 'Github',
+			href: 'https://github.com/yohanetifier',
+		},
+		{
+			icon: faXTwitter,
+			text: 'Twitter',
+			href: '',
+		},
+		{
+			icon: faLinkedin,
+			text: 'Linkedin',
+			href: 'https://www.linkedin.com/in/yohan-etifier-7a486a166/',
+		},
+		{
+			icon: faInstagram,
+			text: 'Instagram',
+			href: '',
+		},
+	];
 	return (
 		<section
 			className={styles.mainWrapper}
 			// style={{ height: height.current }}
 		>
-			{/* <Cursor /> */}
 			<div className={styles.leftWrapper}>
 				<div className={styles.contactWrapper}>
 					<Connect />
-					<div className={styles.emailWrapper}>
-						<p
-							className={styles.subtitle}
-							onMouseEnter={() => setShow(true)}
-							onMouseLeave={() => setShow(false)}
-						>
-							{subtitle}
-						</p>
-						<ShowEmail
-							show={show}
-							className={styles.showEmail}
-						/>
-					</div>
-					<SocialNetwork />
+					<ContactDetails contact={contact} />
 				</div>
 			</div>
 			{/* <Footer /> */}

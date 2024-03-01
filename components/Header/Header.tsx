@@ -9,7 +9,7 @@ const Header = () => {
 		<header className={styles.wrapper}>
 			<div className={styles.header}>
 				<Logo
-					src='/assets/images/logo.png'
+					src='/assets/images/logoooyo.svg'
 					alt='log'
 				/>
 				<Description

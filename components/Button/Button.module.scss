@@ -23,7 +23,10 @@
     transform: rotate(0deg);
     transition: transform 500ms;
     @include mobileL {
-        width: 60%;
+        width: 50%;
+    }
+    @include mobileM {
+        width: 40%;
     }
 }
 
