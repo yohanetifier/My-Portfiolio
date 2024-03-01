@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import styles from './BannerPhrase.module.scss';
 import gsap from 'gsap';
+import SocialNetwork from '../SocialNetwork/SocialNetwork';
 
 type Props = {
 	bannerPhrase: String[];
@@ -49,6 +50,7 @@ const BannerPhrase = ({
 					<h2 className='animateTitle'>{phrase}</h2>
 				</div>
 			))}
+			<SocialNetwork />
 		</div>
 	);
 };

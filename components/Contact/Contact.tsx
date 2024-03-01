@@ -15,6 +15,35 @@ interface Props {
 	subtitle: string;
 }
 
+export const contact: Contact[] = [
+	{
+		icon: faEnvelope,
+		text: 'yohanetifier@gmail.com',
+		href: 'mailto:yohanetifier@gmail.com',
+	},
+
+	{
+		icon: faLinkedin,
+		text: 'Linkedin',
+		href: 'https://www.linkedin.com/in/yohan-etifier-7a486a166/',
+	},
+	{
+		icon: faGithub,
+		text: 'Github',
+		href: 'https://github.com/yohanetifier',
+	},
+	{
+		icon: faXTwitter,
+		text: 'Twitter',
+		href: 'https://twitter.com/yohanwebdev',
+	},
+	{
+		icon: faInstagram,
+		text: 'Instagram',
+		href: 'https://www.instagram.com/yohanwebdev/',
+	},
+];
+
 const Contact = ({ subtitle }: Props) => {
 	const [show, setShow] = useState<boolean>(false);
 	// const height = useRef(0);
@@ -22,34 +51,6 @@ const Contact = ({ subtitle }: Props) => {
 	// 	height.current = window.innerHeight;
 	// }, [height]);
 
-	const contact: Contact[] = [
-		{
-			icon: faEnvelope,
-			text: 'yohanetifier@gmail.com',
-			href: '',
-		},
-
-		{
-			icon: faGithub,
-			text: 'Github',
-			href: 'https://github.com/yohanetifier',
-		},
-		{
-			icon: faXTwitter,
-			text: 'Twitter',
-			href: '',
-		},
-		{
-			icon: faLinkedin,
-			text: 'Linkedin',
-			href: 'https://www.linkedin.com/in/yohan-etifier-7a486a166/',
-		},
-		{
-			icon: faInstagram,
-			text: 'Instagram',
-			href: '',
-		},
-	];
 	return (
 		<section
 			className={styles.mainWrapper}

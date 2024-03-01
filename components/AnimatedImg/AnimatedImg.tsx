@@ -3,13 +3,7 @@ import React, { RefObject, useContext, useEffect, useRef } from 'react';
 import styles from './AnimatedImg.module.scss';
 import gsap from 'gsap';
 import { ThemeContext } from '../Context/ThemeContext';
-
-export type ArrayOfImg = {
-	src: string;
-	alt: string;
-	className: string;
-	id: number;
-};
+import { ArrayOfImg } from '../../typings/ArrayofImg';
 
 type Props = {
 	arrayOfImg: ArrayOfImg[];
@@ -35,27 +29,27 @@ const AnimatedImg = ({
 					stagger: 0.5,
 				})
 				.to(children[4] as HTMLElement, {
-					y: '200%',
+					y: '100vh',
 					duration: 0.4,
 					ease: 'cubic(0.17, 0.67, 0.08, 0.96)',
 				})
 				.to(children[3] as HTMLElement, {
-					y: '200%',
+					y: '100vh',
 					duration: 0.4,
 					ease: 'cubic(0.17, 0.67, 0.08, 0.96)',
 				})
 				.to(children[2] as HTMLElement, {
-					y: '200%',
+					y: '100vh',
 					duration: 0.4,
 					ease: 'cubic(0.17, 0.67, 0.08, 0.96)',
 				})
 				.to(children[1] as HTMLElement, {
-					y: '200%',
+					y: '100vh',
 					duration: 0.4,
 					ease: 'cubic(0.17, 0.67, 0.08, 0.96)',
 				})
 				.to(children[0] as HTMLElement, {
-					y: '200%',
+					y: '100vh',
 					duration: 0.4,
 					ease: 'cubic(0.17, 0.67, 0.08, 0.96)',
 					onComplete: () => {

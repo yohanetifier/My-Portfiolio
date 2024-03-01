@@ -1,11 +1,10 @@
 'use client';
 import React, { useContext, useEffect, useRef } from 'react';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import styles from './SocialNetwork.module.scss';
 import IconLink from '../IconLink/IconLink';
 import { ThemeContext } from '../Context/ThemeContext';
 import gsap from 'gsap';
-
+import { contact } from '../Contact/Contact';
 interface Props {
 	isAnimated?: boolean;
 }
@@ -29,19 +28,19 @@ const SocialNetwork = ({ isAnimated = false }: Props) => {
 			);
 		}
 	}, [endLoading, isAnimated]);
+
 	return (
 		<div
 			ref={wrapperRef}
 			className={styles.mainWrapper}
 		>
-			<IconLink
-				link='https://github.com/yohanetifier'
-				icon={faGithub}
-			/>
-			<IconLink
-				link='https://www.linkedin.com/in/yohan-etifier-7a486a166/'
-				icon={faLinkedin}
-			/>
+			{contact.map(({ href, icon }, index) => (
+				<IconLink
+					key={index}
+					link={href}
+					icon={icon}
+				/>
+			))}
 		</div>
 	);
 };
