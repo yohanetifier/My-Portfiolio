@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import styles from './Contact.module.scss';
 import Connect from '../Connect/Connect';
-import IconWithText from '../IconWithText/IconWithText';
-import { faEnvelope, faX } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import {
 	faGithub,
 	faInstagram,
