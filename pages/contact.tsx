@@ -10,7 +10,7 @@ const contact = () => {
 	return (
 		<>
 			<Head>
-				<title>Contact</title>
+				<title>Contact - Yohan Etifer</title>
 				<meta
 					name='description'
 					content='Contact Yohan Etifier about freelance web development'

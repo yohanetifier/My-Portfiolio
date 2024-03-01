@@ -5,7 +5,7 @@ const work = () => {
 	return (
 		<main>
 			<Head>
-				<title>Work</title>
+				<title>Work - Yohan Etifier</title>
 				<meta
 					name='description'
 					content='Look at my latest projects'

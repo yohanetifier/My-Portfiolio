@@ -18,7 +18,7 @@ const about = () => {
 	return (
 		<section>
 			<Head>
-				<title>About</title>
+				<title>About - Yohan Etifier</title>
 				<meta
 					name='description'
 					content='Yohan Etifier is a freelance creative web developer from Paris'
