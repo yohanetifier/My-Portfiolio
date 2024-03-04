@@ -22,6 +22,7 @@ const Connect = () => {
 
 	return (
 		<div
+			data-testid='parentElement'
 			ref={titleRef}
 			className={styles.alignTitle}
 		>
@@ -30,9 +31,9 @@ const Connect = () => {
 				className={styles.overlapWrapper}
 				ref={overlapWrapperRef}
 			>
-				<p className={styles.overlapMessage}> WORK</p>
-				<p className={styles.overlapMessage}>BUILD</p>
-				<p className={styles.overlapMessage}>TALK</p>
+				<h2 className={styles.overlapMessage}>WORK</h2>
+				<h2 className={styles.overlapMessage}>BUILD</h2>
+				<h2 className={styles.overlapMessage}>TALK</h2>
 			</div>
 			<h2
 				ref={togetherRef}

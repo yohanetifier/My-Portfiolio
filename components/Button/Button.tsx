@@ -6,6 +6,7 @@ const Button = () => {
 	const { menu, setMenu } = useContext(ThemeContext);
 	return (
 		<button
+			data-testid='button'
 			onClick={() => setMenu(!menu)}
 			className={styles.button}
 		>
