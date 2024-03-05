@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import AnimatedImg from '../AnimatedImg';
+import AnimatedImg from './AnimatedImg';
 
 describe('AnimatedImg', () => {
 	it('should render correctly', () => {

@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import AnimatedWords from '../AnimatedWords';
+import AnimatedWords from './AnimatedWords';
 import gsap from 'gsap';
 
 const arrayOfLetter = ['T', 'E', 'S', 'T'];

@@ -10,9 +10,6 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { Contact } from '../../typings/contact';
 import ContactDetails from '../ContactDetails/ContactDetails';
-interface Props {
-	subtitle: string;
-}
 
 export const contact: Contact[] = [
 	{
@@ -43,25 +40,15 @@ export const contact: Contact[] = [
 	},
 ];
 
-const Contact = ({ subtitle }: Props) => {
-	const [show, setShow] = useState<boolean>(false);
-	// const height = useRef(0);
-	// useEffect(() => {
-	// 	height.current = window.innerHeight;
-	// }, [height]);
-
+const Contact = () => {
 	return (
-		<section
-			className={styles.mainWrapper}
-			// style={{ height: height.current }}
-		>
+		<section className={styles.mainWrapper}>
 			<div className={styles.leftWrapper}>
 				<div className={styles.contactWrapper}>
 					<Connect />
 					<ContactDetails contact={contact} />
 				</div>
 			</div>
-			{/* <Footer /> */}
 		</section>
 	);
 };
