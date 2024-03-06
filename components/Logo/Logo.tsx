@@ -16,7 +16,10 @@ const Logo = ({ src, alt }: Props) => {
 		setTitle('/');
 	};
 	return (
-		<div onClick={() => handleClick()}>
+		<div
+			data-testid='logo'
+			onClick={() => handleClick()}
+		>
 			<Image
 				src={src}
 				alt={alt}

@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Introduction should render correctly 1`] = `
+<div>
+  <div
+    class="wrapper entranceWrapper"
+  >
+    <div
+      class="title"
+      data-testid="div"
+    >
+      <span
+        class="letter"
+        data-testid="span"
+        style=""
+      >
+        H
+      </span>
+      <span
+        class="letter"
+        data-testid="span"
+        style=""
+      >
+        E
+      </span>
+      <span
+        class="letter"
+        data-testid="span"
+        style=""
+      >
+        L
+      </span>
+      <span
+        class="letter"
+        data-testid="span"
+        style=""
+      >
+        L
+      </span>
+      <span
+        class="letter"
+        data-testid="span"
+        style=""
+      >
+        O
+      </span>
+    </div>
+    <div
+      class="container"
+    >
+      <figure
+        class="imgWrapper figure"
+      >
+        <img
+          alt="poker"
+          data-nimg="1"
+          decoding="async"
+          height="200"
+          loading="lazy"
+          src="/_next/image?url=%2Fassets%2Fimages%2Fpoker.jpeg&w=640&q=75"
+          srcset="/_next/image?url=%2Fassets%2Fimages%2Fpoker.jpeg&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fimages%2Fpoker.jpeg&w=640&q=75 2x"
+          style="color: transparent;"
+          width="200"
+        />
+      </figure>
+      <figure
+        class="imgWrapper1 figure"
+      >
+        <img
+          alt="plane"
+          data-nimg="1"
+          decoding="async"
+          height="200"
+          loading="lazy"
+          src="/_next/image?url=%2Fassets%2Fimages%2Fplane.jpeg&w=640&q=75"
+          srcset="/_next/image?url=%2Fassets%2Fimages%2Fplane.jpeg&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fimages%2Fplane.jpeg&w=640&q=75 2x"
+          style="color: transparent;"
+          width="200"
+        />
+      </figure>
+      <figure
+        class="imgWrapper2 figure"
+      >
+        <img
+          alt="echecs"
+          data-nimg="1"
+          decoding="async"
+          height="200"
+          loading="lazy"
+          src="/_next/image?url=%2Fassets%2Fimages%2Fechecs.jpeg&w=640&q=75"
+          srcset="/_next/image?url=%2Fassets%2Fimages%2Fechecs.jpeg&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fimages%2Fechecs.jpeg&w=640&q=75 2x"
+          style="color: transparent;"
+          width="200"
+        />
+      </figure>
+      <figure
+        class="imgWrapper3 figure"
+      >
+        <img
+          alt=""
+          data-nimg="1"
+          decoding="async"
+          height="200"
+          loading="lazy"
+          src="/_next/image?url=%2Fassets%2Fimages%2Ffitness.jpeg&w=640&q=75"
+          srcset="/_next/image?url=%2Fassets%2Fimages%2Ffitness.jpeg&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fimages%2Ffitness.jpeg&w=640&q=75 2x"
+          style="color: transparent;"
+          width="200"
+        />
+      </figure>
+      <figure
+        class="imgWrapper4 figure"
+      >
+        <img
+          alt=""
+          data-nimg="1"
+          decoding="async"
+          height="200"
+          loading="lazy"
+          src="/_next/image?url=%2Fassets%2Fimages%2Ffoot.jpeg&w=640&q=75"
+          srcset="/_next/image?url=%2Fassets%2Fimages%2Ffoot.jpeg&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fimages%2Ffoot.jpeg&w=640&q=75 2x"
+          style="color: transparent;"
+          width="200"
+        />
+      </figure>
+    </div>
+  </div>
+</div>
+`;
